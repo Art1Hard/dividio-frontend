@@ -1,6 +1,7 @@
 import { type AppDispatch } from "@src/store";
 import { authActions } from "@src/store/auth/auth.slice";
 import { authApi } from "@src/store/auth/auth.api";
+import { userApi } from "../user/user.api";
 
 export const initAuth = () => async (dispatch: AppDispatch) => {
 	try {
@@ -24,4 +25,5 @@ export const logout = () => async (dispatch: AppDispatch) => {
 	dispatch(authActions.logout());
 
 	dispatch(authApi.util.resetApiState());
+	dispatch(userApi.util.resetApiState());
 };

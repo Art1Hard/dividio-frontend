@@ -1,5 +1,5 @@
-import { LoginForm } from "@src/components/Auth/LoginForm";
-import { RegisterForm } from "@src/components/Auth/RegisterForm";
+import { LoginForm } from "@src/components/auth/LoginForm";
+import { RegisterForm } from "@src/components/auth/RegisterForm";
 import { useState } from "react";
 
 const AuthPage = () => {

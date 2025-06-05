@@ -1,5 +1,4 @@
 import { type FC } from "react";
-import cn from "clsx";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
 	registerSchema,
@@ -8,6 +7,8 @@ import {
 import { useForm } from "react-hook-form";
 import { useRegisterMutation } from "@src/store/auth/auth.api";
 import { isServerError } from "@src/lib/serverError";
+import Input from "@components/auth/ui/Input";
+import SwitchButton from "./ui/SwitchButton";
 
 interface RegisterFormProps {
 	onClickSwitchForm: () => void;
@@ -26,10 +27,6 @@ export const RegisterForm: FC<RegisterFormProps> = ({ onClickSwitchForm }) => {
 	});
 
 	const [registerUser] = useRegisterMutation();
-
-	const inputClass = cn(
-		"w-full px-4 py-2 rounded-lg bg-slate-700 text-white border focus:outline-none focus:ring-2 focus:ring-blue-500"
-	);
 
 	const onSubmit = async ({ email, password }: RegisterSchema) => {
 		try {
@@ -59,74 +56,35 @@ export const RegisterForm: FC<RegisterFormProps> = ({ onClickSwitchForm }) => {
 				</h2>
 
 				<form onSubmit={handleSubmit(onSubmit)}>
-					<div className="relative mb-9">
-						<label
-							htmlFor="email"
-							className="block text-sm font-medium text-slate-300 mb-1">
-							Email
-						</label>
-						<input
-							{...register("email")}
-							type="text"
-							id="email"
-							className={cn(inputClass, {
-								"border-red-500": errors.email,
-								"border-slate-600": !errors.email,
-							})}
-							placeholder="you@example.com"
-						/>
-						{errors.email && (
-							<p className="absolute bottom-[-25px] text-[14px] text-red-500 left-0">
-								{errors.email.message}
-							</p>
-						)}
-					</div>
+					<Input
+						rootClassName="mb-8"
+						type="text"
+						label="email"
+						labelText="Email"
+						{...register("email")}
+						error={errors.email}
+						placeholder="you@example.com"
+					/>
 
-					<div className="relative mb-9">
-						<label
-							htmlFor="password"
-							className="block text-sm font-medium text-slate-300 mb-1">
-							Пароль
-						</label>
-						<input
-							{...register("password")}
-							type="password"
-							id="password"
-							className={cn(inputClass, {
-								"border-red-500": errors.password,
-								"border-slate-600": !errors.password,
-							})}
-							placeholder="••••••••"
-						/>
-						{errors.password && (
-							<p className="absolute bottom-[-25px] text-[14px] text-red-500 left-0">
-								{errors.password.message}
-							</p>
-						)}
-					</div>
+					<Input
+						rootClassName="mb-8"
+						type="password"
+						label="password"
+						labelText="Пароль"
+						{...register("password")}
+						error={errors.password}
+						placeholder="••••••••"
+					/>
 
-					<div className="relative mb-12">
-						<label
-							htmlFor="confirm-password"
-							className="block text-sm font-medium text-slate-300 mb-1">
-							Подтвердить пароль
-						</label>
-						<input
-							{...register("confirmPassword")}
-							type="password"
-							id="confirm-password"
-							className={cn(inputClass, {
-								"border-red-500": errors.confirmPassword,
-								"border-slate-600": !errors.confirmPassword,
-							})}
-							placeholder="••••••••"
-						/>
-						{errors.confirmPassword && (
-							<p className="absolute bottom-[-25px] text-[14px] text-red-500 left-0">
-								{errors.confirmPassword.message}
-							</p>
-						)}
-					</div>
+					<Input
+						rootClassName="mb-12"
+						type="password"
+						label="confirm-password"
+						labelText="Подтвердите пароль"
+						{...register("confirmPassword")}
+						error={errors.confirmPassword}
+						placeholder="••••••••"
+					/>
 
 					<button
 						type="submit"
@@ -136,17 +94,11 @@ export const RegisterForm: FC<RegisterFormProps> = ({ onClickSwitchForm }) => {
 					</button>
 				</form>
 
-				<p className="mt-6 text-center text-sm text-slate-400">
-					<button
-						type="button"
-						onClick={(e) => {
-							e.preventDefault();
-							onClickSwitchForm();
-						}}
-						className="text-blue-400 hover:underline">
-						Авторизация
-					</button>
-				</p>
+				<SwitchButton
+					onClickSwitchForm={onClickSwitchForm}
+					prefix="Вы зарегистрированы?">
+					Войти
+				</SwitchButton>
 			</div>
 		</div>
 	);

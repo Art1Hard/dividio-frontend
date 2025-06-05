@@ -3,7 +3,7 @@ import "./index.css";
 import App from "@src/App";
 import { Provider } from "react-redux";
 import { store } from "@src/store";
-import GuardProvider from "./components/Guard/GuardProvider";
+import GuardProvider from "./components/guard/GuardProvider";
 
 createRoot(document.getElementById("root")!).render(
 	<Provider store={store}>

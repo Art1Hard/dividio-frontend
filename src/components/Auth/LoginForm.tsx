@@ -1,12 +1,12 @@
-import { useState, type FC } from "react";
+import type { FC } from "react";
 import { useLoginMutation } from "@store/auth/auth.api";
-import { EyeClosedIcon, EyeOpenIcon } from "@src/assets/icons/EyeIcons";
 import { useForm } from "react-hook-form";
-import cn from "clsx";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type AuthSchema, authSchema } from "@lib/types/schemas/auth";
 import { isServerError } from "@src/lib/serverError";
+import Input from "@src/components/auth/ui/Input";
+import SwitchButton from "./ui/SwitchButton";
 
 interface LoginFormProps {
 	onClickSwitchForm: () => void;
@@ -24,18 +24,7 @@ export const LoginForm: FC<LoginFormProps> = ({ onClickSwitchForm }) => {
 		resolver: zodResolver(authSchema),
 		mode: "onBlur",
 	});
-	const [isShowPassword, setIsShowPassword] = useState(false);
 	const [login] = useLoginMutation();
-
-	const showPassword = (e: React.MouseEvent<HTMLButtonElement>) => {
-		e.preventDefault();
-
-		setIsShowPassword((prev) => !prev);
-	};
-
-	const inputClass = cn(
-		"w-full px-4 py-2 rounded-lg bg-slate-700 text-white border focus:outline-none focus:ring-2 focus:ring-blue-500"
-	);
 
 	const onSubmit = async (data: AuthSchema) => {
 		try {
@@ -73,58 +62,25 @@ export const LoginForm: FC<LoginFormProps> = ({ onClickSwitchForm }) => {
 				</h2>
 
 				<form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-					<div className="relative">
-						<label
-							htmlFor="email"
-							className="block text-sm font-medium text-slate-300 mb-1">
-							Email
-						</label>
-						<input
-							{...register("email")}
-							type="text"
-							id="email"
-							className={cn(inputClass, {
-								"border-red-500": errors.email,
-								"border-slate-600": !errors.email,
-							})}
-							placeholder="you@example.com"
-						/>
-						{errors.email && (
-							<p className="absolute bottom-[-25px] text-[14px] text-red-500 left-0">
-								{errors.email.message}
-							</p>
-						)}
-					</div>
+					<Input
+						type="text"
+						label="email"
+						labelText="Email"
+						{...register("email")}
+						error={errors.email}
+						placeholder="you@example.com"
+					/>
 
-					<div className="relative">
-						<label
-							htmlFor="password"
-							className="block text-sm font-medium text-slate-300 mb-1">
-							Пароль
-						</label>
-						<input
-							{...register("password")}
-							type={!isShowPassword ? "password" : "text"}
-							id="password"
-							className={cn(inputClass, {
-								"border-red-500": errors.password,
-								"border-slate-600": !errors.password,
-							})}
-							placeholder="••••••••"
-						/>
-						<button
-							onClick={showPassword}
-							type="button"
-							className="absolute right-3 top-9 text-slate-400 hover:text-white"
-							aria-label="Показать или скрыть пароль">
-							{!isShowPassword ? <EyeOpenIcon /> : <EyeClosedIcon />}
-						</button>
-						{errors.password && (
-							<p className="absolute bottom-[-25px] text-[14px] text-red-500 left-0">
-								{errors.password.message}
-							</p>
-						)}
-					</div>
+					<Input
+						className="pr-10"
+						type="password"
+						label="password"
+						labelText="Пароль"
+						{...register("password")}
+						error={errors.password}
+						placeholder="••••••••"
+						hasShowIcon
+					/>
 
 					<div className="flex items-center justify-between text-sm text-slate-400">
 						<label className="flex items-center gap-2">
@@ -144,18 +100,11 @@ export const LoginForm: FC<LoginFormProps> = ({ onClickSwitchForm }) => {
 					</button>
 				</form>
 
-				<p className="mt-6 text-center text-sm text-slate-400">
-					Нет аккаунта?{" "}
-					<button
-						type="button"
-						onClick={(e) => {
-							e.preventDefault();
-							onClickSwitchForm();
-						}}
-						className="text-blue-400 hover:underline">
-						Зарегистрироваться
-					</button>
-				</p>
+				<SwitchButton
+					onClickSwitchForm={onClickSwitchForm}
+					prefix="Нет аккаунта?">
+					Зарегистрироваться
+				</SwitchButton>
 			</div>
 		</div>
 	);

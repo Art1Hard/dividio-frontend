@@ -1,13 +1,9 @@
-import { useAppSelector } from "@hooks/redux";
 import { useThunks } from "@hooks/redux/thunks";
 import { useUserQuery } from "@store/user/user.api";
 
 const User = () => {
 	const { logout } = useThunks();
-	const { accessToken } = useAppSelector((state) => state.auth);
-	const { data, isLoading, isError } = useUserQuery(undefined, {
-		skip: !accessToken,
-	});
+	const { data, isLoading, isError } = useUserQuery();
 
 	return (
 		<div>

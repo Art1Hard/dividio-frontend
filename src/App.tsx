@@ -2,8 +2,8 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import DashboardPage from "@src/pages/DashboardPage";
 import { useAppSelector } from "@hooks/redux";
 import User from "@pages/User";
-import AuthGuard from "@components/Guard/AuthGuard";
-import GuestGuard from "@components/Guard/GuestGuard";
+import AuthGuard from "@src/components/guard/AuthGuard";
+import GuestGuard from "@src/components/guard/GuestGuard";
 import { ROUTES } from "@src/routes";
 import AuthPage from "@pages/AuthPage";
 

@@ -7,14 +7,8 @@ export const authSchema = z.object({
 		.min(6, { message: "Пароль должен содержать не менее 6 символов" }),
 });
 
-export type AuthSchema = z.infer<typeof authSchema>;
-
-export const registerSchema = z
-	.object({
-		email: z.string().email({ message: "Введите корректную почту" }),
-		password: z
-			.string()
-			.min(6, { message: "Пароль должен содержать не менее 6 символов" }),
+export const registerSchema = authSchema
+	.extend({
 		confirmPassword: z.string(),
 	})
 	.refine((data) => data.password === data.confirmPassword, {
@@ -22,4 +16,5 @@ export const registerSchema = z
 		path: ["confirmPassword"],
 	});
 
+export type AuthSchema = z.infer<typeof authSchema>;
 export type RegisterSchema = z.infer<typeof registerSchema>;

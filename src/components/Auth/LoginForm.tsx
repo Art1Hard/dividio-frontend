@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, type FC } from "react";
 import { useLoginMutation } from "@store/auth/auth.api";
 import { EyeClosedIcon, EyeOpenIcon } from "@src/assets/icons/EyeIcons";
-import { Link } from "react-router-dom";
-import { ROUTES } from "@src/routes";
 
-export const LoginForm = () => {
+interface LoginFormProps {
+	onClickSwitchForm: () => void;
+}
+
+export const LoginForm: FC<LoginFormProps> = ({ onClickSwitchForm }) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [isShowPassword, setIsShowPassword] = useState(false);
@@ -124,9 +126,15 @@ export const LoginForm = () => {
 
 				<p className="mt-6 text-center text-sm text-slate-400">
 					Нет аккаунта?{" "}
-					<Link to={ROUTES.REGISTER} className="text-blue-400 hover:underline">
+					<button
+						type="button"
+						onClick={(e) => {
+							e.preventDefault();
+							onClickSwitchForm();
+						}}
+						className="text-blue-400 hover:underline">
 						Зарегистрироваться
-					</Link>
+					</button>
 				</p>
 			</div>
 		</div>

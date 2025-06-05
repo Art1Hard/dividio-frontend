@@ -1,4 +1,3 @@
-import { LoginForm } from "@components/Auth/LoginForm";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import Home from "@pages/Home";
 import { useAppSelector } from "@hooks/redux";
@@ -6,7 +5,7 @@ import User from "@pages/User";
 import AuthGuard from "@components/Guard/AuthGuard";
 import GuestGuard from "@components/Guard/GuestGuard";
 import { ROUTES } from "@src/routes";
-import { RegisterForm } from "./components/Auth/RegisterForm";
+import AuthPage from "@pages/AuthPage";
 
 export default function App() {
 	const { isAuthenticated } = useAppSelector((state) => state.auth);
@@ -27,16 +26,7 @@ export default function App() {
 					path={ROUTES.LOGIN}
 					element={
 						<GuestGuard>
-							<LoginForm />
-						</GuestGuard>
-					}
-				/>
-
-				<Route
-					path={ROUTES.REGISTER}
-					element={
-						<GuestGuard>
-							<RegisterForm />
+							<AuthPage />
 						</GuestGuard>
 					}
 				/>

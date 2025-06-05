@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, type FC } from "react";
 import { EyeClosedIcon, EyeOpenIcon } from "@src/assets/icons/EyeIcons";
-import { Link } from "react-router-dom";
-import { ROUTES } from "@src/routes";
 
-export const RegisterForm = () => {
+interface RegisterFormProps {
+	onClickSwitchForm: () => void;
+}
+
+export const RegisterForm: FC<RegisterFormProps> = ({ onClickSwitchForm }) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [isShowPassword, setIsShowPassword] = useState(false);
@@ -74,9 +76,15 @@ export const RegisterForm = () => {
 				</form>
 
 				<p className="mt-6 text-center text-sm text-slate-400">
-					<Link to={ROUTES.LOGIN} className="text-blue-400 hover:underline">
+					<button
+						type="button"
+						onClick={(e) => {
+							e.preventDefault();
+							onClickSwitchForm();
+						}}
+						className="text-blue-400 hover:underline">
 						Авторизация
-					</Link>
+					</button>
 				</p>
 			</div>
 		</div>

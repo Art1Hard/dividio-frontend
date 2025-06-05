@@ -1,42 +1,31 @@
 import { useState, type FC } from "react";
 import { useLoginMutation } from "@store/auth/auth.api";
 import { EyeClosedIcon, EyeOpenIcon } from "@src/assets/icons/EyeIcons";
+import { useForm } from "react-hook-form";
+import cn from "clsx";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { type AuthSchema, authSchema } from "@lib/types/schemas/auth";
+import { isServerError } from "@src/lib/serverError";
 
 interface LoginFormProps {
 	onClickSwitchForm: () => void;
 }
 
 export const LoginForm: FC<LoginFormProps> = ({ onClickSwitchForm }) => {
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const {
+		register,
+		handleSubmit,
+		formState: { errors, isSubmitting },
+		reset,
+		resetField,
+		setError,
+	} = useForm<AuthSchema>({
+		resolver: zodResolver(authSchema),
+		mode: "onBlur",
+	});
 	const [isShowPassword, setIsShowPassword] = useState(false);
-	const [login, { isLoading }] = useLoginMutation();
-	const [formError, setFormError] = useState<string | null>(null);
-
-	const handleSubmit = async (e: React.FormEvent) => {
-		e.preventDefault();
-		setFormError(null);
-
-		try {
-			await login({ email, password }).unwrap();
-
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		} catch (err: any) {
-			console.error("Ошибка авторизации:", err);
-
-			if (err.data.message === "Invalid password")
-				setFormError("Неправильный пароль");
-
-			if (err.data.message === "User not found")
-				setFormError("Такая почта не зарегистрирована");
-
-			if (
-				err.data.message[0] ===
-				"password must be longer than or equal to 6 characters"
-			)
-				setFormError("Пароль должен быть больше 5 символов");
-		}
-	};
+	const [login] = useLoginMutation();
 
 	const showPassword = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
@@ -44,8 +33,37 @@ export const LoginForm: FC<LoginFormProps> = ({ onClickSwitchForm }) => {
 		setIsShowPassword((prev) => !prev);
 	};
 
-	const inputClass =
-		"w-full px-4 py-2 rounded-lg bg-slate-700 text-white border focus:outline-none focus:ring-2 focus:ring-blue-500";
+	const inputClass = cn(
+		"w-full px-4 py-2 rounded-lg bg-slate-700 text-white border focus:outline-none focus:ring-2 focus:ring-blue-500"
+	);
+
+	const onSubmit = async (data: AuthSchema) => {
+		try {
+			await login(data).unwrap();
+
+			reset();
+		} catch (e) {
+			if (isServerError(e)) {
+				if (e.data.message === "User not found") {
+					reset();
+					setError("email", {
+						type: "server",
+						message: "Такого пользователя не существует",
+					});
+				}
+
+				if (e.data.message === "Invalid password") {
+					resetField("password");
+					setError("password", {
+						type: "server",
+						message: "Неверный пароль, попробуйте снова",
+					});
+				}
+			} else {
+				console.error("Неизвестная ошибка авторизации:", e);
+			}
+		}
+	};
 
 	return (
 		<div className="min-h-screen bg-slate-900 flex items-center justify-center px-4">
@@ -54,30 +72,28 @@ export const LoginForm: FC<LoginFormProps> = ({ onClickSwitchForm }) => {
 					Вход в аккаунт
 				</h2>
 
-				{formError && (
-					<div className="mb-4 text-red-400 text-sm text-center">
-						{formError}
-					</div>
-				)}
-
-				<form onSubmit={handleSubmit} className="space-y-5">
-					<div>
+				<form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+					<div className="relative">
 						<label
 							htmlFor="email"
 							className="block text-sm font-medium text-slate-300 mb-1">
 							Email
 						</label>
 						<input
-							type="email"
+							{...register("email")}
+							type="text"
 							id="email"
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-							className={`${inputClass} ${
-								formError ? "border-red-500" : "border-slate-600"
-							}`}
+							className={cn(inputClass, {
+								"border-red-500": errors.email,
+								"border-slate-600": !errors.email,
+							})}
 							placeholder="you@example.com"
-							required
 						/>
+						{errors.email && (
+							<p className="absolute bottom-[-25px] text-[14px] text-red-500 left-0">
+								{errors.email.message}
+							</p>
+						)}
 					</div>
 
 					<div className="relative">
@@ -87,15 +103,14 @@ export const LoginForm: FC<LoginFormProps> = ({ onClickSwitchForm }) => {
 							Пароль
 						</label>
 						<input
+							{...register("password")}
 							type={!isShowPassword ? "password" : "text"}
 							id="password"
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-							className={`${inputClass} ${
-								formError ? "border-red-500" : "border-slate-600"
-							}`}
+							className={cn(inputClass, {
+								"border-red-500": errors.password,
+								"border-slate-600": !errors.password,
+							})}
 							placeholder="••••••••"
-							required
 						/>
 						<button
 							onClick={showPassword}
@@ -104,6 +119,11 @@ export const LoginForm: FC<LoginFormProps> = ({ onClickSwitchForm }) => {
 							aria-label="Показать или скрыть пароль">
 							{!isShowPassword ? <EyeOpenIcon /> : <EyeClosedIcon />}
 						</button>
+						{errors.password && (
+							<p className="absolute bottom-[-25px] text-[14px] text-red-500 left-0">
+								{errors.password.message}
+							</p>
+						)}
 					</div>
 
 					<div className="flex items-center justify-between text-sm text-slate-400">
@@ -118,9 +138,9 @@ export const LoginForm: FC<LoginFormProps> = ({ onClickSwitchForm }) => {
 
 					<button
 						type="submit"
-						disabled={isLoading}
+						disabled={isSubmitting}
 						className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition disabled:opacity-50">
-						{isLoading ? "Входим..." : "Войти"}
+						{isSubmitting ? "Входим..." : "Войти"}
 					</button>
 				</form>
 

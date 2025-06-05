@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { RootState } from "@src/store";
-import type { IUser } from "@src/types";
+import type { IUser } from "@src/lib/types/types";
 
 const baseQuery = fetchBaseQuery({
 	baseUrl: "http://localhost:4200/api",
@@ -8,7 +8,6 @@ const baseQuery = fetchBaseQuery({
 	prepareHeaders: (headers, { getState }) => {
 		const state = getState() as RootState;
 		const token = state.auth.accessToken;
-		console.log("Access token in prepareHeaders:", token);
 		if (token) {
 			headers.set("Authorization", `Bearer ${token}`);
 		}

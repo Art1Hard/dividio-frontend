@@ -6,6 +6,7 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import type { RootState } from "@src/store";
 import { authActions } from "./auth.slice";
+import type { AuthSchema } from "@src/lib/types/schemas/auth";
 
 const rawBaseQuery = fetchBaseQuery({
 	baseUrl: "http://localhost:4200/api/auth",
@@ -61,12 +62,21 @@ export const authApi = createApi({
 	reducerPath: "authApi",
 	baseQuery: baseQueryWithReauth,
 	endpoints: (build) => ({
-		login: build.mutation<
-			{ accessToken: string },
-			{ email: string; password: string }
-		>({
+		login: build.mutation<{ accessToken: string }, AuthSchema>({
 			query: (credentials) => ({
 				url: "/login",
+				method: "POST",
+				body: credentials,
+			}),
+			async onQueryStarted(_, { queryFulfilled, dispatch }) {
+				const { data } = await queryFulfilled;
+				dispatch(authActions.setAccessToken(data.accessToken));
+			},
+		}),
+
+		register: build.mutation<{ accessToken: string }, AuthSchema>({
+			query: (credentials) => ({
+				url: "/register",
 				method: "POST",
 				body: credentials,
 			}),
@@ -96,4 +106,5 @@ export const authApi = createApi({
 	}),
 });
 
-export const { useLoginMutation, useGetAccessTokenQuery } = authApi;
+export const { useLoginMutation, useRegisterMutation, useGetAccessTokenQuery } =
+	authApi;

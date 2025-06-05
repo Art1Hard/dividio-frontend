@@ -1,5 +1,5 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import Home from "@pages/Home";
+import DashboardPage from "@src/pages/DashboardPage";
 import { useAppSelector } from "@hooks/redux";
 import User from "@pages/User";
 import AuthGuard from "@components/Guard/AuthGuard";
@@ -13,7 +13,7 @@ export default function App() {
 	return (
 		<BrowserRouter>
 			<nav>
-				<Link to={ROUTES.HOME}>Главная</Link> |{" "}
+				<Link to={ROUTES.HOME}>Доска</Link> |{" "}
 				<Link to={isAuthenticated ? ROUTES.PROFILE : ROUTES.LOGIN}>
 					Аккаунт
 				</Link>{" "}
@@ -21,7 +21,14 @@ export default function App() {
 			</nav>
 
 			<Routes>
-				<Route path={ROUTES.HOME} element={<Home />} />
+				<Route
+					path={ROUTES.HOME}
+					element={
+						<AuthGuard>
+							<DashboardPage />
+						</AuthGuard>
+					}
+				/>
 				<Route
 					path={ROUTES.LOGIN}
 					element={

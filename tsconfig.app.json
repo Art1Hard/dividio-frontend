@@ -28,6 +28,7 @@
 			"@config/*": ["src/config/*"],
 			"@api/*": ["src/shared/api/*"],
 			"@services/*": ["src/services/*"],
+			"@lib/*": ["src/lib/*"],
     },
 
     /* Linting */

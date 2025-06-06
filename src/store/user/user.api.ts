@@ -18,15 +18,21 @@ const baseQuery = fetchBaseQuery({
 export const userApi = createApi({
 	reducerPath: "userApi",
 	baseQuery,
+	tagTypes: ["User"],
 	endpoints: (build) => ({
-		// Пример защищённого запроса
-		user: build.query<IUser, void>({
-			query: () => ({
+		getUser: build.query<IUser, void>({
+			query: () => "/user",
+			providesTags: ["User"],
+		}),
+		updateUserName: build.mutation<IUser, { name: string }>({
+			query: (body) => ({
 				url: "/user",
-				method: "GET",
+				method: "PUT",
+				body,
 			}),
+			invalidatesTags: ["User"],
 		}),
 	}),
 });
 
-export const { useUserQuery } = userApi;
+export const { useGetUserQuery, useUpdateUserNameMutation } = userApi;

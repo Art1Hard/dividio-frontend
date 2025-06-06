@@ -9,7 +9,9 @@ export const authSchema = z.object({
 
 export const registerSchema = authSchema
 	.extend({
-		confirmPassword: z.string(),
+		confirmPassword: z
+			.string()
+			.nonempty({ message: "Поле не может быть пустым" }),
 	})
 	.refine((data) => data.password === data.confirmPassword, {
 		message: "Пароли не совпадают",

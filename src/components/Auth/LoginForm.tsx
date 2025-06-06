@@ -1,58 +1,14 @@
 import type { FC } from "react";
-import { useLoginMutation } from "@store/auth/auth.api";
-import { useForm } from "react-hook-form";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import { type AuthSchema, authSchema } from "@lib/types/schemas/auth";
-import { isServerError } from "@src/lib/serverError";
 import Input from "@src/components/auth/ui/Input";
 import SwitchButton from "./ui/SwitchButton";
+import useLogin from "@src/hooks/auth/useLogin";
 
 interface LoginFormProps {
 	onClickSwitchForm: () => void;
 }
 
 export const LoginForm: FC<LoginFormProps> = ({ onClickSwitchForm }) => {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors, isSubmitting },
-		reset,
-		resetField,
-		setError,
-	} = useForm<AuthSchema>({
-		resolver: zodResolver(authSchema),
-		mode: "onBlur",
-	});
-	const [login] = useLoginMutation();
-
-	const onSubmit = async (data: AuthSchema) => {
-		try {
-			await login(data).unwrap();
-
-			reset();
-		} catch (e) {
-			if (isServerError(e)) {
-				if (e.data.message === "User not found") {
-					reset();
-					setError("email", {
-						type: "server",
-						message: "Такого пользователя не существует",
-					});
-				}
-
-				if (e.data.message === "Invalid password") {
-					resetField("password");
-					setError("password", {
-						type: "server",
-						message: "Неверный пароль, попробуйте снова",
-					});
-				}
-			} else {
-				console.error("Неизвестная ошибка авторизации:", e);
-			}
-		}
-	};
+	const { register, submit, errors, isSubmitting } = useLogin();
 
 	return (
 		<div className="min-h-screen bg-slate-900 flex items-center justify-center px-4">
@@ -61,7 +17,7 @@ export const LoginForm: FC<LoginFormProps> = ({ onClickSwitchForm }) => {
 					Вход в аккаунт
 				</h2>
 
-				<form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+				<form onSubmit={submit} className="space-y-8">
 					<Input
 						type="text"
 						label="email"

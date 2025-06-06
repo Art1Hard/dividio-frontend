@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useThunks } from "@hooks/redux/thunks";
 
-export const useAuthInit = () => {
+export const useInitAuth = () => {
 	const { initAuth } = useThunks();
 	useEffect(() => {
 		initAuth();

@@ -1,23 +1,10 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { RootState } from "@src/store";
+import { createApi } from "@reduxjs/toolkit/query/react";
 import type { IUser } from "@src/lib/types/types";
-
-const baseQuery = fetchBaseQuery({
-	baseUrl: "http://localhost:4200/api",
-	credentials: "include", // важно для передачи и получения httpOnly cookie
-	prepareHeaders: (headers, { getState }) => {
-		const state = getState() as RootState;
-		const token = state.auth.accessToken;
-		if (token) {
-			headers.set("Authorization", `Bearer ${token}`);
-		}
-		return headers;
-	},
-});
+import authBaseQuery from "../auth/auth.basequery";
 
 export const userApi = createApi({
 	reducerPath: "userApi",
-	baseQuery,
+	baseQuery: authBaseQuery(),
 	tagTypes: ["User"],
 	endpoints: (build) => ({
 		getUser: build.query<IUser, void>({

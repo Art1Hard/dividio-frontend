@@ -1,34 +1,37 @@
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DashboardPage from "@src/pages/DashboardPage";
-import { useAppSelector } from "@hooks/redux";
-import User from "@pages/User";
+import User from "@src/pages/UserPage";
 import AuthGuard from "@src/components/guard/AuthGuard";
 import GuestGuard from "@src/components/guard/GuestGuard";
 import { ROUTES } from "@src/routes";
 import AuthPage from "@pages/AuthPage";
+import Header from "@components/Header";
+import HomePage from "@pages/HomePage";
 
 export default function App() {
-	const { isAuthenticated } = useAppSelector((state) => state.auth);
-
 	return (
 		<BrowserRouter>
-			<nav>
-				<Link to={ROUTES.HOME}>Доска</Link> |{" "}
-				<Link to={isAuthenticated ? ROUTES.PROFILE : ROUTES.LOGIN}>
-					Аккаунт
-				</Link>{" "}
-				| <Link to="/user/123">Пользователь 123</Link>
-			</nav>
+			<Header />
 
 			<Routes>
 				<Route
 					path={ROUTES.HOME}
+					element={
+						<GuestGuard>
+							<HomePage />
+						</GuestGuard>
+					}
+				/>
+
+				<Route
+					path={ROUTES.DASHBOARD}
 					element={
 						<AuthGuard>
 							<DashboardPage />
 						</AuthGuard>
 					}
 				/>
+
 				<Route
 					path={ROUTES.LOGIN}
 					element={

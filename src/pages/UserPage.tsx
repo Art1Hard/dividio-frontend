@@ -5,7 +5,7 @@ import { useGetUserQuery } from "@store/user/user.api";
 
 const User = () => {
 	const { logout } = useThunks();
-	const { data: user, isLoading } = useGetUserQuery();
+	const { data: user, isLoading, isFetching } = useGetUserQuery();
 	const {
 		register,
 		submit,
@@ -66,7 +66,9 @@ const User = () => {
 						</form>
 					) : (
 						<div className="flex items-center justify-between">
-							<p className="text-lg">{user.name || "—"}</p>
+							<p className="text-lg">
+								{!isFetching ? user.name || "—" : "Загрузка..."}
+							</p>
 							<button
 								onClick={enableEditMode}
 								className="text-blue-400 hover:text-blue-500 text-sm">

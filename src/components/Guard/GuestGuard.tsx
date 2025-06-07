@@ -11,7 +11,7 @@ const GuestGuard = ({ children }: { children: JSX.Element }) => {
 	if (isCheckingAuth) return <p>Загрузка...</p>;
 
 	if (isAuthenticated) {
-		return <Navigate to={ROUTES.PROFILE} replace />;
+		return <Navigate to={ROUTES.DASHBOARD} replace />;
 	}
 
 	return children;

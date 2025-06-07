@@ -11,7 +11,7 @@ export const LoginForm: FC<LoginFormProps> = ({ onClickSwitchForm }) => {
 	const { register, submit, errors, isSubmitting } = useLogin();
 
 	return (
-		<div className="min-h-screen flex items-center justify-center px-4">
+		<div className="h-full flex items-center justify-center px-4">
 			<div className="w-full max-w-md bg-slate-800 rounded-2xl p-8 shadow-lg">
 				<h2 className="text-2xl font-bold text-white mb-6 text-center">
 					Вход в аккаунт

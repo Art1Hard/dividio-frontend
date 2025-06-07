@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import DashboardPage from "@src/pages/DashboardPage";
 import User from "@src/pages/UserPage";
 import AuthGuard from "@src/components/guard/AuthGuard";
@@ -10,46 +10,48 @@ import HomePage from "@pages/HomePage";
 
 export default function App() {
 	return (
-		<BrowserRouter>
+		<div className="flex flex-col h-screen">
 			<Header />
 
-			<Routes>
-				<Route
-					path={ROUTES.HOME}
-					element={
-						<GuestGuard>
-							<HomePage />
-						</GuestGuard>
-					}
-				/>
+			<div className="flex-1">
+				<Routes>
+					<Route
+						path={ROUTES.HOME}
+						element={
+							<GuestGuard>
+								<HomePage />
+							</GuestGuard>
+						}
+					/>
 
-				<Route
-					path={ROUTES.DASHBOARD}
-					element={
-						<AuthGuard>
-							<DashboardPage />
-						</AuthGuard>
-					}
-				/>
+					<Route
+						path={ROUTES.DASHBOARD}
+						element={
+							<AuthGuard>
+								<DashboardPage />
+							</AuthGuard>
+						}
+					/>
 
-				<Route
-					path={ROUTES.LOGIN}
-					element={
-						<GuestGuard>
-							<AuthPage />
-						</GuestGuard>
-					}
-				/>
-				<Route
-					path={ROUTES.PROFILE}
-					element={
-						<AuthGuard>
-							<User />
-						</AuthGuard>
-					}
-				/>
-				<Route path="*" element={<h1>404 — Страница не найдена</h1>} />
-			</Routes>
-		</BrowserRouter>
+					<Route
+						path={ROUTES.LOGIN}
+						element={
+							<GuestGuard>
+								<AuthPage />
+							</GuestGuard>
+						}
+					/>
+					<Route
+						path={ROUTES.PROFILE}
+						element={
+							<AuthGuard>
+								<User />
+							</AuthGuard>
+						}
+					/>
+					<Route path="*" element={<h1>404 — Страница не найдена</h1>} />
+				</Routes>
+			</div>
+		</div>
 	);
 }

@@ -23,7 +23,7 @@ const User = () => {
 	}
 
 	return (
-		<div className="h-screen flex items-center">
+		<div className="h-full flex items-center">
 			<div className="bg-slate-800 p-6 rounded-xl text-white w-full max-w-md mx-auto">
 				<h2 className="text-center text-2xl font-bold mb-4">Личный кабинет</h2>
 

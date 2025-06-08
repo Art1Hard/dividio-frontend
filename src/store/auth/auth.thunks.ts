@@ -1,7 +1,7 @@
 import { type AppDispatch } from "@src/store";
 import { authActions } from "@src/store/auth/auth.slice";
 import { authApi } from "@src/store/auth/auth.api";
-import { userApi } from "../user/user.api";
+import resetFullApiState from "@src/lib/api/resetFullApiState";
 
 export const initAuth = () => async (dispatch: AppDispatch) => {
 	try {
@@ -18,12 +18,11 @@ export const initAuth = () => async (dispatch: AppDispatch) => {
 export const logout = () => async (dispatch: AppDispatch) => {
 	try {
 		await dispatch(authApi.endpoints.logout.initiate()).unwrap();
+
+		dispatch(authActions.logout());
+
+		resetFullApiState(dispatch);
 	} catch (e) {
 		console.error("Ошибка при logout-запросе", e);
 	}
-
-	dispatch(authActions.logout());
-
-	dispatch(authApi.util.resetApiState());
-	dispatch(userApi.util.resetApiState());
 };

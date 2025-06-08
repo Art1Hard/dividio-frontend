@@ -23,22 +23,43 @@ function useLogin() {
 			reset();
 		} catch (e) {
 			if (isServerError(e)) {
-				if (e.data.message === "User not found") {
-					reset();
-					setError("email", {
+				switch (e.data.message) {
+					case "User not found":
+						reset();
+						setError("email", {
+							type: "server",
+							message: "Такого пользователя не существует",
+						});
+						break;
+
+					case "Invalid password":
+						resetField("password");
+						setError("password", {
+							type: "server",
+							message: "Неверный пароль, попробуйте снова",
+						});
+						break;
+
+					default:
+						console.error("Необработанная ошибка:", e);
+						setError("password", {
+							type: "server",
+							message: "Что-то пошло не так. Попробуйте позже.",
+						});
+				}
+			} else {
+				if (
+					e &&
+					typeof e === "object" &&
+					"status" in e &&
+					e.status === "FETCH_ERROR"
+				) {
+					setError("password", {
 						type: "server",
-						message: "Такого пользователя не существует",
+						message: "Что-то пошло не так. Попробуйте позже.",
 					});
 				}
 
-				if (e.data.message === "Invalid password") {
-					resetField("password");
-					setError("password", {
-						type: "server",
-						message: "Неверный пароль, попробуйте снова",
-					});
-				}
-			} else {
 				console.error("Неизвестная ошибка авторизации:", e);
 			}
 		}

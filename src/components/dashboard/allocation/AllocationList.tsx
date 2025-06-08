@@ -30,7 +30,7 @@ const AllocationList = () => {
 							label="Остаток"
 							percent={data.freePercentage}
 							amount={data.freeAmount}
-							color="bg-emerald-400/60"
+							color="emerald-400/60"
 						/>
 					</>
 				)}

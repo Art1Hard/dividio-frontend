@@ -11,19 +11,19 @@ const ProgressBar: FC<ProgressBarProps> = ({
 	label,
 	percent = 0,
 	amount = 0,
-	color = "bg-blue-500",
+	color = "blue-500",
 }) => {
 	return (
 		<div className="mb-4">
 			<div className="flex justify-between mb-1">
-				<span className="text-sm text-white">{label}</span>
-				<span className="text-sm text-white">
-					{percent}% — {amount} ₽
-				</span>
+				<p className="text-sm text-white">{label}</p>
+				<p className="text-sm text-white">
+					{percent}% — <span className="font-semibold">{amount} ₽</span>
+				</p>
 			</div>
 			<div className="w-full h-3 bg-slate-700 rounded-full overflow-hidden">
 				<div
-					className={`h-full ${color} transition-all duration-300`}
+					className={`h-full bg-${color} transition-all duration-300`}
 					style={{ width: `${percent}%` }}></div>
 			</div>
 		</div>

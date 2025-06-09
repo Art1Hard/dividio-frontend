@@ -1,8 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, type DefaultValues } from "react-hook-form";
 import type { z, ZodTypeAny } from "zod";
 
-function useCustomForm<T extends ZodTypeAny>(schema: T) {
+function useCustomForm<T extends ZodTypeAny>(
+	schema: T,
+	defaultValues?: DefaultValues<z.TypeOf<T>> | undefined
+) {
 	const {
 		register,
 		handleSubmit,
@@ -10,9 +13,11 @@ function useCustomForm<T extends ZodTypeAny>(schema: T) {
 		formState: { errors, isSubmitting },
 		setError,
 		resetField,
+		watch,
 	} = useForm<z.infer<typeof schema>>({
 		mode: "onBlur",
 		resolver: zodResolver(schema),
+		defaultValues: defaultValues,
 	});
 
 	return {
@@ -23,6 +28,7 @@ function useCustomForm<T extends ZodTypeAny>(schema: T) {
 		isSubmitting,
 		reset,
 		resetField,
+		watch,
 	};
 }
 

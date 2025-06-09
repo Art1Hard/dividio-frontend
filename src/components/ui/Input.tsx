@@ -1,7 +1,7 @@
 import { forwardRef, useState } from "react";
 import cn from "clsx";
 import type { FieldError } from "react-hook-form";
-import { EyeClosedIcon, EyeOpenIcon } from "./EyeIcons";
+import { EyeClosedIcon, EyeOpenIcon } from "../auth/ui/EyeIcons";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	error?: FieldError;

@@ -7,6 +7,7 @@ import { ROUTES } from "@src/routes";
 import AuthPage from "@pages/AuthPage";
 import Header from "@components/Header";
 import HomePage from "@pages/HomePage";
+import CreateAllocationPage from "./pages/CreateAllocationPage";
 
 export default function App() {
 	return (
@@ -49,6 +50,16 @@ export default function App() {
 							</AuthGuard>
 						}
 					/>
+
+					<Route
+						path={ROUTES.CREATE_ALLOCATION}
+						element={
+							<AuthGuard>
+								<CreateAllocationPage />
+							</AuthGuard>
+						}
+					/>
+
 					<Route path="*" element={<h1>404 — Страница не найдена</h1>} />
 				</Routes>
 			</div>

@@ -26,4 +26,5 @@ export interface IAllocation {
 	title: string;
 	percentage: number;
 	amount: number;
+	color: string;
 }

@@ -1,6 +1,8 @@
 import { FaChartPie } from "react-icons/fa";
-import ProgressBar from "@components/dashboard/ui/ProgressBar";
 import { useGetAllocationsQuery } from "@src/store/allocation/allocation.api";
+import { Link } from "react-router-dom";
+import { ROUTES } from "@src/routes";
+import AllocationItem from "./AllocationItem";
 
 const AllocationList = () => {
 	const { data, isLoading } = useGetAllocationsQuery();
@@ -14,27 +16,19 @@ const AllocationList = () => {
 				<h2 className="text-lg font-semibold">Распределение</h2>
 			</div>
 
-			<div className="space-y-4">
-				{data && (
-					<>
-						{data.allocations.map(({ id, title, percentage, amount }) => (
-							<ProgressBar
-								key={id}
-								label={title}
-								percent={percentage}
-								amount={amount}
-							/>
-						))}
-
-						<ProgressBar
-							label="Остаток"
-							percent={data.freePercentage}
-							amount={data.freeAmount}
-							color="emerald-400/60"
-						/>
-					</>
-				)}
+			<div className="space-y-4 mb-6">
+				{data &&
+					data.allocations.map((allocation) => (
+						<AllocationItem key={allocation.id} item={allocation} />
+					))}
 			</div>
+
+			<Link
+				to={ROUTES.CREATE_ALLOCATION}
+				className="w-full flex items-center justify-center gap-2 bg-slate-700 hover:bg-slate-600 text-white font-semibold py-2 rounded-xl transition">
+				<span className="text-xl leading-none">＋</span>
+				<span>Добавить категорию</span>
+			</Link>
 		</div>
 	);
 };

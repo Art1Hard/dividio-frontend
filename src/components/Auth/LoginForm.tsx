@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import Input from "@src/components/auth/ui/Input";
+import Input from "@src/components/ui/Input";
 import SwitchButton from "./ui/SwitchButton";
 import useLogin from "@src/hooks/auth/useLogin";
 

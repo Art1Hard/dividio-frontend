@@ -1,5 +1,5 @@
 import { useThunks } from "@hooks/redux/thunks";
-import Input from "@src/components/auth/ui/Input";
+import Input from "@src/components/ui/Input";
 import useChangeUserName from "@src/hooks/useChangeUserName";
 import { useGetUserQuery } from "@store/user/user.api";
 

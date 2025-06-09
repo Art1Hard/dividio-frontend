@@ -1,7 +1,9 @@
 import AllocationList from "@src/components/dashboard/allocation/AllocationList";
-import TotalIncome from "@src/components/dashboard/TotalIncome";
+import StatisticCard from "@src/components/dashboard/StatisticCard";
+import { useGetAllocationsQuery } from "@src/store/allocation/allocation.api";
 import { useGetIncomesQuery } from "@src/store/income/income.api";
 import { useGetUserQuery } from "@src/store/user/user.api";
+import { FaBoxes, FaDove } from "react-icons/fa";
 
 const DashboardPage = () => {
 	const { data: user, isLoading: isUserLoading } = useGetUserQuery();
@@ -9,7 +11,10 @@ const DashboardPage = () => {
 	const { data: incomeData, isLoading: isIncomeDataLoading } =
 		useGetIncomesQuery();
 
-	if (isUserLoading || isIncomeDataLoading)
+	const { data: allocationData, isLoading: isAllocationLoading } =
+		useGetAllocationsQuery();
+
+	if (isUserLoading || isIncomeDataLoading || isAllocationLoading)
 		return <p>Загрузка пользователя...</p>;
 
 	return (
@@ -23,11 +28,24 @@ const DashboardPage = () => {
 				</div>
 
 				<div>
-					{incomeData && (
+					{incomeData && allocationData && (
 						<div className="flex gap-4 justify-between mb-8">
-							<TotalIncome value={incomeData.totalAmount} />
-							<TotalIncome title="Информативное поле" value={0} />
-							<TotalIncome title="Информативное поле" value={0} />
+							<StatisticCard value={incomeData.totalAmount} />
+							<StatisticCard
+								title="Источников дохода"
+								postfix=" шт."
+								value={incomeData.incomes.length}
+								icon={{
+									IconComponent: FaBoxes,
+									bgColor: "bg-orange-600",
+								}}
+							/>
+							<StatisticCard
+								title="Нераспределено"
+								postfix="%"
+								value={allocationData.freePercentage}
+								icon={{ IconComponent: FaDove, bgColor: "bg-emerald-500" }}
+							/>
 						</div>
 					)}
 

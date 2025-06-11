@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import authBaseQuery from "../auth/auth.basequery";
 import type { IAllocation, IAllocationData } from "@src/lib/types/types";
-import type { CreateAllocationSchema } from "@src/lib/types/schemas/allocation";
+import type { AllocationSchema } from "@src/lib/types/schemas/allocation";
 
 export const allocationApi = createApi({
 	reducerPath: "allocationApi",
@@ -13,10 +13,22 @@ export const allocationApi = createApi({
 			providesTags: ["Allocation"],
 		}),
 
-		createAllocation: build.mutation<IAllocation, CreateAllocationSchema>({
+		createAllocation: build.mutation<IAllocation, AllocationSchema>({
 			query: (body) => ({
 				url: "/allocation",
 				method: "POST",
+				body: body,
+			}),
+			invalidatesTags: ["Allocation"],
+		}),
+
+		updateAllocation: build.mutation<
+			IAllocation,
+			{ id: string; body: AllocationSchema }
+		>({
+			query: ({ id, body }) => ({
+				url: `/allocation/${id}`,
+				method: "PUT",
 				body: body,
 			}),
 			invalidatesTags: ["Allocation"],
@@ -35,5 +47,6 @@ export const allocationApi = createApi({
 export const {
 	useGetAllocationsQuery,
 	useCreateAllocationMutation,
+	useUpdateAllocationMutation,
 	useDeleteAllocationMutation,
 } = allocationApi;

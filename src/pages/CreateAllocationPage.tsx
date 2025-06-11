@@ -1,14 +1,6 @@
 import useCreateAllocation from "@src/hooks/allocation/useCreateAllocation";
 import Input from "@src/components/ui/Input";
-
-const colors = [
-	{ name: "Серый", value: "gray-500" },
-	{ name: "Зелёный", value: "green-500" },
-	{ name: "Синий", value: "blue-500" },
-	{ name: "Жёлтый", value: "yellow-500" },
-	{ name: "Красный", value: "red-500" },
-	{ name: "Фиолетовый", value: "purple-500" },
-];
+import ColorPicker from "@src/components/dashboard/allocation/ColorPicker";
 
 const CreateAllocationPage = () => {
 	const { register, submit, isSubmitting, errors, watch } =
@@ -40,36 +32,11 @@ const CreateAllocationPage = () => {
 						error={errors.percentage}
 					/>
 
-					<div>
-						<label className="block mb-2 text-sm font-medium text-white">
-							Выберите цвет
-						</label>
-						<div className="relative flex gap-3 flex-wrap">
-							{colors.map(({ name, value }) => (
-								<label key={value} className="cursor-pointer">
-									<input
-										type="radio"
-										value={value}
-										{...register("color")}
-										className="sr-only"
-									/>
-									<div
-										className={`w-8 h-8 rounded-full border-2 ${
-											selectedColor === value
-												? "border-white"
-												: "border-transparent"
-										} bg-${value} transition`}
-										title={name}></div>
-								</label>
-							))}
-
-							{errors.color && errors.color.message && (
-								<p className="absolute bottom-[-25px] text-[14px] text-red-500 left-0">
-									{errors.color.message}
-								</p>
-							)}
-						</div>
-					</div>
+					<ColorPicker
+						selectedColor={selectedColor}
+						error={errors.color}
+						{...register("color")}
+					/>
 
 					<button
 						disabled={isSubmitting}

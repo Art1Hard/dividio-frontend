@@ -4,21 +4,22 @@ import {
 	allocationSchema,
 	type AllocationSchema,
 } from "@src/lib/types/schemas/allocation";
-import { ROUTES } from "@src/routes";
-import { useCreateAllocationMutation } from "@src/store/allocation/allocation.api";
-import { useNavigate } from "react-router-dom";
+import { useUpdateAllocationMutation } from "@src/store/allocation/allocation.api";
 
-const useCreateAllocation = () => {
-	const navigate = useNavigate();
+const useEditAllocation = (
+	id: string,
+	defaultValues: AllocationSchema,
+	afterSubmit: () => void
+) => {
 	const { handleSubmit, isSubmitting, errors, setError, register, watch } =
-		useCustomForm(allocationSchema, { color: "gray-500" });
+		useCustomForm(allocationSchema, defaultValues);
 
-	const [createAllocation] = useCreateAllocationMutation();
+	const [updateAllocation] = useUpdateAllocationMutation();
 
 	const onSubmit = async (data: AllocationSchema) => {
 		try {
-			await createAllocation(data).unwrap();
-			navigate(ROUTES.DASHBOARD);
+			await updateAllocation({ id, body: data }).unwrap();
+			afterSubmit();
 		} catch (e) {
 			if (isServerError(e)) {
 				console.error("Произошла ошибка на стороне сервера", e);
@@ -34,4 +35,4 @@ const useCreateAllocation = () => {
 	return { submit, isSubmitting, errors, register, watch };
 };
 
-export default useCreateAllocation;
+export default useEditAllocation;

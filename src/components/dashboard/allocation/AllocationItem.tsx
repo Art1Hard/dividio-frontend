@@ -1,8 +1,10 @@
 import type { IAllocation } from "@src/lib/types/types";
-import type { FC } from "react";
+import { useState, type FC } from "react";
 import ProgressBar from "@components/dashboard/ui/ProgressBar";
-import { FiTrash2 } from "react-icons/fi";
 import { useDeleteAllocationMutation } from "@src/store/allocation/allocation.api";
+import DeleteButton from "./DeleteButton";
+import EditButton from "./EditButton";
+import EditAllocationForm from "./EditAllocationForm";
 
 interface AllocationItemProps {
 	item: IAllocation;
@@ -12,6 +14,12 @@ const AllocationItem: FC<AllocationItemProps> = ({ item }) => {
 	const { id, title, percentage, amount, color } = item;
 
 	const [deleteAllocation] = useDeleteAllocationMutation();
+	const [isOpen, setIsOpen] = useState(false);
+
+	const deleteHandler = async () => {
+		const result = confirm("Вы действительно хотите удалить?");
+		if (result) await deleteAllocation(id);
+	};
 
 	return (
 		<div className="flex items-center justify-between gap-4 bg-slate-700/50 rounded-lg px-4 py-3">
@@ -24,16 +32,25 @@ const AllocationItem: FC<AllocationItemProps> = ({ item }) => {
 				/>
 			</div>
 
-			<button
-				type="button"
-				className="p-2 rounded-md bg-slate-600 hover:bg-red-500 transition-colors text-white"
-				onClick={async () => {
-					const result = confirm("Вы действительно хотите удалить?");
-					if (result) await deleteAllocation(id);
-				}}
-				title="Удалить">
-				<FiTrash2 size={16} />
-			</button>
+			<EditButton onClick={() => setIsOpen(true)} />
+
+			<DeleteButton onClick={deleteHandler} />
+
+			{isOpen && (
+				<div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+					<div className="bg-slate-800 p-6 rounded-xl w-full max-w-md relative">
+						<button
+							className="absolute top-2 right-2 text-white"
+							onClick={() => setIsOpen(false)}>
+							✕
+						</button>
+						<EditAllocationForm
+							defaultValues={item}
+							onClose={() => setIsOpen(false)}
+						/>
+					</div>
+				</div>
+			)}
 		</div>
 	);
 };

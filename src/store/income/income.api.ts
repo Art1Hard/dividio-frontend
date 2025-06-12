@@ -1,17 +1,23 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import type { IIncomeData } from "@src/lib/types/types";
 import authBaseQuery from "../auth/auth.basequery";
+import type { IncomeSchema } from "@src/lib/types/schemas/income";
 
 export const incomeApi = createApi({
 	reducerPath: "incomeApi",
-	baseQuery: authBaseQuery(),
+	baseQuery: authBaseQuery("/income"),
 	tagTypes: ["Income"],
 	endpoints: (build) => ({
 		getIncomes: build.query<IIncomeData, void>({
-			query: () => "/income",
+			query: () => "",
 			providesTags: ["Income"],
+		}),
+
+		createIncome: build.mutation<IIncomeData, IncomeSchema>({
+			query: (body) => ({ url: "", method: "POST", body }),
+			invalidatesTags: ["Income"],
 		}),
 	}),
 });
 
-export const { useGetIncomesQuery } = incomeApi;
+export const { useGetIncomesQuery, useCreateIncomeMutation } = incomeApi;

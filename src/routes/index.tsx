@@ -5,4 +5,5 @@ export const ROUTES = {
 	LOGIN: "/auth",
 	REGISTER: "/register",
 	CREATE_ALLOCATION: "/create-allocation",
+	INCOME: "/income",
 };

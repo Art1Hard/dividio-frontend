@@ -1,9 +1,9 @@
 import useCreateAllocation from "@src/hooks/allocation/useCreateAllocation";
 import Input from "@src/components/ui/Input";
-import ColorPicker from "@src/components/dashboard/allocation/ColorPicker";
+import ColorPicker from "@src/components/dashboard/ui/ColorPicker";
 
 const CreateAllocationPage = () => {
-	const { register, submit, isSubmitting, errors, watch } =
+	const { register, submit, isSubmitting, errors, watch, isDirty } =
 		useCreateAllocation();
 
 	const selectedColor = watch("color");
@@ -39,7 +39,7 @@ const CreateAllocationPage = () => {
 					/>
 
 					<button
-						disabled={isSubmitting}
+						disabled={!isDirty || isSubmitting}
 						type="submit"
 						className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition">
 						{isSubmitting ? "Создание..." : "Создать"}

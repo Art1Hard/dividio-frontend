@@ -10,8 +10,15 @@ import { useNavigate } from "react-router-dom";
 
 const useCreateAllocation = () => {
 	const navigate = useNavigate();
-	const { handleSubmit, isSubmitting, errors, setError, register, watch } =
-		useCustomForm(allocationSchema, { color: "gray-500" });
+	const {
+		handleSubmit,
+		isSubmitting,
+		errors,
+		setError,
+		register,
+		watch,
+		isDirty,
+	} = useCustomForm(allocationSchema, { color: "gray-500" });
 
 	const [createAllocation] = useCreateAllocationMutation();
 
@@ -31,7 +38,7 @@ const useCreateAllocation = () => {
 
 	const submit = handleSubmit(onSubmit);
 
-	return { submit, isSubmitting, errors, register, watch };
+	return { submit, isSubmitting, errors, register, watch, isDirty };
 };
 
 export default useCreateAllocation;

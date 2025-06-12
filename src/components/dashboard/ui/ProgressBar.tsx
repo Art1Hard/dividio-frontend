@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import cn from "clsx";
+import { progressColors } from "@src/lib/data/colors";
 
 type ProgressBarProps = {
 	label: string;
@@ -14,15 +15,9 @@ const ProgressBar: FC<ProgressBarProps> = ({
 	amount = 0,
 	color = "gray-500",
 }) => {
-	const bgColorClass = cn({
-		"bg-blue-500": color === "blue-500",
-		"bg-green-500": color === "green-500",
-		"bg-red-500": color === "red-500",
-		"bg-yellow-500": color === "yellow-500",
-		"bg-gray-500": color === "gray-500",
-		"bg-emerald-400/60": color === "emerald-400",
-		// добавь другие цвета по необходимости
-	});
+	const allowedColor = progressColors.find((c) => c.value === color)
+		? color
+		: "gray-500";
 
 	return (
 		<div className="mb-4">
@@ -34,7 +29,10 @@ const ProgressBar: FC<ProgressBarProps> = ({
 			</div>
 			<div className="w-full h-3 bg-slate-700 rounded-full overflow-hidden">
 				<div
-					className={`h-full ${bgColorClass} transition-all duration-300`}
+					className={cn(
+						"h-full transition-all duration-300",
+						`bg-${allowedColor}-500`
+					)}
 					style={{ width: `${percent}%` }}></div>
 			</div>
 		</div>

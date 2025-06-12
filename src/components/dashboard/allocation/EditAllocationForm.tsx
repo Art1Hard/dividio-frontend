@@ -1,5 +1,5 @@
 import type { IAllocation } from "@src/lib/types/types";
-import ColorPicker from "./ColorPicker";
+import ColorPicker from "../ui/ColorPicker";
 import useEditAllocation from "@src/hooks/allocation/useEditAllocation";
 import Input from "@src/components/ui/Input";
 

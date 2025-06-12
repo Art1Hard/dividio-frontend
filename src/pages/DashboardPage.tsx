@@ -1,9 +1,11 @@
 import AllocationList from "@src/components/dashboard/allocation/AllocationList";
 import StatisticCard from "@src/components/dashboard/StatisticCard";
+import { ROUTES } from "@src/routes";
 import { useGetAllocationsQuery } from "@src/store/allocation/allocation.api";
 import { useGetIncomesQuery } from "@src/store/income/income.api";
 import { useGetUserQuery } from "@src/store/user/user.api";
 import { FaBoxes, FaDove } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const DashboardPage = () => {
 	const { data: user, isLoading: isUserLoading } = useGetUserQuery();
@@ -30,16 +32,22 @@ const DashboardPage = () => {
 				<div>
 					{incomeData && allocationData && (
 						<div className="flex gap-4 justify-between mb-8">
-							<StatisticCard value={incomeData.totalAmount} />
-							<StatisticCard
-								title="Источников дохода"
-								postfix=" шт."
-								value={incomeData.incomes.length}
-								icon={{
-									IconComponent: FaBoxes,
-									bgColor: "bg-orange-600",
-								}}
-							/>
+							<Link className="flex-1" to={ROUTES.INCOME}>
+								<StatisticCard value={incomeData.totalAmount} />
+							</Link>
+
+							<Link className="flex-1" to={ROUTES.INCOME}>
+								<StatisticCard
+									title="Источников дохода"
+									postfix=" шт."
+									value={incomeData.incomes.length}
+									icon={{
+										IconComponent: FaBoxes,
+										bgColor: "bg-orange-600",
+									}}
+								/>
+							</Link>
+
 							<StatisticCard
 								title="Нераспределено"
 								postfix="%"

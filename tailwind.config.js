@@ -5,4 +5,9 @@ export default {
 		extend: {},
 	},
 	plugins: [],
+	safelist: [
+		{
+			pattern: /bg-(gray|green|blue|yellow|red|purple|orange|rose)-500/,
+		},
+	],
 };

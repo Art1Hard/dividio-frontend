@@ -5,6 +5,7 @@ import { useDeleteAllocationMutation } from "@src/store/allocation/allocation.ap
 import DeleteButton from "./DeleteButton";
 import EditButton from "./EditButton";
 import EditAllocationForm from "./EditAllocationForm";
+import Modal from "@src/components/ui/Modal";
 
 interface AllocationItemProps {
 	item: IAllocation;
@@ -37,19 +38,12 @@ const AllocationItem: FC<AllocationItemProps> = ({ item }) => {
 			<DeleteButton onClick={deleteHandler} />
 
 			{isOpen && (
-				<div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-					<div className="bg-slate-800 p-6 rounded-xl w-full max-w-md relative">
-						<button
-							className="absolute top-2 right-2 text-white"
-							onClick={() => setIsOpen(false)}>
-							✕
-						</button>
-						<EditAllocationForm
-							defaultValues={item}
-							onClose={() => setIsOpen(false)}
-						/>
-					</div>
-				</div>
+				<Modal onClose={() => setIsOpen(false)}>
+					<EditAllocationForm
+						defaultValues={item}
+						onClose={() => setIsOpen(false)}
+					/>
+				</Modal>
 			)}
 		</div>
 	);

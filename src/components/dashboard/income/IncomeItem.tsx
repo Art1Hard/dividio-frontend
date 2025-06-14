@@ -7,14 +7,14 @@ const IncomeItem = ({ source }: { source: IIncome }) => {
 	const { title, amount } = source;
 
 	return (
-		<div className="flex items-center justify-between bg-slate-700 p-3 rounded-lg shadow-sm">
+		<div className="flex items-center justify-between bg-slate-700 px-4 py-3 rounded-lg shadow-sm">
 			<div>
 				<p className="text-white font-medium mb-2">{title}</p>
-				<p className="text-white text-2xl font-bold">
+				<p className="text-white text-xl font-bold">
 					{setRusFormatValue(amount)} ₽
 				</p>
 			</div>
-			<div className="flex gap-2">
+			<div className="flex gap-4">
 				<EditButton onClick={() => {}} />
 
 				<DeleteButton onClick={() => {}} />

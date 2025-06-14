@@ -1,11 +1,9 @@
 import AllocationList from "@src/components/dashboard/allocation/AllocationList";
 import StatisticCard from "@src/components/dashboard/StatisticCard";
-import { ROUTES } from "@src/routes";
 import { useGetAllocationsQuery } from "@src/store/allocation/allocation.api";
 import { useGetIncomesQuery } from "@src/store/income/income.api";
 import { useGetUserQuery } from "@src/store/user/user.api";
 import { FaBoxes, FaDove } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import IncomeSource from "../components/dashboard/income/IncomeSource";
 
 const DashboardPage = () => {
@@ -33,21 +31,17 @@ const DashboardPage = () => {
 				<div className="space-y-8">
 					{incomeData && allocationData && (
 						<div className="flex gap-4 justify-between">
-							<Link className="flex-1" to={ROUTES.INCOME}>
-								<StatisticCard value={incomeData.totalAmount} />
-							</Link>
+							<StatisticCard value={incomeData.totalAmount} />
 
-							<Link className="flex-1" to={ROUTES.INCOME}>
-								<StatisticCard
-									title="Источников дохода"
-									postfix=" шт."
-									value={incomeData.incomes.length}
-									icon={{
-										IconComponent: FaBoxes,
-										bgColor: "bg-orange-600",
-									}}
-								/>
-							</Link>
+							<StatisticCard
+								title="Источников дохода"
+								postfix=" шт."
+								value={incomeData.incomes.length}
+								icon={{
+									IconComponent: FaBoxes,
+									bgColor: "bg-orange-600",
+								}}
+							/>
 
 							<StatisticCard
 								title="Нераспределено"

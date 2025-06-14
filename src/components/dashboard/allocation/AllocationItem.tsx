@@ -2,8 +2,8 @@ import type { IAllocation } from "@src/lib/types/types";
 import { useState, type FC } from "react";
 import ProgressBar from "@components/dashboard/ui/ProgressBar";
 import { useDeleteAllocationMutation } from "@src/store/allocation/allocation.api";
-import DeleteButton from "./DeleteButton";
-import EditButton from "./EditButton";
+import DeleteButton from "@components/ui/DeleteButton";
+import EditButton from "@components/ui/EditButton";
 import EditAllocationForm from "./EditAllocationForm";
 import Modal from "@src/components/ui/Modal";
 

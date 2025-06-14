@@ -6,6 +6,7 @@ import { useGetIncomesQuery } from "@src/store/income/income.api";
 import { useGetUserQuery } from "@src/store/user/user.api";
 import { FaBoxes, FaDove } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import IncomeSource from "../components/dashboard/income/IncomeSource";
 
 const DashboardPage = () => {
 	const { data: user, isLoading: isUserLoading } = useGetUserQuery();
@@ -29,9 +30,9 @@ const DashboardPage = () => {
 					<p className="text-slate-400">Ваш финансовый обзор на сегодня</p>
 				</div>
 
-				<div>
+				<div className="space-y-8">
 					{incomeData && allocationData && (
-						<div className="flex gap-4 justify-between mb-8">
+						<div className="flex gap-4 justify-between">
 							<Link className="flex-1" to={ROUTES.INCOME}>
 								<StatisticCard value={incomeData.totalAmount} />
 							</Link>
@@ -56,6 +57,8 @@ const DashboardPage = () => {
 							/>
 						</div>
 					)}
+
+					<IncomeSource />
 
 					<AllocationList />
 				</div>

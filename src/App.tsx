@@ -7,8 +7,7 @@ import { ROUTES } from "@src/routes";
 import AuthPage from "@pages/AuthPage";
 import Header from "@components/Header";
 import HomePage from "@pages/HomePage";
-import CreateAllocationPage from "./pages/CreateAllocationPage";
-import IncomeSourcePage from "./pages/IncomeSourcePage";
+import CreateAllocationPage from "@pages/CreateAllocationPage";
 
 export default function App() {
 	return (
@@ -57,15 +56,6 @@ export default function App() {
 						element={
 							<AuthGuard>
 								<CreateAllocationPage />
-							</AuthGuard>
-						}
-					/>
-
-					<Route
-						path={ROUTES.INCOME}
-						element={
-							<AuthGuard>
-								<IncomeSourcePage />
 							</AuthGuard>
 						}
 					/>

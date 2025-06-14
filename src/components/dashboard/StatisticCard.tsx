@@ -2,6 +2,7 @@ import type { FC } from "react";
 import type { IconType } from "react-icons";
 import { FaCoins } from "react-icons/fa";
 import cn from "clsx";
+import { setRusFormatValue } from "@src/lib/utils/FormatValue";
 
 interface TotalIncomeProps {
 	title?: string;
@@ -20,7 +21,6 @@ const StatisticCard: FC<TotalIncomeProps> = ({
 	postfix = " ₽",
 	icon,
 }) => {
-	const formattedValue = value.toLocaleString("ru-RU");
 	const IconComponent = icon?.IconComponent;
 
 	return (
@@ -36,7 +36,7 @@ const StatisticCard: FC<TotalIncomeProps> = ({
 			<div>
 				<h2 className="text-lg text-slate-400">{title}</h2>
 				<p className="text-3xl font-bold">
-					{formattedValue}
+					{setRusFormatValue(value)}
 					{postfix}
 				</p>
 			</div>

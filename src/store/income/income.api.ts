@@ -17,7 +17,16 @@ export const incomeApi = createApi({
 			query: (body) => ({ url: "", method: "POST", body }),
 			invalidatesTags: ["Income"],
 		}),
+
+		deleteIncome: build.mutation<IIncomeData, string>({
+			query: (id) => ({ url: `/${id}`, method: "DELETE" }),
+			invalidatesTags: ["Income"],
+		}),
 	}),
 });
 
-export const { useGetIncomesQuery, useCreateIncomeMutation } = incomeApi;
+export const {
+	useGetIncomesQuery,
+	useCreateIncomeMutation,
+	useDeleteIncomeMutation,
+} = incomeApi;

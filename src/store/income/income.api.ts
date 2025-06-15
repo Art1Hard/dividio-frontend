@@ -22,6 +22,18 @@ export const incomeApi = createApi({
 			query: (id) => ({ url: `/${id}`, method: "DELETE" }),
 			invalidatesTags: ["Income"],
 		}),
+
+		updateIncome: build.mutation<
+			IIncomeData,
+			{ id: string; body: IncomeSchema }
+		>({
+			query: ({ id, body }) => ({
+				url: `/${id}`,
+				method: "PUT",
+				body,
+			}),
+			invalidatesTags: ["Income"],
+		}),
 	}),
 });
 
@@ -29,4 +41,5 @@ export const {
 	useGetIncomesQuery,
 	useCreateIncomeMutation,
 	useDeleteIncomeMutation,
+	useUpdateIncomeMutation,
 } = incomeApi;

@@ -1,12 +1,16 @@
 import DeleteButton from "@src/components/ui/DeleteButton";
 import EditButton from "@src/components/ui/EditButton";
+import Modal from "@src/components/ui/Modal";
 import type { IIncome } from "@src/lib/types/types";
 import { setRusFormatValue } from "@src/lib/utils/FormatValue";
 import { useDeleteIncomeMutation } from "@src/store/income/income.api";
+import EditIncomeForm from "./EditIncomeForm";
+import { useState } from "react";
 
 const IncomeItem = ({ source }: { source: IIncome }) => {
 	const { title, amount } = source;
 	const [deleteIncome] = useDeleteIncomeMutation();
+	const [isOpenModal, setIsOpenModal] = useState(false);
 
 	return (
 		<div className="flex items-center justify-between bg-slate-700 px-4 py-3 rounded-lg shadow-sm">
@@ -17,7 +21,7 @@ const IncomeItem = ({ source }: { source: IIncome }) => {
 				</p>
 			</div>
 			<div className="flex gap-4">
-				<EditButton onClick={() => {}} />
+				<EditButton onClick={() => setIsOpenModal(true)} />
 
 				<DeleteButton
 					onClick={() => {
@@ -28,6 +32,15 @@ const IncomeItem = ({ source }: { source: IIncome }) => {
 					}}
 				/>
 			</div>
+
+			{isOpenModal && (
+				<Modal onClose={() => setIsOpenModal(false)}>
+					<EditIncomeForm
+						onClose={() => setIsOpenModal(false)}
+						income={source}
+					/>
+				</Modal>
+			)}
 		</div>
 	);
 };

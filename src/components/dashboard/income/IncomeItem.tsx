@@ -2,12 +2,12 @@ import DeleteButton from "@src/components/ui/DeleteButton";
 import EditButton from "@src/components/ui/EditButton";
 import Modal from "@src/components/ui/Modal";
 import type { IIncome, IIncomeData } from "@src/lib/types/types";
-import { setRusFormatValue } from "@src/lib/utils/FormatValue";
+import { setRusFormatValue } from "@src/lib/utils/dormatValue";
 import { useDeleteIncomeMutation } from "@src/store/income/income.api";
 import EditIncomeForm from "./EditIncomeForm";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import deleteItem from "@src/lib/utils/DeleteItem";
+import deleteItem from "@src/lib/utils/deleteItem";
 
 const IncomeItem = ({ source }: { source: IIncome }) => {
 	const { title, amount } = source;

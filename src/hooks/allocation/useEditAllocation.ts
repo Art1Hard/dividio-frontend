@@ -1,5 +1,5 @@
 import useCustomForm from "@hooks/useCustomForm";
-import { isServerError } from "@src/lib/serverError";
+import { isServerError } from "@src/lib/utils/serverError";
 import {
 	allocationSchema,
 	type AllocationSchema,

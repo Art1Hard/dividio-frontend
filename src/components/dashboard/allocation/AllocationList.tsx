@@ -1,10 +1,11 @@
 import { FaChartPie } from "react-icons/fa";
 import { useGetAllocationsQuery } from "@src/store/allocation/allocation.api";
 import AllocationItem from "./AllocationItem";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Modal from "@src/components/ui/Modal";
 import CreateAllocation from "./CreateAllocation";
 import { useState } from "react";
+import { itemVariants } from "@src/lib/animations/itemAnimations";
 
 const AllocationList = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,10 +21,21 @@ const AllocationList = () => {
 			</div>
 
 			<div className="space-y-4 mb-6">
-				{data &&
-					data.allocations.map((allocation) => (
-						<AllocationItem key={allocation.id} item={allocation} />
-					))}
+				<AnimatePresence>
+					{data &&
+						data.allocations.map((allocation) => (
+							<motion.div
+								layout
+								key={allocation.id}
+								variants={itemVariants}
+								initial="initial"
+								animate="animate"
+								exit="exit"
+								transition={{ duration: 0.2 }}>
+								<AllocationItem item={allocation} />
+							</motion.div>
+						))}
+				</AnimatePresence>
 			</div>
 
 			<button

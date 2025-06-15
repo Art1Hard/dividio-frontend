@@ -1,7 +1,7 @@
 import { type FC } from "react";
 import cn from "clsx";
 import { progressColors } from "@src/lib/data/colors";
-import { setRusFormatValue } from "@src/lib/utils/FormatValue";
+import { setRusFormatValue } from "@src/lib/utils/dormatValue";
 import useDelayValue from "@src/hooks/useDelayValue";
 
 type ProgressBarProps = {
@@ -24,7 +24,7 @@ const ProgressBar: FC<ProgressBarProps> = ({
 
 	return (
 		<div className="mb-4">
-			<div className="flex justify-between mb-1">
+			<div className="flex justify-between mb-2">
 				<p className="text-sm text-white">{label}</p>
 				<p className="text-sm text-white">
 					{percent}% —{" "}

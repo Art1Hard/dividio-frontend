@@ -4,7 +4,7 @@ import {
 } from "@src/lib/types/schemas/auth";
 import { useRegisterMutation } from "@src/store/auth/auth.api";
 import useCustomForm from "@hooks/useCustomForm";
-import { isServerError } from "@src/lib/serverError";
+import { isServerError } from "@src/lib/utils/serverError";
 import { toast } from "sonner";
 
 function useRegister() {

@@ -1,5 +1,5 @@
 import useCustomForm from "@hooks/useCustomForm";
-import { isServerError } from "@src/lib/serverError";
+import { isServerError } from "@src/lib/utils/serverError";
 import { incomeSchema, type IncomeSchema } from "@src/lib/types/schemas/income";
 import { useCreateIncomeMutation } from "@src/store/income/income.api";
 import { toast } from "sonner";

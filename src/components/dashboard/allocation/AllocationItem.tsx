@@ -7,7 +7,7 @@ import EditButton from "@components/ui/EditButton";
 import EditAllocationForm from "./EditAllocationForm";
 import Modal from "@src/components/ui/Modal";
 import { AnimatePresence } from "framer-motion";
-import deleteItem from "@src/lib/utils/DeleteItem";
+import deleteItem from "@src/lib/utils/deleteItem";
 
 interface AllocationItemProps {
 	item: IAllocation;

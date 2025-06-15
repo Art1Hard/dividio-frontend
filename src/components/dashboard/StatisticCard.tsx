@@ -2,7 +2,7 @@ import type { FC } from "react";
 import type { IconType } from "react-icons";
 import { FaCoins } from "react-icons/fa";
 import cn from "clsx";
-import { setRusFormatValue } from "@src/lib/utils/FormatValue";
+import { setRusFormatValue } from "@src/lib/utils/dormatValue";
 
 interface TotalIncomeProps {
 	title?: string;

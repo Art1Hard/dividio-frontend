@@ -4,6 +4,7 @@ import { useGetIncomesQuery } from "@src/store/income/income.api";
 import { useState } from "react";
 import Modal from "@src/components/ui/Modal";
 import CreateIncomeForm from "@src/components/dashboard/income/CreateIncomeForm";
+import { AiFillGold } from "react-icons/ai";
 
 const IncomeSource = () => {
 	const { data: incomeData } = useGetIncomesQuery();
@@ -14,8 +15,11 @@ const IncomeSource = () => {
 	return (
 		<div className="text-white h-full flex flex-col justify-center">
 			<div className="bg-slate-800 rounded-lg shadow-md p-6">
-				<div className="flex justify-between items-center mb-6">
-					<h1 className="text-2xl font-bold">Источники доходов</h1>
+				<div className="flex justify-between items-center mb-4">
+					<div className="flex items-center gap-2">
+						<AiFillGold className="text-yellow-400" size={24} />
+						<h1 className="text-lg font-semibold">Источники</h1>
+					</div>
 					<button
 						onClick={handleAddIncome}
 						className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">

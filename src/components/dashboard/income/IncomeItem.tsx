@@ -13,7 +13,7 @@ const IncomeItem = ({ source }: { source: IIncome }) => {
 	const [isOpenModal, setIsOpenModal] = useState(false);
 
 	return (
-		<div className="flex items-center justify-between bg-slate-700 px-4 py-3 rounded-lg shadow-sm">
+		<div className="flex items-center justify-between bg-slate-700/50 px-4 py-3 rounded-lg shadow-sm">
 			<div>
 				<p className="text-white font-medium mb-2">{title}</p>
 				<p className="text-white text-xl font-bold">

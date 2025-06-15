@@ -2,6 +2,7 @@ import { type AppDispatch } from "@src/store";
 import { authActions } from "@src/store/auth/auth.slice";
 import { authApi } from "@src/store/auth/auth.api";
 import resetFullApiState from "@src/lib/api/resetFullApiState";
+import { toast } from "sonner";
 
 export const initAuth = () => async (dispatch: AppDispatch) => {
 	try {
@@ -22,6 +23,8 @@ export const logout = () => async (dispatch: AppDispatch) => {
 		dispatch(authActions.logout());
 
 		resetFullApiState(dispatch);
+
+		toast.success("Вы вышли из аккаунта");
 	} catch (e) {
 		console.error("Ошибка при logout-запросе", e);
 	}

@@ -2,6 +2,7 @@ import { authSchema, type AuthSchema } from "@src/lib/types/schemas/auth";
 import { useLoginMutation } from "@src/store/auth/auth.api";
 import useCustomForm from "@hooks/useCustomForm";
 import { isServerError } from "@src/lib/serverError";
+import { toast } from "sonner";
 
 function useLogin() {
 	const [login] = useLoginMutation();
@@ -19,9 +20,10 @@ function useLogin() {
 	const onSubmit = async (data: AuthSchema) => {
 		try {
 			await login(data).unwrap();
-
+			toast.success("Успешный вход в систему");
 			reset();
 		} catch (e) {
+			toast.error("Ошибка авторизации");
 			if (isServerError(e)) {
 				switch (e.data.message) {
 					case "User not found":

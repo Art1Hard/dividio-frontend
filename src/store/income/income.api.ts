@@ -1,26 +1,22 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
 import type { IIncomeData } from "@src/lib/types/types";
-import authBaseQuery from "../auth/auth.basequery";
 import type { IncomeSchema } from "@src/lib/types/schemas/income";
+import authBaseApi from "../auth/auth.baseapi";
 
-export const incomeApi = createApi({
-	reducerPath: "incomeApi",
-	baseQuery: authBaseQuery("/income"),
-	tagTypes: ["Income"],
+export const incomeApi = authBaseApi.injectEndpoints({
 	endpoints: (build) => ({
 		getIncomes: build.query<IIncomeData, void>({
-			query: () => "",
+			query: () => "income",
 			providesTags: ["Income"],
 		}),
 
 		createIncome: build.mutation<IIncomeData, IncomeSchema>({
-			query: (body) => ({ url: "", method: "POST", body }),
-			invalidatesTags: ["Income"],
+			query: (body) => ({ url: "income", method: "POST", body }),
+			invalidatesTags: ["Income", "Allocation"], // Invalidates Income and Allocation tags
 		}),
 
 		deleteIncome: build.mutation<IIncomeData, string>({
-			query: (id) => ({ url: `/${id}`, method: "DELETE" }),
-			invalidatesTags: ["Income"],
+			query: (id) => ({ url: `income/${id}`, method: "DELETE" }),
+			invalidatesTags: ["Income", "Allocation"], // Invalidates Income and Allocation tags
 		}),
 
 		updateIncome: build.mutation<
@@ -28,11 +24,11 @@ export const incomeApi = createApi({
 			{ id: string; body: IncomeSchema }
 		>({
 			query: ({ id, body }) => ({
-				url: `/${id}`,
+				url: `income/${id}`,
 				method: "PUT",
 				body,
 			}),
-			invalidatesTags: ["Income"],
+			invalidatesTags: ["Income", "Allocation"], // Invalidates Income and Allocation tags
 		}),
 	}),
 });

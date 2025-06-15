@@ -1,6 +1,8 @@
-import type { FC } from "react";
+import { type FC } from "react";
 import cn from "clsx";
 import { progressColors } from "@src/lib/data/colors";
+import { setRusFormatValue } from "@src/lib/utils/FormatValue";
+import useDelayValue from "@src/hooks/useDelayValue";
 
 type ProgressBarProps = {
 	label: string;
@@ -15,6 +17,7 @@ const ProgressBar: FC<ProgressBarProps> = ({
 	amount = 0,
 	color = "gray-500",
 }) => {
+	const delayedPercent = useDelayValue(percent);
 	const allowedColor = progressColors.find((c) => c.value === color)
 		? color
 		: "gray-500";
@@ -24,7 +27,8 @@ const ProgressBar: FC<ProgressBarProps> = ({
 			<div className="flex justify-between mb-1">
 				<p className="text-sm text-white">{label}</p>
 				<p className="text-sm text-white">
-					{percent}% — <span className="font-semibold">{amount} ₽</span>
+					{percent}% —{" "}
+					<span className="font-semibold">{setRusFormatValue(amount)} ₽</span>
 				</p>
 			</div>
 			<div className="w-full h-3 bg-slate-700 rounded-full overflow-hidden">
@@ -33,7 +37,9 @@ const ProgressBar: FC<ProgressBarProps> = ({
 						"h-full transition-all duration-300",
 						`bg-${allowedColor}-500`
 					)}
-					style={{ width: `${percent}%` }}></div>
+					style={{
+						width: `${delayedPercent}%`,
+					}}></div>
 			</div>
 		</div>
 	);

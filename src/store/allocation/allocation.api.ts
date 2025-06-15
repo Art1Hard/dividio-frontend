@@ -1,12 +1,8 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
-import authBaseQuery from "../auth/auth.basequery";
 import type { IAllocation, IAllocationData } from "@src/lib/types/types";
 import type { AllocationSchema } from "@src/lib/types/schemas/allocation";
+import authBaseApi from "@src/store/auth/auth.baseapi";
 
-export const allocationApi = createApi({
-	reducerPath: "allocationApi",
-	baseQuery: authBaseQuery(),
-	tagTypes: ["Allocation"],
+export const allocationApi = authBaseApi.injectEndpoints({
 	endpoints: (build) => ({
 		getAllocations: build.query<IAllocationData, void>({
 			query: () => "/allocation",

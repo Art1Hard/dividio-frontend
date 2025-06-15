@@ -8,11 +8,14 @@ import AuthPage from "@pages/AuthPage";
 import Header from "@components/Header";
 import HomePage from "@pages/HomePage";
 import CreateAllocationPage from "@pages/CreateAllocationPage";
+import { Toaster } from "sonner";
 
 export default function App() {
 	return (
 		<div className="flex flex-col h-screen">
 			<Header />
+
+			<Toaster theme="dark" position="bottom-center" richColors />
 
 			<div className="flex-1">
 				<Routes>

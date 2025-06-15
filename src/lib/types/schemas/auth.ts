@@ -3,7 +3,7 @@ import { z } from "zod";
 export const authSchema = z.object({
 	email: z.string().email({ message: "Введите корректную почту" }),
 	password: z
-		.string()
+		.string({ message: "Поле не может быть пустым" })
 		.min(6, { message: "Пароль должен содержать не менее 6 символов" }),
 });
 

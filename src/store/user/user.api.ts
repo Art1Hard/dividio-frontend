@@ -4,16 +4,16 @@ import authBaseQuery from "../auth/auth.basequery";
 
 export const userApi = createApi({
 	reducerPath: "userApi",
-	baseQuery: authBaseQuery(),
+	baseQuery: authBaseQuery("/api/user"),
 	tagTypes: ["User"],
 	endpoints: (build) => ({
 		getUser: build.query<IUser, void>({
-			query: () => "/user",
+			query: () => "",
 			providesTags: ["User"],
 		}),
 		updateUserName: build.mutation<IUser, { name: string }>({
 			query: (body) => ({
-				url: "/user",
+				url: "",
 				method: "PUT",
 				body,
 			}),

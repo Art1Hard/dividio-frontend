@@ -5,6 +5,7 @@ import {
 import { useRegisterMutation } from "@src/store/auth/auth.api";
 import useCustomForm from "@hooks/useCustomForm";
 import { isServerError } from "@src/lib/serverError";
+import { toast } from "sonner";
 
 function useRegister() {
 	const [registerUser] = useRegisterMutation();
@@ -22,7 +23,7 @@ function useRegister() {
 	const onSubmit = async ({ email, password }: RegisterSchema) => {
 		try {
 			await registerUser({ email, password }).unwrap();
-
+			toast.success("Успешная регистрация");
 			reset();
 		} catch (e) {
 			if (isServerError(e)) {

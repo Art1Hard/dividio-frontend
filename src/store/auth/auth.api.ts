@@ -1,50 +1,7 @@
-import {
-	createApi,
-	type FetchArgs,
-	type BaseQueryFn,
-} from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
 import { authActions } from "./auth.slice";
 import type { AuthSchema } from "@src/lib/types/schemas/auth";
-import authBaseQuery from "./auth.basequery";
-
-const baseQuery = authBaseQuery("/auth");
-
-// Обёртка над fetchBaseQuery: перехватывает 401 и делает попытку обновления токена
-const baseQueryWithReauth: BaseQueryFn<
-	string | FetchArgs,
-	unknown,
-	unknown
-> = async (args, api, extraOptions) => {
-	let result = await baseQuery(args, api, extraOptions);
-
-	// Если accessToken истёк и получаем 401
-	if (result.error && (result.error as { status: number }).status === 401) {
-		// Пробуем получить новый accessToken
-		const refreshResult = await baseQuery(
-			{
-				url: "/login/access-token",
-				method: "POST",
-			},
-			api,
-			extraOptions
-		);
-
-		if (refreshResult.data && typeof refreshResult.data === "object") {
-			// Сохраняем новый accessToken
-			type TokensResponse = { accessToken: string; refreshToken: string };
-			const newToken = (refreshResult.data as TokensResponse).accessToken;
-
-			api.dispatch(authActions.setAccessToken(newToken));
-
-			// Повторяем оригинальный запрос с новым accessToken
-			result = await baseQuery(args, api, extraOptions);
-		} else {
-			console.error("Не удалось обновить accessToken через refreshToken");
-		}
-	}
-
-	return result;
-};
+import { baseQueryWithReauth } from "./auth.basequery";
 
 export const authApi = createApi({
 	reducerPath: "authApi",

@@ -1,9 +1,10 @@
 import { incomeSchema, type IncomeSchema } from "@src/lib/types/schemas/income";
 import useCustomForm from "../useCustomForm";
 import { useUpdateIncomeMutation } from "@src/store/income/income.api";
+import { toast } from "sonner";
 
 const useEditIncome = (
-	onClose: () => void,
+	afterSubmit: () => void,
 	id: string,
 	defaultValues: IncomeSchema
 ) => {
@@ -16,8 +17,10 @@ const useEditIncome = (
 	const onSubmit = async (data: IncomeSchema) => {
 		try {
 			await updateIncome({ id, body: data });
-			onClose();
+			toast.success(`Доход "${data.title}" успешно обновлен`);
+			afterSubmit();
 		} catch (error) {
+			toast.error("Ошибка при обновлении дохода");
 			console.error("Failed to update income:", error);
 		}
 	};

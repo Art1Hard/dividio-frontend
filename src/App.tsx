@@ -7,7 +7,6 @@ import { ROUTES } from "@src/routes";
 import AuthPage from "@pages/AuthPage";
 import Header from "@components/Header";
 import HomePage from "@pages/HomePage";
-import CreateAllocationPage from "@pages/CreateAllocationPage";
 import { Toaster } from "sonner";
 
 export default function App() {
@@ -15,7 +14,7 @@ export default function App() {
 		<div className="flex flex-col h-screen">
 			<Header />
 
-			<Toaster theme="dark" position="bottom-center" richColors />
+			<Toaster theme="dark" position="bottom-center" />
 
 			<div className="flex-1">
 				<Routes>
@@ -50,15 +49,6 @@ export default function App() {
 						element={
 							<AuthGuard>
 								<User />
-							</AuthGuard>
-						}
-					/>
-
-					<Route
-						path={ROUTES.CREATE_ALLOCATION}
-						element={
-							<AuthGuard>
-								<CreateAllocationPage />
 							</AuthGuard>
 						}
 					/>

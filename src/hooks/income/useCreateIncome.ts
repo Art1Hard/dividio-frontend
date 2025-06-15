@@ -2,6 +2,7 @@ import useCustomForm from "@hooks/useCustomForm";
 import { isServerError } from "@src/lib/serverError";
 import { incomeSchema, type IncomeSchema } from "@src/lib/types/schemas/income";
 import { useCreateIncomeMutation } from "@src/store/income/income.api";
+import { toast } from "sonner";
 
 const useCreateIncome = (afterSubmit: () => void) => {
 	const { handleSubmit, isSubmitting, errors, setError, register } =
@@ -12,8 +13,10 @@ const useCreateIncome = (afterSubmit: () => void) => {
 	const onSubmit = async (data: IncomeSchema) => {
 		try {
 			await createIncome(data).unwrap();
+			toast.success("Новый доход успешно добавлен");
 			afterSubmit();
 		} catch (e) {
+			toast.error("Ошибка при создании дохода");
 			if (isServerError(e)) {
 				console.error("Произошла ошибка на стороне сервера", e);
 				setError("amount", { message: e.data.message });

@@ -8,19 +8,19 @@ type ProgressBarProps = {
 	label: string;
 	percent?: number;
 	amount?: number;
-	color?: string; // например: bg-blue-500, bg-green-500 и т.д.
+	color?: string;
 };
 
 const ProgressBar: FC<ProgressBarProps> = ({
 	label,
 	percent = 0,
 	amount = 0,
-	color = "gray-500",
+	color = "gray",
 }) => {
 	const delayedPercent = useDelayValue(percent);
 	const allowedColor = progressColors.find((c) => c.value === color)
 		? color
-		: "gray-500";
+		: "gray";
 
 	return (
 		<div className="mb-4">

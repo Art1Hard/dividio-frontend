@@ -4,12 +4,10 @@ import {
 	allocationSchema,
 	type AllocationSchema,
 } from "@src/lib/types/schemas/allocation";
-import { ROUTES } from "@src/routes";
 import { useCreateAllocationMutation } from "@src/store/allocation/allocation.api";
-import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
-const useCreateAllocation = () => {
-	const navigate = useNavigate();
+const useCreateAllocation = (afterSubmit: () => void) => {
 	const {
 		handleSubmit,
 		isSubmitting,
@@ -18,14 +16,15 @@ const useCreateAllocation = () => {
 		register,
 		watch,
 		isDirty,
-	} = useCustomForm(allocationSchema, { color: "gray-500" });
+	} = useCustomForm(allocationSchema, { color: "gray" });
 
 	const [createAllocation] = useCreateAllocationMutation();
 
 	const onSubmit = async (data: AllocationSchema) => {
 		try {
 			await createAllocation(data).unwrap();
-			navigate(ROUTES.DASHBOARD);
+			toast.success("Новая категория успешно добавлена");
+			afterSubmit();
 		} catch (e) {
 			if (isServerError(e)) {
 				console.error("Произошла ошибка на стороне сервера", e);

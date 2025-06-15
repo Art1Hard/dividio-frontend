@@ -5,6 +5,7 @@ import { useState } from "react";
 import Modal from "@src/components/ui/Modal";
 import CreateIncomeForm from "@src/components/dashboard/income/CreateIncomeForm";
 import { AiFillGold } from "react-icons/ai";
+import { AnimatePresence } from "framer-motion";
 
 const IncomeSource = () => {
 	const { data: incomeData } = useGetIncomesQuery();
@@ -45,11 +46,13 @@ const IncomeSource = () => {
 					</div>
 				)}
 
-				{isAddOpen && (
-					<Modal onClose={() => setIsAddOpen(false)}>
-						<CreateIncomeForm onClose={() => setIsAddOpen(false)} />
-					</Modal>
-				)}
+				<AnimatePresence>
+					{isAddOpen && (
+						<Modal onClose={() => setIsAddOpen(false)}>
+							<CreateIncomeForm onClose={() => setIsAddOpen(false)} />
+						</Modal>
+					)}
+				</AnimatePresence>
 			</div>
 		</div>
 	);

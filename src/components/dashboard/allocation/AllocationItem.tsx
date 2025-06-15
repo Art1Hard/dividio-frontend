@@ -6,6 +6,8 @@ import DeleteButton from "@components/ui/DeleteButton";
 import EditButton from "@components/ui/EditButton";
 import EditAllocationForm from "./EditAllocationForm";
 import Modal from "@src/components/ui/Modal";
+import { AnimatePresence } from "framer-motion";
+import deleteItem from "@src/lib/utils/DeleteItem";
 
 interface AllocationItemProps {
 	item: IAllocation;
@@ -16,11 +18,6 @@ const AllocationItem: FC<AllocationItemProps> = ({ item }) => {
 
 	const [deleteAllocation] = useDeleteAllocationMutation();
 	const [isOpen, setIsOpen] = useState(false);
-
-	const deleteHandler = async () => {
-		const result = confirm("Вы действительно хотите удалить?");
-		if (result) await deleteAllocation(id);
-	};
 
 	return (
 		<div className="flex items-center justify-between gap-4 bg-slate-700/50 rounded-lg px-4 py-3">
@@ -35,16 +32,20 @@ const AllocationItem: FC<AllocationItemProps> = ({ item }) => {
 
 			<EditButton onClick={() => setIsOpen(true)} />
 
-			<DeleteButton onClick={deleteHandler} />
+			<DeleteButton
+				onClick={() => deleteItem(() => deleteAllocation(id).unwrap(), title)}
+			/>
 
-			{isOpen && (
-				<Modal onClose={() => setIsOpen(false)}>
-					<EditAllocationForm
-						defaultValues={item}
-						onClose={() => setIsOpen(false)}
-					/>
-				</Modal>
-			)}
+			<AnimatePresence>
+				{isOpen && (
+					<Modal onClose={() => setIsOpen(false)}>
+						<EditAllocationForm
+							defaultValues={item}
+							onClose={() => setIsOpen(false)}
+						/>
+					</Modal>
+				)}
+			</AnimatePresence>
 		</div>
 	);
 };

@@ -1,11 +1,13 @@
 import DeleteButton from "@src/components/ui/DeleteButton";
 import EditButton from "@src/components/ui/EditButton";
 import Modal from "@src/components/ui/Modal";
-import type { IIncome } from "@src/lib/types/types";
+import type { IIncome, IIncomeData } from "@src/lib/types/types";
 import { setRusFormatValue } from "@src/lib/utils/FormatValue";
 import { useDeleteIncomeMutation } from "@src/store/income/income.api";
 import EditIncomeForm from "./EditIncomeForm";
 import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import deleteItem from "@src/lib/utils/DeleteItem";
 
 const IncomeItem = ({ source }: { source: IIncome }) => {
 	const { title, amount } = source;
@@ -24,23 +26,25 @@ const IncomeItem = ({ source }: { source: IIncome }) => {
 				<EditButton onClick={() => setIsOpenModal(true)} />
 
 				<DeleteButton
-					onClick={() => {
-						const result = window.confirm(
-							`Вы уверены, что хотите удалить источник дохода "${title}"?`
-						);
-						if (result) deleteIncome(source.id);
-					}}
+					onClick={() =>
+						deleteItem<IIncomeData>(
+							() => deleteIncome(source.id).unwrap(),
+							source.title
+						)
+					}
 				/>
 			</div>
 
-			{isOpenModal && (
-				<Modal onClose={() => setIsOpenModal(false)}>
-					<EditIncomeForm
-						onClose={() => setIsOpenModal(false)}
-						income={source}
-					/>
-				</Modal>
-			)}
+			<AnimatePresence>
+				{isOpenModal && (
+					<Modal onClose={() => setIsOpenModal(false)}>
+						<EditIncomeForm
+							onClose={() => setIsOpenModal(false)}
+							income={source}
+						/>
+					</Modal>
+				)}
+			</AnimatePresence>
 		</div>
 	);
 };

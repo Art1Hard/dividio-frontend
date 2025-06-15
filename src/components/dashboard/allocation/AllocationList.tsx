@@ -1,10 +1,13 @@
 import { FaChartPie } from "react-icons/fa";
 import { useGetAllocationsQuery } from "@src/store/allocation/allocation.api";
-import { Link } from "react-router-dom";
-import { ROUTES } from "@src/routes";
 import AllocationItem from "./AllocationItem";
+import { AnimatePresence } from "framer-motion";
+import Modal from "@src/components/ui/Modal";
+import CreateAllocation from "./CreateAllocation";
+import { useState } from "react";
 
 const AllocationList = () => {
+	const [isModalOpen, setIsModalOpen] = useState(false);
 	const { data, isLoading } = useGetAllocationsQuery();
 
 	if (isLoading) return <p>Загрузка...</p>;
@@ -23,12 +26,21 @@ const AllocationList = () => {
 					))}
 			</div>
 
-			<Link
-				to={ROUTES.CREATE_ALLOCATION}
+			<button
+				onClick={() => setIsModalOpen(true)}
+				type="button"
 				className="w-full flex items-center justify-center gap-2 bg-slate-700 hover:bg-slate-600 text-white font-semibold py-2 rounded-xl transition">
 				<span className="text-xl leading-none">＋</span>
 				<span>Добавить категорию</span>
-			</Link>
+			</button>
+
+			<AnimatePresence>
+				{isModalOpen && (
+					<Modal onClose={() => setIsModalOpen(false)}>
+						<CreateAllocation onClose={() => setIsModalOpen(false)} />
+					</Modal>
+				)}
+			</AnimatePresence>
 		</div>
 	);
 };

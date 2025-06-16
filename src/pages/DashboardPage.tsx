@@ -5,6 +5,8 @@ import { useGetIncomesQuery } from "@src/store/income/income.api";
 import { useGetUserQuery } from "@src/store/user/user.api";
 import { FaBoxes, FaDove } from "react-icons/fa";
 import IncomeSource from "../components/dashboard/income/IncomeSource";
+import { motion } from "framer-motion";
+import { stepsFade } from "@src/lib/animations/itemAnimations";
 
 const DashboardPage = () => {
 	const { data: user, isLoading: isUserLoading } = useGetUserQuery();
@@ -30,7 +32,11 @@ const DashboardPage = () => {
 
 				<div className="space-y-8">
 					{incomeData && allocationData && (
-						<div className="flex gap-4 justify-between">
+						<motion.div
+							variants={stepsFade}
+							initial="hidden"
+							animate="show"
+							className="flex gap-4 justify-between">
 							<StatisticCard value={incomeData.totalAmount} />
 
 							<StatisticCard
@@ -49,7 +55,7 @@ const DashboardPage = () => {
 								value={allocationData.freePercentage}
 								icon={{ IconComponent: FaDove, bgColor: "bg-emerald-500" }}
 							/>
-						</div>
+						</motion.div>
 					)}
 
 					<IncomeSource />

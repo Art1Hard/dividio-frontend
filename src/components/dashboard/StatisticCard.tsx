@@ -3,6 +3,8 @@ import type { IconType } from "react-icons";
 import { FaCoins } from "react-icons/fa";
 import cn from "clsx";
 import { setRusFormatValue } from "@src/lib/utils/dormatValue";
+import { motion } from "framer-motion";
+import { itemFade } from "@src/lib/animations/itemAnimations";
 
 interface TotalIncomeProps {
 	title?: string;
@@ -24,7 +26,9 @@ const StatisticCard: FC<TotalIncomeProps> = ({
 	const IconComponent = icon?.IconComponent;
 
 	return (
-		<div className="max-w-sm bg-slate-800 rounded-2xl p-6 shadow-md flex flex-1 items-center gap-4">
+		<motion.div
+			variants={itemFade}
+			className="max-w-sm bg-slate-800 rounded-2xl p-6 shadow-md flex flex-1 items-center gap-4">
 			<div
 				className={cn(
 					"p-3 rounded-full text-white",
@@ -40,7 +44,7 @@ const StatisticCard: FC<TotalIncomeProps> = ({
 					{postfix}
 				</p>
 			</div>
-		</div>
+		</motion.div>
 	);
 };
 

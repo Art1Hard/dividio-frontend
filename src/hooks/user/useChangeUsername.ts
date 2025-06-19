@@ -1,33 +1,27 @@
 import { type UserSchema, userSchema } from "@src/lib/types/schemas/user";
-import type { IUser } from "@src/lib/types/types";
 import { useUpdateUserNameMutation } from "@src/store/user/user.api";
-import { useEffect, useState } from "react";
-import useCustomForm from "./useCustomForm";
+import { useEffect } from "react";
+import useCustomForm from "@hooks/useCustomForm";
 
-const useChangeUserName = (user: IUser | undefined) => {
-	const [editMode, setEditMode] = useState(false);
+const useChangeUsername = (
+	name: string | undefined,
+	disableEditMode: () => void
+) => {
 	const [updateUser] = useUpdateUserNameMutation();
 
 	const { register, handleSubmit, reset, errors, isSubmitting } =
 		useCustomForm(userSchema);
 
 	useEffect(() => {
-		if (user && user.name) {
-			reset({ name: user.name });
+		if (name) {
+			reset({ name });
 		}
-	}, [user, reset]);
-
-	const disableEditMode = () => {
-		reset({ name: (user && user.name) || "" });
-		setEditMode(false);
-	};
-
-	const enableEditMode = () => setEditMode(true);
+	}, [name, reset]);
 
 	const onSubmit = async (data: UserSchema) => {
 		try {
 			await updateUser(data);
-			setEditMode(false);
+			disableEditMode();
 		} catch (e) {
 			console.error("Произошла ошибка на сервере при изменении: ", e);
 		}
@@ -40,10 +34,7 @@ const useChangeUserName = (user: IUser | undefined) => {
 		submit,
 		errors,
 		isSubmitting,
-		editMode,
-		enableEditMode,
-		disableEditMode,
 	};
 };
 
-export default useChangeUserName;
+export default useChangeUsername;

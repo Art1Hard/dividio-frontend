@@ -5,37 +5,64 @@ import { AnimatePresence, motion } from "framer-motion";
 import Modal from "@src/components/ui/Modal";
 import CreateAllocation from "./CreateAllocation";
 import { useState } from "react";
-import { itemVariants } from "@src/lib/animations/itemAnimations";
+import { defaultShowAnimation } from "@src/lib/animations/itemAnimations";
+import AllocationChart from "@src/components/dashboard/allocation/AllocationChart";
+import { HiOutlineChartPie } from "react-icons/hi";
+import { HiListBullet } from "react-icons/hi2";
 
 const AllocationList = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isChartOpen, setIsChartOpen] = useState(false);
 	const { data, isLoading } = useGetAllocationsQuery();
 
 	if (isLoading) return <p>Загрузка...</p>;
 
 	return (
 		<div className="bg-slate-800 rounded-2xl p-6 shadow-md">
-			<div className="flex items-center gap-3 mb-4">
-				<FaChartPie className="text-purple-400" size={20} />
-				<h2 className="text-lg font-semibold">Распределение</h2>
+			<div className="flex items-center justify-between mb-4">
+				<div className="flex items-center gap-3">
+					<FaChartPie className="text-purple-400" size={20} />
+					<h2 className="text-lg font-semibold">Распределение</h2>
+				</div>
+
+				<button
+					type="button"
+					onClick={() => setIsChartOpen((prev) => !prev)}
+					className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
+					{!isChartOpen ? (
+						<>
+							<HiOutlineChartPie className="text-white" size={18} />
+							Диаграмма
+						</>
+					) : (
+						<>
+							<HiListBullet className="text-white" size={19} />
+							Список
+						</>
+					)}
+				</button>
 			</div>
 
 			<div className="space-y-4 mb-6">
-				<AnimatePresence>
-					{data &&
-						data.allocations.map((allocation) => (
-							<motion.div
-								layout
-								key={allocation.id}
-								variants={itemVariants}
-								initial="initial"
-								animate="animate"
-								exit="exit"
-								transition={{ duration: 0.2 }}>
-								<AllocationItem item={allocation} />
-							</motion.div>
-						))}
-				</AnimatePresence>
+				{data &&
+					(!isChartOpen ? (
+						<AnimatePresence>
+							{data.allocations.map((allocation) => (
+								<motion.div
+									layout
+									key={allocation.id}
+									variants={defaultShowAnimation}
+									initial="initial"
+									animate="animate"
+									exit="exit"
+									transition={{ duration: 0.2 }}>
+									<AllocationItem item={allocation} />
+								</motion.div>
+							))}
+						</AnimatePresence>
+					) : (
+						<AllocationChart data={data.allocations} />
+					))}
 			</div>
 
 			<button

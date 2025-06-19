@@ -7,7 +7,7 @@ import CreateIncomeForm from "@src/components/dashboard/income/CreateIncomeForm"
 import { AiFillGold } from "react-icons/ai";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
-import { itemVariants } from "@src/lib/animations/itemAnimations";
+import { defaultShowAnimation } from "@src/lib/animations/itemAnimations";
 
 const IncomeSource = () => {
 	const { data: incomeData } = useGetIncomesQuery();
@@ -47,7 +47,7 @@ const IncomeSource = () => {
 								<motion.div
 									layout
 									key={income.id}
-									variants={itemVariants}
+									variants={defaultShowAnimation}
 									initial="initial"
 									animate="animate"
 									exit="exit"

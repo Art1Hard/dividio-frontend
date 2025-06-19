@@ -41,3 +41,9 @@ export interface IStatisticItem {
 		color?: string;
 	};
 }
+
+export interface IEditFutures {
+	enableEditMode: () => void;
+	disableEditMode: () => void;
+	editMode: boolean;
+}

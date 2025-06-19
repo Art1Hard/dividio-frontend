@@ -16,7 +16,10 @@ const StatisticSection = () => {
 			className="flex gap-4 justify-between">
 			{statisticData &&
 				statisticData.map((statisticItem) => (
-					<StatisticItem statisticItem={statisticItem} />
+					<StatisticItem
+						key={statisticItem.title}
+						statisticItem={statisticItem}
+					/>
 				))}
 		</motion.div>
 	);

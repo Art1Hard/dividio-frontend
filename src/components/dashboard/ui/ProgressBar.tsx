@@ -1,7 +1,7 @@
 import { type FC } from "react";
 import cn from "clsx";
 import { progressColors } from "@src/lib/data/colors";
-import { setRusFormatValue } from "@src/lib/utils/dormatValue";
+import { setRusFormatValue } from "@src/lib/utils/formatValue";
 import useDelayValue from "@src/hooks/useDelayValue";
 
 type ProgressBarProps = {

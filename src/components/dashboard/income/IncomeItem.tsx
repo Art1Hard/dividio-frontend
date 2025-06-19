@@ -2,7 +2,7 @@ import DeleteButton from "@src/components/ui/DeleteButton";
 import EditButton from "@src/components/ui/EditButton";
 import Modal from "@src/components/ui/Modal";
 import type { IIncome, IIncomeData } from "@src/lib/types/types";
-import { setRusFormatValue } from "@src/lib/utils/dormatValue";
+import { setRusFormatValue } from "@src/lib/utils/formatValue";
 import { useDeleteIncomeMutation } from "@src/store/income/income.api";
 import EditIncomeForm from "./EditIncomeForm";
 import { useState } from "react";

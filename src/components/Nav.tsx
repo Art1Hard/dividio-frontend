@@ -20,7 +20,7 @@ const Nav = ({ isAuthenticated }: NavProps) => {
 						className={cn("hover:text-blue-400 transition-colors", {
 							underline: match(pathName)(ROUTES.PROFILE),
 						})}>
-						{isAuthenticated ? "Аккаунт" : "Войти"}
+						{isAuthenticated ? "Личный кабинет" : "Войти"}
 					</Link>
 				</li>
 			</ul>

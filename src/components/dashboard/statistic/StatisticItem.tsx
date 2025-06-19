@@ -1,29 +1,18 @@
 import type { FC } from "react";
-import type { IconType } from "react-icons";
-import { FaCoins } from "react-icons/fa";
 import cn from "clsx";
 import { setRusFormatValue } from "@src/lib/utils/dormatValue";
 import { motion } from "framer-motion";
 import { itemFade } from "@src/lib/animations/itemAnimations";
+import type { IStatisticItem } from "@src/lib/types/types";
 
-interface TotalIncomeProps {
-	title?: string;
-	value: number;
-	postfix?: string;
-	icon?: {
-		IconComponent: IconType;
-		color?: string;
-		bgColor?: string;
-	};
+interface StatisticItemProps {
+	statisticItem: IStatisticItem;
 }
 
-const StatisticCard: FC<TotalIncomeProps> = ({
-	value = 0,
-	title = "Общий доход",
-	postfix = " ₽",
-	icon,
+const StatisticItem: FC<StatisticItemProps> = ({
+	statisticItem: { value, title, postfix, icon },
 }) => {
-	const IconComponent = icon?.IconComponent;
+	const IconComponent = icon.IconComponent;
 
 	return (
 		<motion.div
@@ -35,7 +24,7 @@ const StatisticCard: FC<TotalIncomeProps> = ({
 					icon?.bgColor ?? "bg-blue-600",
 					icon?.color ?? "text-white"
 				)}>
-				{IconComponent ? <IconComponent size={24} /> : <FaCoins size={24} />}
+				<IconComponent size={24} />
 			</div>
 			<div>
 				<h2 className="text-lg text-slate-400">{title}</h2>
@@ -48,4 +37,4 @@ const StatisticCard: FC<TotalIncomeProps> = ({
 	);
 };
 
-export default StatisticCard;
+export default StatisticItem;

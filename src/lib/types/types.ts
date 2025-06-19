@@ -1,3 +1,5 @@
+import type { IconType } from "react-icons";
+
 export interface IUser {
 	id: string;
 	email: string;
@@ -27,4 +29,15 @@ export interface IAllocation {
 	percentage: number;
 	amount: number;
 	color: string;
+}
+
+export interface IStatisticItem {
+	title: string;
+	postfix: string;
+	value: number;
+	icon: {
+		IconComponent: IconType;
+		bgColor?: string;
+		color?: string;
+	};
 }

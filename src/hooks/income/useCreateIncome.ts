@@ -5,7 +5,7 @@ import { useCreateIncomeMutation } from "@src/store/income/income.api";
 import { toast } from "sonner";
 
 const useCreateIncome = (afterSubmit: () => void) => {
-	const { handleSubmit, isSubmitting, errors, setError, register } =
+	const { handleSubmit, isSubmitting, errors, setError, register, isDirty } =
 		useCustomForm(incomeSchema);
 
 	const [createIncome] = useCreateIncomeMutation();
@@ -28,7 +28,7 @@ const useCreateIncome = (afterSubmit: () => void) => {
 
 	const submit = handleSubmit(onSubmit);
 
-	return { submit, isSubmitting, errors, register };
+	return { submit, isSubmitting, isDirty, errors, register };
 };
 
 export default useCreateIncome;

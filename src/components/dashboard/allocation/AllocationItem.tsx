@@ -1,11 +1,11 @@
 import type { IAllocation } from "@src/lib/types/types";
 import { useState, type FC } from "react";
-import ProgressBar from "@components/dashboard/ui/ProgressBar";
+import ProgressBar from "@src/components/UI/ProgressBar";
 import { useDeleteAllocationMutation } from "@src/store/allocation/allocation.api";
-import DeleteButton from "@components/ui/DeleteButton";
-import EditButton from "@components/ui/EditButton";
+import DeleteButton from "@src/components/UI/DeleteButton";
+import EditButton from "@src/components/UI/EditButton";
 import EditAllocationForm from "./EditAllocationForm";
-import Modal from "@src/components/ui/Modal";
+import Modal from "@src/components/UI/Modal";
 import { AnimatePresence } from "framer-motion";
 import deleteItem from "@src/lib/utils/deleteItem";
 
@@ -20,7 +20,7 @@ const AllocationItem: FC<AllocationItemProps> = ({ item }) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
-		<div className="flex items-center justify-between gap-4 bg-slate-700/50 rounded-lg px-4 py-3">
+		<div className="flex items-center justify-between gap-4 bg-slate-300/50 dark:bg-slate-700/50 rounded-lg px-4 py-3">
 			<div className="flex-1">
 				<ProgressBar
 					label={title}

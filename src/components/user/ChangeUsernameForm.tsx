@@ -1,4 +1,5 @@
-import Input from "../ui/Input";
+import ActionButton from "../UI/ActionButton";
+import Input from "../UI/Input";
 import useChangeUsername from "@src/hooks/user/useChangeUsername";
 
 interface ChangeUsernameFormProps {
@@ -16,7 +17,7 @@ const ChangeUsernameForm = ({
 	);
 
 	return (
-		<form onSubmit={submit} className="relative flex items-center gap-2 mb-8">
+		<form onSubmit={submit} className="relative flex items-center gap-2">
 			<Input {...register("name")} type="text" placeholder="Иван" />
 
 			{errors.name && errors.name.message && (
@@ -25,18 +26,12 @@ const ChangeUsernameForm = ({
 				</p>
 			)}
 
-			<button
-				type="submit"
-				disabled={isSubmitting}
-				className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded disabled:opacity-50">
+			<ActionButton type="submit" disabled={isSubmitting}>
 				{isSubmitting ? "Сохранение..." : "Сохранить"}
-			</button>
-			<button
-				type="button"
-				onClick={disableEditMode}
-				className="text-slate-300 hover:text-white">
+			</ActionButton>
+			<ActionButton color="secondary" onClick={disableEditMode}>
 				Отмена
-			</button>
+			</ActionButton>
 		</form>
 	);
 };

@@ -17,7 +17,7 @@ const StatisticItem: FC<StatisticItemProps> = ({
 	return (
 		<motion.div
 			variants={itemFade}
-			className="max-w-sm bg-slate-800 rounded-2xl p-6 shadow-md flex flex-1 items-center gap-4">
+			className="max-w-sm bg-slate-200 dark:bg-slate-800 rounded-2xl p-6 shadow-md flex flex-1 items-center gap-4">
 			<div
 				className={cn(
 					"p-3 rounded-full text-white",
@@ -27,7 +27,7 @@ const StatisticItem: FC<StatisticItemProps> = ({
 				<IconComponent size={24} />
 			</div>
 			<div>
-				<h2 className="text-lg text-slate-400">{title}</h2>
+				<h2 className="text-lg text-slate-700 dark:text-slate-400">{title}</h2>
 				<p className="text-3xl font-bold">
 					{setRusFormatValue(value)}
 					{postfix}

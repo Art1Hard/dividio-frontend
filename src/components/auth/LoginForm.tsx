@@ -1,21 +1,20 @@
 import type { FC } from "react";
-import Input from "@src/components/ui/Input";
-import SwitchButton from "./ui/SwitchButton";
+import Input from "@src/components/UI/Input";
+import SwitchFormButton from "@components/UI/SwitchFormButton";
 import useLogin from "@src/hooks/auth/useLogin";
+import ActionButton from "@components/UI/ActionButton";
 
 interface LoginFormProps {
 	onClickSwitchForm: () => void;
 }
 
 export const LoginForm: FC<LoginFormProps> = ({ onClickSwitchForm }) => {
-	const { register, submit, errors, isSubmitting } = useLogin();
+	const { register, submit, errors, isSubmitting, isDirty } = useLogin();
 
 	return (
 		<div className="h-full flex items-center justify-center px-4">
-			<div className="w-full max-w-md bg-slate-800 rounded-2xl p-8 shadow-lg">
-				<h2 className="text-2xl font-bold text-white mb-6 text-center">
-					Вход в аккаунт
-				</h2>
+			<div className="w-full max-w-md bg-slate-200 dark:bg-slate-800 rounded-2xl p-8 shadow-lg">
+				<h2 className="text-2xl font-bold mb-6 text-center">Вход в аккаунт</h2>
 
 				<form onSubmit={submit} className="space-y-8">
 					<Input
@@ -38,29 +37,31 @@ export const LoginForm: FC<LoginFormProps> = ({ onClickSwitchForm }) => {
 						hasShowIcon
 					/>
 
-					<div className="flex items-center justify-between text-sm text-slate-400">
+					<div className="flex items-center justify-between text-sm text-slate-700 dark:text-slate-400">
 						<label className="flex items-center gap-2">
 							<input type="checkbox" className="accent-blue-500" />
 							Запомнить меня
 						</label>
-						<a href="#" className="text-blue-400 hover:underline">
+						<a
+							href="#"
+							className="text-blue-600 dark:text-blue-400 hover:underline">
 							Забыли пароль?
 						</a>
 					</div>
 
-					<button
+					<ActionButton
 						type="submit"
-						disabled={isSubmitting}
-						className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition disabled:opacity-50">
+						disabled={!isDirty || isSubmitting}
+						className="w-full font-semibold">
 						{isSubmitting ? "Входим..." : "Войти"}
-					</button>
+					</ActionButton>
 				</form>
 
-				<SwitchButton
+				<SwitchFormButton
 					onClickSwitchForm={onClickSwitchForm}
 					prefix="Нет аккаунта?">
 					Зарегистрироваться
-				</SwitchButton>
+				</SwitchFormButton>
 			</div>
 		</div>
 	);

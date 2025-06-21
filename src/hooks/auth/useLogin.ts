@@ -15,12 +15,13 @@ function useLogin() {
 		reset,
 		resetField,
 		isSubmitting,
+		isDirty,
 	} = useCustomForm(authSchema);
 
 	const onSubmit = async (data: AuthSchema) => {
 		try {
 			await login(data).unwrap();
-			toast.success("Успешный вход в систему");
+			toast.success("Вы успешно авторизовались!");
 			reset();
 		} catch (e) {
 			toast.error("Ошибка авторизации");
@@ -69,7 +70,7 @@ function useLogin() {
 
 	const submit = handleSubmit(onSubmit);
 
-	return { register, submit, errors, isSubmitting };
+	return { register, submit, errors, isSubmitting, isDirty };
 }
 
 export default useLogin;

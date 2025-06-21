@@ -25,13 +25,13 @@ const ProgressBar: FC<ProgressBarProps> = ({
 	return (
 		<div className="mb-4">
 			<div className="flex justify-between mb-2">
-				<p className="text-sm text-white">{label}</p>
-				<p className="text-sm text-white">
+				<p className="text-sm">{label}</p>
+				<p className="text-sm">
 					{percent}% —{" "}
 					<span className="font-semibold">{setRusFormatValue(amount)} ₽</span>
 				</p>
 			</div>
-			<div className="w-full h-3 bg-slate-700 rounded-full overflow-hidden">
+			<div className="w-full h-3 bg-slate-300 dark:bg-slate-700/50 rounded-full overflow-hidden">
 				<div
 					className={cn(
 						"h-full transition-all duration-300",

@@ -2,15 +2,16 @@ import { FaChartPie } from "react-icons/fa";
 import { useGetAllocationsQuery } from "@src/store/allocation/allocation.api";
 import AllocationItem from "./AllocationItem";
 import { AnimatePresence, motion } from "framer-motion";
-import Modal from "@src/components/ui/Modal";
+import Modal from "@src/components/UI/Modal";
 import CreateAllocation from "./CreateAllocation";
 import { useState } from "react";
 import { defaultShowAnimation } from "@src/lib/animations/itemAnimations";
 import AllocationChart from "@src/components/dashboard/allocation/AllocationChart";
 import { HiOutlineChartPie } from "react-icons/hi";
 import { HiListBullet } from "react-icons/hi2";
+import ActionButton from "@src/components/UI/ActionButton";
 
-const AllocationList = () => {
+const AllocationSource = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isChartOpen, setIsChartOpen] = useState(false);
 	const { data, isLoading } = useGetAllocationsQuery();
@@ -18,29 +19,31 @@ const AllocationList = () => {
 	if (isLoading) return <p>Загрузка...</p>;
 
 	return (
-		<div className="bg-slate-800 rounded-2xl p-6 shadow-md">
+		<div className="bg-slate-200 dark:bg-slate-800 rounded-2xl p-6 shadow-md">
 			<div className="flex items-center justify-between mb-4">
 				<div className="flex items-center gap-3">
-					<FaChartPie className="text-purple-400" size={20} />
+					<FaChartPie
+						className="text-purple-500 dark:text-purple-400"
+						size={20}
+					/>
 					<h2 className="text-lg font-semibold">Распределение</h2>
 				</div>
 
-				<button
-					type="button"
-					onClick={() => setIsChartOpen((prev) => !prev)}
-					className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
+				<ActionButton
+					className="flex items-center gap-2"
+					onClick={() => setIsChartOpen((prev) => !prev)}>
 					{!isChartOpen ? (
 						<>
-							<HiOutlineChartPie className="text-white" size={18} />
+							<HiOutlineChartPie size={18} />
 							Диаграмма
 						</>
 					) : (
 						<>
-							<HiListBullet className="text-white" size={19} />
+							<HiListBullet size={19} />
 							Список
 						</>
 					)}
-				</button>
+				</ActionButton>
 			</div>
 
 			<div className="space-y-4 mb-6">
@@ -65,13 +68,13 @@ const AllocationList = () => {
 					))}
 			</div>
 
-			<button
+			<ActionButton
+				color="secondary"
 				onClick={() => setIsModalOpen(true)}
-				type="button"
-				className="w-full flex items-center justify-center gap-2 bg-slate-700 hover:bg-slate-600 text-white font-semibold py-2 rounded-xl transition">
+				className="w-full flex items-center justify-center gap-2 font-semibold">
 				<span className="text-xl leading-none">＋</span>
 				<span>Добавить категорию</span>
-			</button>
+			</ActionButton>
 
 			<AnimatePresence>
 				{isModalOpen && (
@@ -84,4 +87,4 @@ const AllocationList = () => {
 	);
 };
 
-export default AllocationList;
+export default AllocationSource;

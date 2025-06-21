@@ -12,8 +12,15 @@ const useEditAllocation = (
 	defaultValues: AllocationSchema,
 	afterSubmit: () => void
 ) => {
-	const { handleSubmit, isSubmitting, errors, setError, register, watch } =
-		useCustomForm(allocationSchema, defaultValues);
+	const {
+		handleSubmit,
+		isSubmitting,
+		isDirty,
+		errors,
+		setError,
+		register,
+		watch,
+	} = useCustomForm(allocationSchema, defaultValues);
 
 	const [updateAllocation] = useUpdateAllocationMutation();
 
@@ -35,7 +42,7 @@ const useEditAllocation = (
 
 	const submit = handleSubmit(onSubmit);
 
-	return { submit, isSubmitting, errors, register, watch };
+	return { submit, isSubmitting, isDirty, errors, register, watch };
 };
 
 export default useEditAllocation;

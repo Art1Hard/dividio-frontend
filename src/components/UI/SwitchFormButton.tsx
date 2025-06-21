@@ -9,7 +9,7 @@ interface SwitchButtonProps {
 	children: string;
 }
 
-const SwitchButton: FC<SwitchButtonProps> = ({
+const SwitchFormButton: FC<SwitchButtonProps> = ({
 	onClickSwitchForm,
 	className,
 	classNameInner,
@@ -17,16 +17,23 @@ const SwitchButton: FC<SwitchButtonProps> = ({
 	children,
 }) => {
 	return (
-		<p className={cn("mt-6 text-center text-sm text-slate-400", className)}>
+		<p
+			className={cn(
+				"mt-6 text-center text-sm text-slate-700 dark:text-slate-400",
+				className
+			)}>
 			{prefix}{" "}
 			<button
 				type="button"
 				onClick={onClickSwitchForm}
-				className={cn("text-blue-400 hover:underline", classNameInner)}>
+				className={cn(
+					"text-blue-600 dark:text-blue-400 hover:underline",
+					classNameInner
+				)}>
 				{children}
 			</button>
 		</p>
 	);
 };
 
-export default SwitchButton;
+export default SwitchFormButton;

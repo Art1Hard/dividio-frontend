@@ -1,7 +1,8 @@
 import type { IAllocation } from "@src/lib/types/types";
-import ColorPicker from "../ui/ColorPicker";
+import ColorPicker from "../../UI/ColorPicker";
 import useEditAllocation from "@src/hooks/allocation/useEditAllocation";
-import Input from "@src/components/ui/Input";
+import Input from "@src/components/UI/Input";
+import ActionButton from "@src/components/UI/ActionButton";
 
 type Props = {
 	defaultValues: IAllocation;
@@ -9,59 +10,54 @@ type Props = {
 };
 
 const EditAllocationForm = ({ defaultValues, onClose }: Props) => {
-	const { register, watch, submit, isSubmitting, errors } = useEditAllocation(
-		defaultValues.id,
-		defaultValues,
-		onClose
-	);
+	const { register, watch, submit, isSubmitting, isDirty, errors } =
+		useEditAllocation(defaultValues.id, defaultValues, onClose);
 
 	const selectedColor = watch("color");
 
 	return (
-		<form onSubmit={submit} className="space-y-8 text-white">
-			<h2 className="text-lg font-semibold text-center">
-				Редактировать категорию
+		<div className="w-full">
+			<h2 className="text-xl font-semibold mb-4 text-center">
+				Редактирование категории <br />"{defaultValues.title}"
 			</h2>
+			<form onSubmit={submit} className="space-y-8">
+				<Input
+					type="text"
+					label="title"
+					labelText="Название"
+					placeholder="Например: Сбережения"
+					error={errors.title}
+					{...register("title")}
+				/>
 
-			<Input
-				type="text"
-				label="title"
-				labelText="Название"
-				placeholder="Например: Сбережения"
-				error={errors.title}
-				{...register("title")}
-			/>
+				<Input
+					type="text"
+					label="percent"
+					labelText="Процент"
+					placeholder="Например: 20"
+					error={errors.percentage}
+					{...register("percentage", { valueAsNumber: true })}
+				/>
 
-			<Input
-				type="text"
-				label="percent"
-				labelText="Процент"
-				placeholder="Например: 20"
-				error={errors.percentage}
-				{...register("percentage", { valueAsNumber: true })}
-			/>
+				<ColorPicker
+					selectedColor={selectedColor}
+					error={errors.color}
+					{...register("color")}
+				/>
 
-			<ColorPicker
-				selectedColor={selectedColor}
-				error={errors.color}
-				{...register("color")}
-			/>
-
-			<div className="flex justify-between gap-3">
-				<button
-					type="button"
-					onClick={onClose}
-					className="w-1/2 py-2 rounded-lg bg-slate-600 hover:bg-slate-700 transition">
-					Отмена
-				</button>
-				<button
-					type="submit"
-					disabled={isSubmitting}
-					className="w-1/2 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 transition">
-					{isSubmitting ? "Сохранение..." : "Сохранить"}
-				</button>
-			</div>
-		</form>
+				<div className="flex justify-between gap-3">
+					<ActionButton color="secondary" onClick={onClose} className="w-1/2">
+						Отмена
+					</ActionButton>
+					<ActionButton
+						type="submit"
+						disabled={!isDirty || isSubmitting}
+						className="w-1/2">
+						{isSubmitting ? "Сохранение..." : "Сохранить"}
+					</ActionButton>
+				</div>
+			</form>
+		</div>
 	);
 };
 

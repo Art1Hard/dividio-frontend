@@ -18,12 +18,13 @@ function useRegister() {
 		reset,
 		resetField,
 		isSubmitting,
+		isDirty,
 	} = useCustomForm(registerSchema);
 
 	const onSubmit = async ({ email, password }: RegisterSchema) => {
 		try {
 			await registerUser({ email, password }).unwrap();
-			toast.success("Успешная регистрация");
+			toast.success("Вы успешно зарегистрированы!");
 			reset();
 		} catch (e) {
 			if (isServerError(e)) {
@@ -43,7 +44,7 @@ function useRegister() {
 
 	const submit = handleSubmit(onSubmit);
 
-	return { register, submit, errors, isSubmitting };
+	return { register, submit, errors, isSubmitting, isDirty };
 }
 
 export default useRegister;

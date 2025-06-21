@@ -9,10 +9,8 @@ const useEditIncome = (
 	defaultValues: IncomeSchema
 ) => {
 	const [updateIncome] = useUpdateIncomeMutation();
-	const { register, handleSubmit, isSubmitting, errors } = useCustomForm(
-		incomeSchema,
-		defaultValues
-	);
+	const { register, handleSubmit, isSubmitting, isDirty, errors } =
+		useCustomForm(incomeSchema, defaultValues);
 
 	const onSubmit = async (data: IncomeSchema) => {
 		try {
@@ -31,6 +29,7 @@ const useEditIncome = (
 		register,
 		submit,
 		isSubmitting,
+		isDirty,
 		errors,
 	};
 };

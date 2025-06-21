@@ -14,7 +14,7 @@ export default function App() {
 		<div className="flex flex-col h-screen">
 			<Header />
 
-			<Toaster theme="dark" position="bottom-center" />
+			<Toaster theme="system" position="bottom-center" />
 
 			<div className="flex-1">
 				<Routes>

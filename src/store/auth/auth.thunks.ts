@@ -9,6 +9,7 @@ export const initAuth = () => async (dispatch: AppDispatch) => {
 		dispatch(authActions.setCheckingAuth(true));
 
 		await dispatch(authApi.endpoints.getAccessToken.initiate()).unwrap();
+		console.log("Автологин выполнен успешно");
 	} catch (e) {
 		console.error("Не удалось выполнить автологин", e);
 	} finally {
@@ -24,7 +25,7 @@ export const logout = () => async (dispatch: AppDispatch) => {
 
 		resetFullApiState(dispatch);
 
-		toast.success("Вы вышли из аккаунта");
+		toast.success("Вы успешно вышли из системы!");
 	} catch (e) {
 		console.error("Ошибка при logout-запросе", e);
 	}

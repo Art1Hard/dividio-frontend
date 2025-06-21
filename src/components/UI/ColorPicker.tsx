@@ -12,9 +12,7 @@ const ColorPicker = forwardRef<HTMLInputElement, ColorPickerProps>(
 	({ selectedColor, error, ...rest }, ref) => {
 		return (
 			<div>
-				<label className="block mb-2 text-sm font-medium text-white">
-					Выберите цвет
-				</label>
+				<label className="block mb-2 text-sm font-medium">Выберите цвет</label>
 				<div className="relative flex gap-3 flex-wrap">
 					{progressColors.map(({ name, value }) => (
 						<label key={value} className="cursor-pointer">
@@ -29,7 +27,7 @@ const ColorPicker = forwardRef<HTMLInputElement, ColorPickerProps>(
 								className={cn(
 									"w-8 h-8 rounded-full border-2 transition",
 									selectedColor === value
-										? "border-white"
+										? "border-gray-700 dark:border-white"
 										: "border-transparent",
 									`bg-${value}-500`
 								)}

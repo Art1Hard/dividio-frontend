@@ -1,8 +1,8 @@
 import { ROUTES } from "@src/routes";
 import cn from "clsx";
-import { Link } from "react-router-dom";
 import { match } from "path-to-regexp";
 import { useLocation } from "react-router-dom";
+import NavLink from "./UI/NavLink";
 
 interface NavProps {
 	isAuthenticated: boolean;
@@ -15,13 +15,11 @@ const Nav = ({ isAuthenticated }: NavProps) => {
 		<nav>
 			<ul className="flex items-center gap-6 text-sm font-semibold">
 				<li>
-					<Link
+					<NavLink
 						to={isAuthenticated ? ROUTES.PROFILE : ROUTES.LOGIN}
-						className={cn("hover:text-blue-400 transition-colors", {
-							underline: match(pathName)(ROUTES.PROFILE),
-						})}>
+						className={cn({ underline: match(pathName)(ROUTES.PROFILE) })}>
 						{isAuthenticated ? "Личный кабинет" : "Войти"}
-					</Link>
+					</NavLink>
 				</li>
 			</ul>
 		</nav>

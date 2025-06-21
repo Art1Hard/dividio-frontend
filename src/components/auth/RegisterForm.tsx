@@ -1,25 +1,23 @@
 import { type FC } from "react";
-import Input from "@src/components/ui/Input";
-import SwitchButton from "./ui/SwitchButton";
+import Input from "@src/components/UI/Input";
+import SwitchFormButton from "../UI/SwitchFormButton";
 import useRegister from "@hooks/auth/useRegister";
+import ActionButton from "@components/UI/ActionButton";
 
 interface RegisterFormProps {
 	onClickSwitchForm: () => void;
 }
 
 export const RegisterForm: FC<RegisterFormProps> = ({ onClickSwitchForm }) => {
-	const { register, submit, isSubmitting, errors } = useRegister();
+	const { register, submit, isSubmitting, isDirty, errors } = useRegister();
 
 	return (
 		<div className="h-full flex items-center justify-center px-4">
-			<div className="w-full max-w-md bg-slate-800 rounded-2xl p-8 shadow-lg">
-				<h2 className="text-2xl font-bold text-white mb-6 text-center">
-					Регистрация
-				</h2>
+			<div className="w-full max-w-md bg-slate-200 dark:bg-slate-800 rounded-2xl p-8 shadow-lg">
+				<h2 className="text-2xl font-bold mb-6 text-center">Регистрация</h2>
 
-				<form onSubmit={submit}>
+				<form className="space-y-8" onSubmit={submit}>
 					<Input
-						rootClassName="mb-8"
 						type="text"
 						label="email"
 						labelText="Email"
@@ -29,7 +27,6 @@ export const RegisterForm: FC<RegisterFormProps> = ({ onClickSwitchForm }) => {
 					/>
 
 					<Input
-						rootClassName="mb-8"
 						type="password"
 						label="password"
 						labelText="Пароль"
@@ -39,7 +36,6 @@ export const RegisterForm: FC<RegisterFormProps> = ({ onClickSwitchForm }) => {
 					/>
 
 					<Input
-						rootClassName="mb-12"
 						type="password"
 						label="confirm-password"
 						labelText="Подтвердите пароль"
@@ -48,19 +44,19 @@ export const RegisterForm: FC<RegisterFormProps> = ({ onClickSwitchForm }) => {
 						placeholder="••••••••"
 					/>
 
-					<button
+					<ActionButton
 						type="submit"
-						disabled={isSubmitting}
-						className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition disabled:opacity-50">
+						disabled={!isDirty || isSubmitting}
+						className="w-full font-semibold">
 						{!isSubmitting ? "Зарегистрироваться" : "Идет регистрация..."}
-					</button>
+					</ActionButton>
 				</form>
 
-				<SwitchButton
+				<SwitchFormButton
 					onClickSwitchForm={onClickSwitchForm}
 					prefix="Вы зарегистрированы?">
 					Войти
-				</SwitchButton>
+				</SwitchFormButton>
 			</div>
 		</div>
 	);

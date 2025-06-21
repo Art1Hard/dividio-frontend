@@ -1,6 +1,7 @@
 import useCreateAllocation from "@src/hooks/allocation/useCreateAllocation";
-import Input from "@src/components/ui/Input";
-import ColorPicker from "@src/components/dashboard/ui/ColorPicker";
+import Input from "@src/components/UI/Input";
+import ColorPicker from "@src/components/UI/ColorPicker";
+import ActionButton from "@src/components/UI/ActionButton";
 
 interface CreateAllocationProps {
 	onClose: () => void;
@@ -14,7 +15,7 @@ const CreateAllocation: React.FC<CreateAllocationProps> = ({ onClose }) => {
 
 	return (
 		<div className="w-full">
-			<h2 className="text-xl font-semibold text-white mb-4 text-center">
+			<h2 className="text-xl font-semibold mb-4 text-center">
 				Создание категории
 			</h2>
 
@@ -41,12 +42,22 @@ const CreateAllocation: React.FC<CreateAllocationProps> = ({ onClose }) => {
 					{...register("color")}
 				/>
 
-				<button
-					disabled={!isDirty || isSubmitting}
-					type="submit"
-					className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition">
-					{isSubmitting ? "Создание..." : "Создать"}
-				</button>
+				<div className="flex justify-between gap-3">
+					<ActionButton
+						color="secondary"
+						disabled={isSubmitting}
+						onClick={onClose}
+						className="w-1/2">
+						Отмена
+					</ActionButton>
+
+					<ActionButton
+						disabled={!isDirty || isSubmitting}
+						type="submit"
+						className="w-1/2">
+						{isSubmitting ? "Создание..." : "Создать"}
+					</ActionButton>
+				</div>
 			</form>
 		</div>
 	);

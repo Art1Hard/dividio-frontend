@@ -1,6 +1,6 @@
-import DeleteButton from "@src/components/ui/DeleteButton";
-import EditButton from "@src/components/ui/EditButton";
-import Modal from "@src/components/ui/Modal";
+import DeleteButton from "@src/components/UI/DeleteButton";
+import EditButton from "@src/components/UI/EditButton";
+import Modal from "@src/components/UI/Modal";
 import type { IIncome, IIncomeData } from "@src/lib/types/types";
 import { setRusFormatValue } from "@src/lib/utils/formatValue";
 import { useDeleteIncomeMutation } from "@src/store/income/income.api";
@@ -15,12 +15,10 @@ const IncomeItem = ({ source }: { source: IIncome }) => {
 	const [isOpenModal, setIsOpenModal] = useState(false);
 
 	return (
-		<div className="flex items-center justify-between bg-slate-700/50 px-4 py-3 rounded-lg shadow-sm">
+		<div className="flex items-center justify-between bg-slate-300/50 dark:bg-slate-700/50 px-4 py-3 rounded-lg shadow-sm">
 			<div>
-				<p className="text-white font-medium mb-2">{title}</p>
-				<p className="text-white text-xl font-bold">
-					{setRusFormatValue(amount)} ₽
-				</p>
+				<p className="font-medium mb-2">{title}</p>
+				<p className="text-xl font-bold">{setRusFormatValue(amount)} ₽</p>
 			</div>
 			<div className="flex gap-4">
 				<EditButton onClick={() => setIsOpenModal(true)} />

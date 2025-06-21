@@ -10,11 +10,13 @@ import AllocationChart from "@src/features/allocation/components/AllocationChart
 import { HiOutlineChartPie } from "react-icons/hi";
 import { HiListBullet } from "react-icons/hi2";
 import ActionButton from "@src/components/ui/buttons/ActionButton";
+import { useGetIncomesQuery } from "@src/features/income/api/income.api";
 
 const AllocationSource = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isChartOpen, setIsChartOpen] = useState(false);
 	const { data, isLoading } = useGetAllocationsQuery();
+	const { data: incomeData } = useGetIncomesQuery();
 
 	if (isLoading) return <p>Загрузка...</p>;
 
@@ -31,6 +33,7 @@ const AllocationSource = () => {
 
 				<ActionButton
 					className="flex items-center gap-2"
+					disabled={!data || data.allocations.length <= 1}
 					onClick={() => setIsChartOpen((prev) => !prev)}>
 					{!isChartOpen ? (
 						<>
@@ -71,6 +74,7 @@ const AllocationSource = () => {
 			<ActionButton
 				color="secondary"
 				onClick={() => setIsModalOpen(true)}
+				disabled={!incomeData || incomeData.incomes.length <= 0}
 				className="w-full flex items-center justify-center gap-2 font-semibold">
 				<span className="text-xl leading-none">＋</span>
 				<span>Добавить категорию</span>

@@ -1,6 +1,6 @@
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
-import { initAuth, logout } from "@store/auth/auth.thunks";
+import { initAuth, logout } from "@features/auth/auth.thunks";
 
 const actions = {
 	logout,

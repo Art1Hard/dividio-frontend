@@ -1,4 +1,4 @@
-import { useInitAuth } from "@src/hooks/auth/useInitAuth";
+import { useInitAuth } from "@src/features/auth/hooks/useInitAuth";
 import { type JSX } from "react";
 
 const GuardProvider = ({ children }: { children: JSX.Element }) => {

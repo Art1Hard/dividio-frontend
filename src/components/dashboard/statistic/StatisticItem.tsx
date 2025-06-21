@@ -2,7 +2,7 @@ import type { FC } from "react";
 import cn from "clsx";
 import { setRusFormatValue } from "@src/lib/utils/formatValue";
 import { motion } from "framer-motion";
-import { itemFade } from "@src/lib/animations/itemAnimations";
+import { itemFade } from "@src/lib/animations";
 import type { IStatisticItem } from "@src/lib/types/types";
 
 interface StatisticItemProps {

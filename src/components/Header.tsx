@@ -2,7 +2,7 @@ import { ROUTES } from "@src/routes";
 import { useAppSelector } from "@hooks/redux";
 import { TiChartBar } from "react-icons/ti";
 import Nav from "./Nav";
-import NavLink from "./UI/NavLink";
+import NavLink from "./ui/NavLink";
 
 const Header = () => {
 	const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);

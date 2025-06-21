@@ -1,6 +1,6 @@
-import AllocationSource from "@src/components/dashboard/allocation/AllocationSource";
-import { useGetUserQuery } from "@src/store/user/user.api";
-import IncomeSource from "../components/dashboard/income/IncomeSource";
+import AllocationSource from "@src/features/allocation/components/AllocationSource";
+import { useGetUserQuery } from "@src/features/user/api/user.api";
+import IncomeSource from "../features/income/components/IncomeSource";
 import StatisticSection from "@src/components/dashboard/statistic/StatisticSection";
 
 const DashboardPage = () => {

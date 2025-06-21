@@ -18,8 +18,9 @@
 		"baseUrl": ".",
     "paths": {
 			"@src/*": ["src/*"],
-			"@store/*": ["src/store/*"],
-      "@components/*": ["src/components/*"],
+			"@app/*": ["src/app/*"],
+			"@features/*": ["src/features/*"],
+			"@components/*": ["src/components/*"],
       "@utils/*": ["src/utils/*"],
 			"@pages/*": ["src/pages/*"],
 			"@scss/*": ["src/assets/scss/*"],

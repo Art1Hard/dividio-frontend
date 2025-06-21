@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import StatisticItem from "./StatisticItem";
-import { stepsFade } from "@src/lib/animations/itemAnimations";
+import { stepsFade } from "@src/lib/animations";
 import useGetStatisticData from "@src/hooks/statistic/useGetStatisticData";
 
 const StatisticSection = () => {

@@ -8,13 +8,16 @@ import AuthPage from "@pages/AuthPage";
 import Header from "@components/Header";
 import HomePage from "@pages/HomePage";
 import { Toaster } from "sonner";
+import { useAppSelector } from "@src/hooks/redux";
 
 export default function App() {
+	const theme = useAppSelector((state) => state.theme.currentTheme);
+
 	return (
 		<div className="flex flex-col h-screen">
 			<Header />
 
-			<Toaster theme="system" position="bottom-center" />
+			<Toaster theme={theme} position="bottom-center" />
 
 			<div className="flex-1">
 				<Routes>

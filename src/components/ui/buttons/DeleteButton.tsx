@@ -8,7 +8,7 @@ const DeleteButton = ({
 	return (
 		<button
 			type="button"
-			className="p-2 rounded-md bg-slate-300 dark:bg-slate-600 hover:bg-red-500 transition-colors"
+			className="p-2 rounded-md bg-slate-300 hover:bg-red-500 dark:bg-slate-600 dark:hover:bg-red-500 transition-colors "
 			onClick={onClick}
 			title="Удалить">
 			<FiTrash2 size={16} />

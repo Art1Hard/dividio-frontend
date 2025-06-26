@@ -1,6 +1,6 @@
-import AllocationSource from "@src/features/allocation/components/AllocationSource";
+import AllocationSection from "@src/features/allocation/components/AllocationSection";
 import { useGetUserQuery } from "@src/features/user/api/user.api";
-import IncomeSource from "../features/income/components/IncomeSource";
+import IncomeSection from "../features/income/components/IncomeSection";
 import StatisticSection from "@src/components/dashboard/statistic/StatisticSection";
 
 const DashboardPage = () => {
@@ -22,9 +22,9 @@ const DashboardPage = () => {
 
 				<div className="space-y-8">
 					<StatisticSection />
-					<IncomeSource />
+					<IncomeSection />
 
-					<AllocationSource />
+					<AllocationSection />
 				</div>
 			</div>
 		</div>

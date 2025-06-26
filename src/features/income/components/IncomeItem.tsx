@@ -1,21 +1,30 @@
 import DeleteButton from "@src/components/ui/buttons/DeleteButton";
 import EditButton from "@src/components/ui/buttons/EditButton";
-import Modal from "@src/components/ui/Modal";
+import Modal from "@src/components/ui/modal/Modal";
 import type { IIncome } from "@src/features/income/income.types";
 import { setRusFormatValue } from "@src/lib/utils/formatValue";
 import { useDeleteIncomeMutation } from "@src/features/income/api/income.api";
 import EditIncomeForm from "./EditIncomeForm";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import ConfirmDialog from "@src/components/ui/ConfirmDialog";
+import ConfirmDialog from "@src/components/ui/modal/ConfirmDialog";
 import useConfirmDialog from "@src/hooks/useConfirmDialog";
+import { toast } from "sonner";
+import { isServerError } from "@src/lib/utils/serverError";
 
 const IncomeItem = ({ source }: { source: IIncome }) => {
-	const { title, amount } = source;
+	const { id, title, amount } = source;
 	const [deleteIncome] = useDeleteIncomeMutation();
 	const { isDialogOpen, openDialog, closeDialog, confirmAction } =
 		useConfirmDialog(() => {
-			deleteIncome(source.id).unwrap();
+			toast.promise(deleteIncome(id).unwrap(), {
+				loading: "Удаление дохода...",
+				success: "Доход удален успешно",
+				error: (err) => {
+					if (isServerError(err)) return err.data.message;
+					return "Произошла ошибка при удалении дохода";
+				},
+			});
 		});
 	const [isOpenModal, setIsOpenModal] = useState(false);
 

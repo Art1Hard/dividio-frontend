@@ -1,7 +1,6 @@
 import { tailwindColorMap } from "@src/lib/config/colors";
 import type { IAllocation } from "@src/features/allocation/allocation.types";
 import { setRusFormatValue } from "@src/lib/utils/formatValue";
-import { memo } from "react";
 import {
 	PieChart,
 	Pie,
@@ -10,36 +9,54 @@ import {
 	ResponsiveContainer,
 	type TooltipProps,
 } from "recharts";
+import { useGetAllocationsQuery } from "../api/allocation.api";
 
-interface AllocationChartProps {
-	data: IAllocation[];
-}
+const AllocationChart = () => {
+	const { data } = useGetAllocationsQuery();
 
-const AllocationChart = ({ data }: AllocationChartProps) => (
-	<div className="h-[300px] w-full">
-		<ResponsiveContainer>
-			<PieChart>
-				<Pie
-					animationBegin={0}
-					animationDuration={600}
-					stroke="#fff"
-					data={data}
-					cx="50%"
-					cy="50%"
-					dataKey="percentage"
-					label={(allocation: IAllocation) => allocation.title}>
-					{data.map((allocation) => (
-						<Cell
-							key={allocation.id}
-							fill={tailwindColorMap[allocation.color]}
-						/>
-					))}
-				</Pie>
-				<Tooltip content={<CustomTooltip />} />
-			</PieChart>
-		</ResponsiveContainer>
-	</div>
-);
+	if (!data) return null;
+
+	const { freePercentage, freeAmount, allocations } = data;
+
+	const chartData: IAllocation[] = [...allocations];
+
+	if (freePercentage > 0) {
+		chartData.push({
+			id: "free",
+			title: "Свободно",
+			amount: freeAmount,
+			percentage: freePercentage,
+			color: "gray", // Tailwind-карта: tailwindColorMap.gray
+		});
+	}
+
+	return (
+		<div className="h-[300px] w-full">
+			<ResponsiveContainer>
+				<PieChart>
+					<Pie
+						className="font-medium"
+						animationBegin={0}
+						animationDuration={600}
+						stroke="#fff"
+						data={chartData}
+						cx="50%"
+						cy="50%"
+						dataKey="percentage"
+						label={(allocation: IAllocation) => allocation.title}>
+						{chartData.map((allocation) => (
+							<Cell
+								key={allocation.id}
+								fill={tailwindColorMap[allocation.color]}
+							/>
+						))}
+					</Pie>
+					<Tooltip content={<CustomTooltip />} />
+				</PieChart>
+			</ResponsiveContainer>
+		</div>
+	);
+};
 
 const CustomTooltip = ({
 	active,
@@ -55,4 +72,4 @@ const CustomTooltip = ({
 	);
 };
 
-export default memo(AllocationChart);
+export default AllocationChart;

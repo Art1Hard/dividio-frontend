@@ -4,11 +4,12 @@ import ProgressBar from "@src/components/ui/ProgressBar";
 import { useDeleteAllocationMutation } from "@src/features/allocation/api/allocation.api";
 import DeleteButton from "@src/components/ui/buttons/DeleteButton";
 import EditButton from "@src/components/ui/buttons/EditButton";
-import EditAllocationForm from "./EditAllocationForm";
-import Modal from "@src/components/ui/Modal";
+import EditAllocationForm from "./forms/EditAllocationForm";
+import Modal from "@src/components/ui/modal/Modal";
 import { AnimatePresence } from "framer-motion";
 import useConfirmDialog from "@src/hooks/useConfirmDialog";
-import ConfirmDialog from "@src/components/ui/ConfirmDialog";
+import ConfirmDialog from "@src/components/ui/modal/ConfirmDialog";
+import { toast } from "sonner";
 
 interface AllocationItemProps {
 	item: IAllocation;
@@ -20,7 +21,11 @@ const AllocationItem: FC<AllocationItemProps> = ({ item }) => {
 	const [deleteAllocation] = useDeleteAllocationMutation();
 	const { isDialogOpen, openDialog, closeDialog, confirmAction } =
 		useConfirmDialog(() => {
-			deleteAllocation(id).unwrap();
+			toast.promise(deleteAllocation(id).unwrap(), {
+				loading: "Удаление распределения...",
+				success: "Распределение удалено успешно",
+				error: "Ошибка при удалении распределения",
+			});
 		});
 	const [isOpen, setIsOpen] = useState(false);
 

@@ -16,7 +16,7 @@ const ViewModeSection = ({
 			{!isChartOpen ? (
 				<AllocationList allocations={allocations} />
 			) : (
-				<AllocationChart data={allocations} />
+				<AllocationChart />
 			)}
 		</div>
 	);

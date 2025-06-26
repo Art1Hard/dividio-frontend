@@ -7,7 +7,8 @@ import EditButton from "@src/components/ui/buttons/EditButton";
 import EditAllocationForm from "./EditAllocationForm";
 import Modal from "@src/components/ui/Modal";
 import { AnimatePresence } from "framer-motion";
-import deleteItem from "@src/lib/utils/deleteItem";
+import useConfirmDialog from "@src/hooks/useConfirmDialog";
+import ConfirmDialog from "@src/components/ui/ConfirmDialog";
 
 interface AllocationItemProps {
 	item: IAllocation;
@@ -17,6 +18,10 @@ const AllocationItem: FC<AllocationItemProps> = ({ item }) => {
 	const { id, title, percentage, amount, color } = item;
 
 	const [deleteAllocation] = useDeleteAllocationMutation();
+	const { isDialogOpen, openDialog, closeDialog, confirmAction } =
+		useConfirmDialog(() => {
+			deleteAllocation(id).unwrap();
+		});
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
@@ -32,9 +37,15 @@ const AllocationItem: FC<AllocationItemProps> = ({ item }) => {
 
 			<EditButton onClick={() => setIsOpen(true)} />
 
-			<DeleteButton
-				onClick={() => deleteItem(() => deleteAllocation(id).unwrap(), title)}
-			/>
+			<DeleteButton onClick={openDialog} />
+			<ConfirmDialog
+				title="Подтвердите действие"
+				isOpen={isDialogOpen}
+				onClose={closeDialog}
+				onConfirm={confirmAction}>
+				Вы уверены, что хотите удалить это распределение? <br /> Это действие
+				нельзя будет отменить.
+			</ConfirmDialog>
 
 			<AnimatePresence>
 				{isOpen && (

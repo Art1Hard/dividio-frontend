@@ -1,17 +1,22 @@
 import DeleteButton from "@src/components/ui/buttons/DeleteButton";
 import EditButton from "@src/components/ui/buttons/EditButton";
 import Modal from "@src/components/ui/Modal";
-import type { IIncome, IIncomeData } from "@src/features/income/income.types";
+import type { IIncome } from "@src/features/income/income.types";
 import { setRusFormatValue } from "@src/lib/utils/formatValue";
 import { useDeleteIncomeMutation } from "@src/features/income/api/income.api";
 import EditIncomeForm from "./EditIncomeForm";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import deleteItem from "@src/lib/utils/deleteItem";
+import ConfirmDialog from "@src/components/ui/ConfirmDialog";
+import useConfirmDialog from "@src/hooks/useConfirmDialog";
 
 const IncomeItem = ({ source }: { source: IIncome }) => {
 	const { title, amount } = source;
 	const [deleteIncome] = useDeleteIncomeMutation();
+	const { isDialogOpen, openDialog, closeDialog, confirmAction } =
+		useConfirmDialog(() => {
+			deleteIncome(source.id).unwrap();
+		});
 	const [isOpenModal, setIsOpenModal] = useState(false);
 
 	return (
@@ -23,14 +28,15 @@ const IncomeItem = ({ source }: { source: IIncome }) => {
 			<div className="flex gap-4">
 				<EditButton onClick={() => setIsOpenModal(true)} />
 
-				<DeleteButton
-					onClick={() =>
-						deleteItem<IIncomeData>(
-							() => deleteIncome(source.id).unwrap(),
-							source.title
-						)
-					}
-				/>
+				<DeleteButton onClick={openDialog} />
+				<ConfirmDialog
+					title="Подтвердите действие"
+					isOpen={isDialogOpen}
+					onClose={closeDialog}
+					onConfirm={confirmAction}>
+					Вы уверены, что хотите удалить этот источник дохода? <br /> Это
+					действие нельзя будет отменить.
+				</ConfirmDialog>
 			</div>
 
 			<AnimatePresence>

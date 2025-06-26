@@ -29,7 +29,7 @@ const ActionButton = ({
 					"text-white bg-blue-600 hover:bg-blue-700 disabled:hover:bg-blue-600 font-semibold",
 				color === "secondary" &&
 					"text-slate-800 bg-slate-300/50 hover:bg-slate-300 disabled:hover:bg-slate-300/50 dark:text-white dark:bg-slate-600 dark:hover:bg-slate-700 dark:disabled:hover:bg-slate-600",
-				color === "danger" && "bg-red-600 hover:bg-red-700"
+				color === "danger" && "text-white bg-red-600 hover:bg-red-700"
 			)}
 			onClick={onClick}>
 			{children}

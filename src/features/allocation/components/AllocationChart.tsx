@@ -49,7 +49,7 @@ const CustomTooltip = ({
 	const amount = setRusFormatValue(payload[0].payload.amount);
 
 	return (
-		<p className="bg-slate-400 dark:bg-slate-700 px-4 py-3 rounded-lg shadow-md text-sm">
+		<p className="bg-slate-100 dark:bg-slate-700 px-4 py-3 rounded-lg shadow-md text-sm">
 			{payload[0].payload.title}: {amount} ₽
 		</p>
 	);

@@ -9,26 +9,12 @@ import {
 	ResponsiveContainer,
 	type TooltipProps,
 } from "recharts";
-import { useGetAllocationsQuery } from "../api/allocation.api";
+import useGetChartData from "../hooks/chart/useGetChartData";
 
 const AllocationChart = () => {
-	const { data } = useGetAllocationsQuery();
+	const chartData = useGetChartData();
 
-	if (!data) return null;
-
-	const { freePercentage, freeAmount, allocations } = data;
-
-	const chartData: IAllocation[] = [...allocations];
-
-	if (freePercentage > 0) {
-		chartData.push({
-			id: "free",
-			title: "Свободно",
-			amount: freeAmount,
-			percentage: freePercentage,
-			color: "gray", // Tailwind-карта: tailwindColorMap.gray
-		});
-	}
+	if (!chartData) return null;
 
 	return (
 		<div className="h-[300px] w-full">

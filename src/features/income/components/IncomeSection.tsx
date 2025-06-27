@@ -9,7 +9,7 @@ import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import { defaultScale } from "@lib/animations";
 import ActionButton from "@components/ui/buttons/ActionButton";
-import DashboardSection from "@components/dashboard/DashboardSection";
+import DashboardSection from "@src/components/DashboardSection";
 
 const IncomeSection = () => {
 	const { data: incomeData } = useGetIncomesQuery();

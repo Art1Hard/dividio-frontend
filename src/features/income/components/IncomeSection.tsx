@@ -3,7 +3,7 @@ import IncomeItem from "@features/income/components/IncomeItem";
 import { useGetIncomesQuery } from "@features/income/api/income.api";
 import { useState } from "react";
 import Modal from "@components/ui/modal/Modal";
-import CreateIncomeForm from "@src/features/income/components/CreateIncomeForm";
+import CreateIncomeForm from "@src/features/income/components/forms/CreateIncomeForm";
 import { AiFillGold } from "react-icons/ai";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";

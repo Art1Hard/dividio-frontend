@@ -4,7 +4,7 @@ import Modal from "@src/components/ui/modal/Modal";
 import type { IIncome } from "@src/features/income/income.types";
 import { setRusFormatValue } from "@src/lib/utils/formatValue";
 import { useDeleteIncomeMutation } from "@src/features/income/api/income.api";
-import EditIncomeForm from "./EditIncomeForm";
+import EditIncomeForm from "./forms/EditIncomeForm";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import ConfirmDialog from "@src/components/ui/modal/ConfirmDialog";
@@ -22,7 +22,7 @@ const IncomeItem = ({ source }: { source: IIncome }) => {
 				success: "Доход удален успешно",
 				error: (err) => {
 					if (isServerError(err)) return err.data.message;
-					return "Произошла ошибка при удалении дохода";
+					return "Не удалось удалить доход. Пожалуйста, попробуйте позже.";
 				},
 			});
 		});

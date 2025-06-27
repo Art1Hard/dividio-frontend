@@ -1,5 +1,5 @@
 import type { IAllocation } from "../../allocation.types";
-import { useGetAllocationsQuery } from "../../api/allocation.api";
+import { useGetAllocationsQuery } from "../../services/allocation.api";
 
 const useGetChartData = () => {
 	const { data } = useGetAllocationsQuery();

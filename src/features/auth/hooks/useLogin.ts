@@ -1,5 +1,5 @@
 import { authSchema, type AuthSchema } from "@src/features/auth/auth.schema";
-import { useLoginMutation } from "@src/features/auth/api/auth.api";
+import { useLoginMutation } from "@src/features/auth/services/auth.api";
 import useCustomForm from "@hooks/useCustomForm";
 import { isServerError } from "@src/lib/utils/serverError";
 import { toast } from "sonner";

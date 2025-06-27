@@ -1,6 +1,6 @@
 import { FiPlusCircle } from "react-icons/fi";
 import IncomeItem from "@features/income/components/IncomeItem";
-import { useGetIncomesQuery } from "@features/income/api/income.api";
+import { useGetIncomesQuery } from "@src/features/income/services/income.api";
 import { useState } from "react";
 import Modal from "@components/ui/modal/Modal";
 import CreateIncomeForm from "@src/features/income/components/forms/CreateIncomeForm";

@@ -4,7 +4,7 @@ import {
 	allocationSchema,
 	type AllocationSchema,
 } from "@src/features/allocation/allocation.schema";
-import { useCreateAllocationMutation } from "@src/features/allocation/api/allocation.api";
+import { useCreateAllocationMutation } from "@src/features/allocation/services/allocation.api";
 import { toast } from "sonner";
 
 const useCreateAllocation = (afterSubmit: () => void) => {

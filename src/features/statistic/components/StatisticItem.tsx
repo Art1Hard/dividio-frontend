@@ -3,7 +3,7 @@ import cn from "clsx";
 import { setRusFormatValue } from "@src/lib/utils/formatValue";
 import { motion } from "framer-motion";
 import { itemFade } from "@src/lib/animations";
-import type { IStatisticItem } from "@src/lib/types/types";
+import type { IStatisticItem } from "@src/features/statistic/types";
 
 interface StatisticItemProps {
 	statisticItem: IStatisticItem;

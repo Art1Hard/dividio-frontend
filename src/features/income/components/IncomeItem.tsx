@@ -3,7 +3,7 @@ import EditButton from "@src/components/ui/buttons/EditButton";
 import Modal from "@src/components/ui/modal/Modal";
 import type { IIncome } from "@src/features/income/income.types";
 import { setRusFormatValue } from "@src/lib/utils/formatValue";
-import { useDeleteIncomeMutation } from "@src/features/income/api/income.api";
+import { useDeleteIncomeMutation } from "@src/features/income/services/income.api";
 import EditIncomeForm from "./forms/EditIncomeForm";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";

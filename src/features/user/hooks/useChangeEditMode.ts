@@ -1,4 +1,3 @@
-import type { IEditFutures } from "@src/lib/types/types";
 import { useState } from "react";
 
 const useChangeEditMode = () => {
@@ -10,7 +9,7 @@ const useChangeEditMode = () => {
 
 	const enableEditMode = () => setEditMode(true);
 
-	return { editMode, enableEditMode, disableEditMode } as IEditFutures;
+	return { editMode, enableEditMode, disableEditMode };
 };
 
 export default useChangeEditMode;

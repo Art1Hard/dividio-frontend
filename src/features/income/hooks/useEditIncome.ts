@@ -3,7 +3,7 @@ import {
 	type IncomeSchema,
 } from "@src/features/income/income.schema";
 import useCustomForm from "../../../hooks/useCustomForm";
-import { useUpdateIncomeMutation } from "@src/features/income/api/income.api";
+import { useUpdateIncomeMutation } from "@src/features/income/services/income.api";
 import { toast } from "sonner";
 
 const useEditIncome = (

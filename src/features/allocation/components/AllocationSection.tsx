@@ -1,5 +1,5 @@
 import { FaChartPie } from "react-icons/fa";
-import { useGetAllocationsQuery } from "@src/features/allocation/api/allocation.api";
+import { useGetAllocationsQuery } from "@src/features/allocation/services/allocation.api";
 import { useState } from "react";
 import ViewModeToggleButton from "./view/ViewModeToggleButton";
 import ViewModeSection from "./view/ViewModeSection";

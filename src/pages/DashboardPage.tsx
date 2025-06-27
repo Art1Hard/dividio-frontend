@@ -1,5 +1,5 @@
 import AllocationSection from "@src/features/allocation/components/AllocationSection";
-import { useGetUserQuery } from "@src/features/user/api/user.api";
+import { useGetUserQuery } from "@features/user/services/user.api";
 import IncomeSection from "../features/income/components/IncomeSection";
 import StatisticSection from "@src/features/statistic/components/StatisticSection";
 

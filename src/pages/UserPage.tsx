@@ -3,7 +3,7 @@ import ChangeUsernameForm from "@src/features/user/components/ChangeUsernameForm
 import UsernameSection from "@src/features/user/components/UsernameSection";
 import useChangeEditMode from "@src/features/user/hooks/useChangeEditMode";
 import { defaultScale } from "@src/lib/animations";
-import { useGetUserQuery } from "@features/user/api/user.api";
+import { useGetUserQuery } from "@src/features/user/services/user.api";
 import { motion } from "framer-motion";
 import { ToggleThemeButton } from "@src/features/theme/components/ToggleThemeButton";
 

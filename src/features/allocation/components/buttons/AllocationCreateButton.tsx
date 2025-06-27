@@ -1,5 +1,5 @@
 import ActionButton from "@src/components/ui/buttons/ActionButton";
-import { useGetIncomesQuery } from "@src/features/income/api/income.api";
+import { useGetIncomesQuery } from "@src/features/income/services/income.api";
 
 interface AllocationCreateButtonProps {
 	onClick: () => void;

@@ -1,7 +1,7 @@
-import { type AppDispatch } from "@src/app/store";
-import { authActions } from "@src/features/auth/auth.slice";
-import { authApi } from "@src/features/auth/api/auth.api";
-import resetFullApiState from "@src/lib/utils/resetFullApiState";
+import { type AppDispatch } from "@app/store";
+import { authActions } from "@features/auth/auth.slice";
+import { authApi } from "@features/auth/services/auth.api";
+import resetFullApiState from "@lib/utils/resetFullApiState";
 import { toast } from "sonner";
 
 export const initAuth = () => async (dispatch: AppDispatch) => {

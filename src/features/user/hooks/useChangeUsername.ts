@@ -1,5 +1,5 @@
 import { type UserSchema, userSchema } from "@src/features/user/user.schema";
-import { useUpdateUserNameMutation } from "@src/features/user/api/user.api";
+import { useUpdateUserNameMutation } from "@src/features/user/services/user.api";
 import { useEffect } from "react";
 import useCustomForm from "@hooks/useCustomForm";
 

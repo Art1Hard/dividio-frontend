@@ -4,7 +4,7 @@ import {
 	incomeSchema,
 	type IncomeSchema,
 } from "@src/features/income/income.schema";
-import { useCreateIncomeMutation } from "@src/features/income/api/income.api";
+import { useCreateIncomeMutation } from "@src/features/income/services/income.api";
 import { toast } from "sonner";
 
 const useCreateIncome = (afterSubmit: () => void) => {

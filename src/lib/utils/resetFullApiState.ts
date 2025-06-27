@@ -1,8 +1,8 @@
-import type { AppDispatch } from "@src/app/store";
-import { allocationApi } from "@src/features/allocation/api/allocation.api";
-import { authApi } from "@src/features/auth/api/auth.api";
-import { incomeApi } from "@src/features/income/api/income.api";
-import { userApi } from "@src/features/user/api/user.api";
+import type { AppDispatch } from "@app/store";
+import { allocationApi } from "@features/allocation/services/allocation.api";
+import { authApi } from "@features/auth/services/auth.api";
+import { incomeApi } from "@features/income/services/income.api";
+import { userApi } from "@features/user/services/user.api";
 
 const resetFullApiState = (dispatch: AppDispatch) => {
 	dispatch(authApi.util.resetApiState());

@@ -1,6 +1,6 @@
-import type { IStatisticItem } from "@src/lib/types/types";
-import { useGetAllocationsQuery } from "@src/features/allocation/api/allocation.api";
-import { useGetIncomesQuery } from "@src/features/income/api/income.api";
+import type { IStatisticItem } from "@features/statistic/types";
+import { useGetAllocationsQuery } from "@src/features/allocation/services/allocation.api";
+import { useGetIncomesQuery } from "@src/features/income/services/income.api";
 import { useMemo } from "react";
 import { FaBoxes, FaCoins, FaDove } from "react-icons/fa";
 

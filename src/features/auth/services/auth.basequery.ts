@@ -4,7 +4,7 @@ import {
 	type FetchArgs,
 } from "@reduxjs/toolkit/query";
 import type { RootState } from "@src/app/store";
-import { authActions } from "../auth.slice";
+import { authActions } from "../model/auth.slice";
 
 const authBaseQuery = (endpoint: string = "/") => {
 	const baseQuery = fetchBaseQuery({

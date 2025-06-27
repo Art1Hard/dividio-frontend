@@ -1,5 +1,5 @@
-import type { IIncomeData } from "@src/features/income/income.types";
-import type { IncomeSchema } from "@src/features/income/income.schema";
+import type { IIncomeData } from "@src/features/income/model/income.types";
+import type { IncomeSchema } from "@src/features/income/model/income.schema";
 import authBaseApi from "@features/auth/services/auth.baseapi";
 
 export const incomeApi = authBaseApi.injectEndpoints({

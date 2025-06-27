@@ -4,7 +4,7 @@ import type { FieldError } from "react-hook-form";
 import {
 	EyeClosedIcon,
 	EyeOpenIcon,
-} from "@features/auth/components/icons/EyeIcons";
+} from "@src/features/auth/ui/icons/EyeIcons";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	error?: FieldError;

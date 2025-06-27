@@ -1,8 +1,8 @@
 import type {
 	IAllocation,
 	IAllocationData,
-} from "@src/features/allocation/allocation.types";
-import type { AllocationSchema } from "@src/features/allocation/allocation.schema";
+} from "@src/features/allocation/model/allocation.types";
+import type { AllocationSchema } from "@src/features/allocation/model/allocation.schema";
 import authBaseApi from "@features/auth/services/auth.baseapi";
 
 export const allocationApi = authBaseApi.injectEndpoints({

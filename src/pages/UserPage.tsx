@@ -1,7 +1,7 @@
 import { useThunks } from "@hooks/redux/thunks";
-import ChangeUsernameForm from "@src/features/user/components/ChangeUsernameForm";
-import UsernameSection from "@src/features/user/components/UsernameSection";
-import useChangeEditMode from "@src/features/user/hooks/useChangeEditMode";
+import ChangeUsernameForm from "@src/features/user/ui/ChangeUsernameForm";
+import UsernameSection from "@src/features/user/ui/UsernameSection";
+import useChangeEditMode from "@src/features/user/lib/useChangeEditMode";
 import { defaultScale } from "@src/lib/animations";
 import { useGetUserQuery } from "@src/features/user/services/user.api";
 import { motion } from "framer-motion";

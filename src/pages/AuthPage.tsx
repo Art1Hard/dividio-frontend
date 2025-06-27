@@ -1,5 +1,5 @@
-import { LoginForm } from "@src/features/auth/components/LoginForm";
-import { RegisterForm } from "@src/features/auth/components/RegisterForm";
+import { LoginForm } from "@src/features/auth/ui/LoginForm";
+import { RegisterForm } from "@src/features/auth/ui/RegisterForm";
 import { useState } from "react";
 
 const AuthPage = () => {

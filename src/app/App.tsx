@@ -1,14 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import DashboardPage from "@src/pages/DashboardPage";
 import User from "@src/pages/UserPage";
-import AuthGuard from "@src/components/guard/AuthGuard";
-import GuestGuard from "@src/components/guard/GuestGuard";
 import { ROUTES } from "@src/routes";
 import AuthPage from "@pages/AuthPage";
 import Header from "@components/Header";
 import HomePage from "@pages/HomePage";
 import { Toaster } from "sonner";
 import { useAppSelector } from "@src/hooks/redux";
+import RouteGuard from "@src/components/guard/RouteGuard";
 
 export default function App() {
 	const theme = useAppSelector((state) => state.theme.currentTheme);
@@ -24,35 +23,35 @@ export default function App() {
 					<Route
 						path={ROUTES.HOME}
 						element={
-							<GuestGuard>
+							<RouteGuard onlyGuest>
 								<HomePage />
-							</GuestGuard>
+							</RouteGuard>
 						}
 					/>
 
 					<Route
 						path={ROUTES.DASHBOARD}
 						element={
-							<AuthGuard>
+							<RouteGuard>
 								<DashboardPage />
-							</AuthGuard>
+							</RouteGuard>
 						}
 					/>
 
 					<Route
 						path={ROUTES.LOGIN}
 						element={
-							<GuestGuard>
+							<RouteGuard onlyGuest>
 								<AuthPage />
-							</GuestGuard>
+							</RouteGuard>
 						}
 					/>
 					<Route
 						path={ROUTES.PROFILE}
 						element={
-							<AuthGuard>
+							<RouteGuard>
 								<User />
-							</AuthGuard>
+							</RouteGuard>
 						}
 					/>
 

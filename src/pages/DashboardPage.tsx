@@ -1,7 +1,7 @@
-import AllocationSection from "@src/features/allocation/components/AllocationSection";
+import AllocationSection from "@src/features/allocation/ui/AllocationSection";
 import { useGetUserQuery } from "@features/user/services/user.api";
-import IncomeSection from "../features/income/components/IncomeSection";
-import StatisticSection from "@src/features/statistic/components/StatisticSection";
+import IncomeSection from "@features/income/ui/IncomeSection";
+import StatisticSection from "@src/features/statistic/ui/StatisticSection";
 
 const DashboardPage = () => {
 	const { data: user, isLoading: isUserLoading } = useGetUserQuery();

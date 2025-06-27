@@ -1,6 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { authActions } from "../auth.slice";
-import type { AuthSchema } from "@src/features/auth/auth.schema";
+import { authActions } from "../model/auth.slice";
+import type { AuthSchema } from "@src/features/auth/model/auth.schema";
 import { baseQueryWithReauth } from "@features/auth/services/auth.basequery";
 
 export const authApi = createApi({

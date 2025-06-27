@@ -1,5 +1,5 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import type { IUser } from "@features/user/user.types";
+import type { IUser } from "@src/features/user/model/user.types";
 import authBaseQuery from "@features/auth/services/auth.basequery";
 
 export const userApi = createApi({

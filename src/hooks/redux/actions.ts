@@ -1,7 +1,7 @@
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
-import { authActions } from "@src/features/auth/auth.slice";
-import { themeActions } from "@src/features/theme/theme.slice";
+import { authActions } from "@src/features/auth/model/auth.slice";
+import { themeActions } from "@src/features/theme/model/theme.slice";
 
 const actions = {
 	...authActions,

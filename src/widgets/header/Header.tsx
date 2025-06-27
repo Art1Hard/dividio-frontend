@@ -1,7 +1,7 @@
 import { ROUTES } from "@src/routes";
-import { useAppSelector } from "@hooks/redux";
+import { useAppSelector } from "@src/shared/lib/hooks/redux";
 import { TiChartBar } from "react-icons/ti";
-import Nav from "./Nav";
+import Nav from "./ui/Nav";
 import NavLink from "./ui/NavLink";
 
 const Header = () => {

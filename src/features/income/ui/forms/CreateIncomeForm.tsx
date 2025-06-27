@@ -1,7 +1,7 @@
 import useCreateIncome from "@src/features/income/lib/useCreateIncome";
-import Input from "@src/components/ui/Input";
+import Input from "@src/shared/ui/form/Input";
 import type { FC } from "react";
-import ActionButton from "@src/components/ui/buttons/ActionButton";
+import ActionButton from "@src/shared/ui/buttons/ActionButton";
 
 interface CreateIncomeFormProps {
 	onClose: () => void;

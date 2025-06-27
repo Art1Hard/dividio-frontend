@@ -1,4 +1,4 @@
-import { progressColors } from "@src/lib/config/colors";
+import { progressColors } from "@src/shared/config/colors";
 import { forwardRef } from "react";
 import type { FieldError } from "react-hook-form";
 import cn from "clsx";

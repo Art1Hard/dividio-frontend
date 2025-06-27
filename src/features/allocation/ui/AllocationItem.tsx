@@ -1,14 +1,14 @@
 import type { IAllocation } from "@src/features/allocation/model/allocation.types";
 import { useState, type FC } from "react";
-import ProgressBar from "@src/components/ui/ProgressBar";
+import ProgressBar from "@src/shared/ui/ProgressBar";
 import { useDeleteAllocationMutation } from "@src/features/allocation/services/allocation.api";
-import DeleteButton from "@src/components/ui/buttons/DeleteButton";
-import EditButton from "@src/components/ui/buttons/EditButton";
+import DeleteButton from "@src/shared/ui/buttons/DeleteButton";
+import EditButton from "@src/shared/ui/buttons/EditButton";
 import EditAllocationForm from "./forms/EditAllocationForm";
-import Modal from "@src/components/ui/modal/Modal";
+import Modal from "@src/shared/ui/modal/Modal";
 import { AnimatePresence } from "framer-motion";
-import useConfirmDialog from "@src/hooks/useConfirmDialog";
-import ConfirmDialog from "@src/components/ui/modal/ConfirmDialog";
+import useConfirmDialog from "@src/shared/lib/hooks/useConfirmDialog";
+import ConfirmDialog from "@src/shared/ui/modal/ConfirmDialog";
 import { toast } from "sonner";
 
 interface AllocationItemProps {

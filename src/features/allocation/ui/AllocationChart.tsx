@@ -1,6 +1,6 @@
-import { tailwindColorMap } from "@src/lib/config/colors";
+import { tailwindColorMap } from "@src/shared/config/colors";
 import type { IAllocation } from "@src/features/allocation/model/allocation.types";
-import { setRusFormatValue } from "@src/lib/utils/formatValue";
+import { setRusFormatValue } from "@src/shared/lib/utils/formatValue";
 import {
 	PieChart,
 	Pie,

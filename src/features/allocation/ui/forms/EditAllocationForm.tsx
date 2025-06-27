@@ -1,8 +1,8 @@
 import type { IAllocation } from "@src/features/allocation/model/allocation.types";
-import ColorPicker from "@components/ui/ColorPicker";
+import ColorPicker from "@src/shared/ui/form/ColorPicker";
 import useEditAllocation from "@src/features/allocation/lib/useEditAllocation";
-import Input from "@src/components/ui/Input";
-import ActionButton from "@src/components/ui/buttons/ActionButton";
+import Input from "@src/shared/ui/form/Input";
+import ActionButton from "@src/shared/ui/buttons/ActionButton";
 
 type Props = {
 	defaultValues: IAllocation;

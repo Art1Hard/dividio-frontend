@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from "react";
 import { motion } from "framer-motion";
-import { modalFade, modalScale } from "@src/lib/animations";
+import { modalFade, modalScale } from "@src/shared/animations";
 
 interface ModalProps {
 	onClose: () => void;

@@ -1,7 +1,7 @@
 import useCreateAllocation from "@src/features/allocation/lib/useCreateAllocation";
-import Input from "@src/components/ui/Input";
-import ColorPicker from "@src/components/ui/ColorPicker";
-import ActionButton from "@src/components/ui/buttons/ActionButton";
+import Input from "@src/shared/ui/form/Input";
+import ColorPicker from "@src/shared/ui/form/ColorPicker";
+import ActionButton from "@src/shared/ui/buttons/ActionButton";
 
 interface CreateAllocationFormProps {
 	onClose: () => void;

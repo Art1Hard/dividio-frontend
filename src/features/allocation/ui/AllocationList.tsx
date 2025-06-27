@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import type { IAllocation } from "../model/allocation.types";
-import { defaultScale } from "@src/lib/animations";
+import { defaultScale } from "@src/shared/animations";
 import AllocationItem from "./AllocationItem";
 
 interface AllocationListProps {

@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { authApi } from "@src/features/auth/services/auth.api";
 import { authReducer } from "@src/features/auth/model/auth.slice";
-import { userApi } from "@src/features/user/services/user.api";
+import { userApi } from "@src/entities/user/services/user.api";
 import authBaseApi from "@src/features/auth/services/auth.baseapi";
 import { themeReducer } from "@src/features/theme/model/theme.slice";
 

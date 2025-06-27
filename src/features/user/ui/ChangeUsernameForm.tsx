@@ -1,5 +1,5 @@
-import ActionButton from "../../../components/ui/buttons/ActionButton";
-import Input from "../../../components/ui/Input";
+import ActionButton from "../../../shared/ui/buttons/ActionButton";
+import Input from "../../../shared/ui/form/Input";
 import useChangeUsername from "@src/features/user/lib/useChangeUsername";
 
 interface ChangeUsernameFormProps {

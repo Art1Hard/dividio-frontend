@@ -4,7 +4,7 @@ import { useState } from "react";
 import ViewModeToggleButton from "./view/ViewModeToggleButton";
 import ViewModeSection from "./view/ViewModeSection";
 import CreateAllocation from "./CreateAllocation";
-import DashboardSection from "@src/components/DashboardSection";
+import DashboardSection from "@src/shared/ui/DashboardSection";
 
 const AllocationSection = () => {
 	const [isChartOpen, setIsChartOpen] = useState(false);

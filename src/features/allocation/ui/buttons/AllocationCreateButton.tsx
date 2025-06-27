@@ -1,4 +1,4 @@
-import ActionButton from "@src/components/ui/buttons/ActionButton";
+import ActionButton from "@src/shared/ui/buttons/ActionButton";
 import { useGetIncomesQuery } from "@src/features/income/services/income.api";
 
 interface AllocationCreateButtonProps {

@@ -1,4 +1,4 @@
-import Modal from "@src/components/ui/modal/Modal";
+import Modal from "@src/shared/ui/modal/Modal";
 import { AnimatePresence } from "framer-motion";
 import CreateAllocationForm from "./forms/CreateAllocationForm";
 import { useState } from "react";

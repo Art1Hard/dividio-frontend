@@ -1,5 +1,5 @@
-import useCustomForm from "@hooks/useCustomForm";
-import { isServerError } from "@src/lib/utils/serverError";
+import useCustomForm from "@src/shared/lib/hooks/useCustomForm";
+import { isServerError } from "@src/shared/lib/utils/serverError";
 import {
 	incomeSchema,
 	type IncomeSchema,

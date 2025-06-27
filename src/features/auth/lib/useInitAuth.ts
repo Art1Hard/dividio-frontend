@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
-import { useThunks } from "@hooks/redux/thunks";
-import { useAppSelector } from "@src/hooks/redux";
+import { useThunks } from "@src/shared/lib/hooks/redux/thunks";
+import { useAppSelector } from "@src/shared/lib/hooks/redux";
 
 export const useInitAuth = () => {
 	const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);

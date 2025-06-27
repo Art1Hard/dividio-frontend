@@ -1,4 +1,4 @@
-import { useAppSelector } from "@src/hooks/redux";
+import { useAppSelector } from "@src/shared/lib/hooks/redux";
 import { useEffect, type ReactNode } from "react";
 
 interface ThemeProviderProps {

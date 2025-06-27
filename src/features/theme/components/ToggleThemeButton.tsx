@@ -1,5 +1,5 @@
-import { useAppSelector } from "@src/hooks/redux";
-import { useActions } from "@src/hooks/redux/actions";
+import { useAppSelector } from "@src/shared/lib/hooks/redux";
+import { useActions } from "@src/shared/lib/hooks/redux/actions";
 import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 
 export const ToggleThemeButton = () => {

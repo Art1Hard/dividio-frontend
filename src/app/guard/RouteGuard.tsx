@@ -1,4 +1,4 @@
-import { useAppSelector } from "@src/hooks/redux";
+import { useAppSelector } from "@src/shared/lib/hooks/redux";
 import { ROUTES } from "@src/routes";
 import type { JSX } from "react";
 import { Navigate } from "react-router-dom";

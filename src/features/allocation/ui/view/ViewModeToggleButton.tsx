@@ -1,4 +1,4 @@
-import ActionButton from "@src/components/ui/buttons/ActionButton";
+import ActionButton from "@src/shared/ui/buttons/ActionButton";
 import type { IAllocationData } from "../../model/allocation.types";
 import { HiOutlineChartPie } from "react-icons/hi";
 import { HiListBullet } from "react-icons/hi2";

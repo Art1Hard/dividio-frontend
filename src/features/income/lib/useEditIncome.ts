@@ -2,7 +2,7 @@ import {
 	incomeSchema,
 	type IncomeSchema,
 } from "@src/features/income/model/income.schema";
-import useCustomForm from "../../../hooks/useCustomForm";
+import useCustomForm from "../../../shared/lib/hooks/useCustomForm";
 import { useUpdateIncomeMutation } from "@src/features/income/services/income.api";
 import { toast } from "sonner";
 

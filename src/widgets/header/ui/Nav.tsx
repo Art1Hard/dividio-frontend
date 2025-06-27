@@ -2,7 +2,7 @@ import { ROUTES } from "@src/routes";
 import cn from "clsx";
 import { match } from "path-to-regexp";
 import { useLocation } from "react-router-dom";
-import NavLink from "./ui/NavLink";
+import NavLink from "@src/widgets/header/ui/NavLink";
 
 interface NavProps {
 	isAuthenticated: boolean;

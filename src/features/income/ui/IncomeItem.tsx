@@ -1,16 +1,16 @@
-import DeleteButton from "@src/components/ui/buttons/DeleteButton";
-import EditButton from "@src/components/ui/buttons/EditButton";
-import Modal from "@src/components/ui/modal/Modal";
+import DeleteButton from "@src/shared/ui/buttons/DeleteButton";
+import EditButton from "@src/shared/ui/buttons/EditButton";
+import Modal from "@src/shared/ui/modal/Modal";
 import type { IIncome } from "@src/features/income/model/income.types";
-import { setRusFormatValue } from "@src/lib/utils/formatValue";
+import { setRusFormatValue } from "@src/shared/lib/utils/formatValue";
 import { useDeleteIncomeMutation } from "@src/features/income/services/income.api";
 import EditIncomeForm from "./forms/EditIncomeForm";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import ConfirmDialog from "@src/components/ui/modal/ConfirmDialog";
-import useConfirmDialog from "@src/hooks/useConfirmDialog";
+import ConfirmDialog from "@src/shared/ui/modal/ConfirmDialog";
+import useConfirmDialog from "@src/shared/lib/hooks/useConfirmDialog";
 import { toast } from "sonner";
-import { isServerError } from "@src/lib/utils/serverError";
+import { isServerError } from "@src/shared/lib/utils/serverError";
 
 const IncomeItem = ({ source }: { source: IIncome }) => {
 	const { id, title, amount } = source;

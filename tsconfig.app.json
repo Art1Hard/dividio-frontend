@@ -25,7 +25,7 @@
 			"@pages/*": ["src/pages/*"],
 			"@scss/*": ["src/assets/scss/*"],
 			"@img/*": ["src/assets/img/*"],
-			"@hooks/*": ["src/hooks/*"],
+			"@hooks/*": ["src/shared/lib/hooks/*"],
 			"@config/*": ["src/config/*"],
 			"@api/*": ["src/shared/api/*"],
 			"@services/*": ["src/services/*"],

@@ -1,16 +1,13 @@
-import { useThunks } from "@hooks/redux/thunks";
-import ChangeUsernameForm from "@src/features/user/ui/ChangeUsernameForm";
-import UsernameSection from "@src/features/user/ui/UsernameSection";
-import useChangeEditMode from "@src/features/user/lib/useChangeEditMode";
-import { defaultScale } from "@src/lib/animations";
-import { useGetUserQuery } from "@src/features/user/services/user.api";
+import { useThunks } from "@src/shared/lib/hooks/redux/thunks";
+import { defaultScale } from "@src/shared/animations";
+import { useGetUserQuery } from "@src/entities/user/services/user.api";
 import { motion } from "framer-motion";
 import { ToggleThemeButton } from "@src/features/theme/components/ToggleThemeButton";
+import UsernameField from "@src/features/user/ui/UsernameField";
 
 const User = () => {
 	const { logout } = useThunks();
-	const { data: user, isLoading, isFetching } = useGetUserQuery();
-	const { editMode, enableEditMode, disableEditMode } = useChangeEditMode();
+	const { data: user, isLoading } = useGetUserQuery();
 
 	if (isLoading) return <p>Загрузка...</p>;
 
@@ -37,21 +34,7 @@ const User = () => {
 						<p className="text-lg">{user.email}</p>
 					</div>
 
-					<div>
-						<h3 className="text-sm mb-1">Имя:</h3>
-						{editMode ? (
-							<ChangeUsernameForm
-								username={user.name}
-								disableEditMode={disableEditMode}
-							/>
-						) : (
-							<UsernameSection
-								name={user.name}
-								isFetching={isFetching}
-								enableEditMode={enableEditMode}
-							/>
-						)}
-					</div>
+					<UsernameField />
 
 					<ToggleThemeButton />
 				</div>

@@ -1,8 +1,8 @@
 import { type FC } from "react";
-import Input from "@src/components/ui/Input";
+import Input from "@src/shared/ui/form/Input";
 import SwitchFormButton from "@src/features/auth/ui/SwitchFormButton";
 import useRegister from "@src/features/auth/lib/useRegister";
-import ActionButton from "@src/components/ui/buttons/ActionButton";
+import ActionButton from "@src/shared/ui/buttons/ActionButton";
 
 interface RegisterFormProps {
 	onClickSwitchForm: () => void;

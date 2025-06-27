@@ -1,10 +1,10 @@
 import {
 	type UserSchema,
 	userSchema,
-} from "@src/features/user/model/user.schema";
-import { useUpdateUserNameMutation } from "@src/features/user/services/user.api";
+} from "@src/entities/user/model/user.schema";
+import { useUpdateUserNameMutation } from "@src/entities/user/services/user.api";
 import { useEffect } from "react";
-import useCustomForm from "@hooks/useCustomForm";
+import useCustomForm from "@src/shared/lib/hooks/useCustomForm";
 
 const useChangeUsername = (
 	name: string | undefined,

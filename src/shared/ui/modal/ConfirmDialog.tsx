@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
-import ActionButton from "../buttons/ActionButton";
+import ActionButton from "../../../shared/ui/buttons/ActionButton";
 import { AnimatePresence, motion } from "framer-motion";
-import { modalFade, modalScale } from "@src/lib/animations";
+import { modalFade, modalScale } from "@src/shared/animations";
 
 interface ConfirmDialogProps {
 	isOpen: boolean;

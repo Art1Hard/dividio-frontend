@@ -1,19 +1,19 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import type { IUser } from "@src/entities/user/model/user.types";
-import authBaseQuery from "@features/auth/services/auth.basequery";
+import baseQueryWithReauth from "@src/shared/lib/basequery/services/basequery";
 
 export const userApi = createApi({
 	reducerPath: "userApi",
-	baseQuery: authBaseQuery("/api/user"),
+	baseQuery: baseQueryWithReauth,
 	tagTypes: ["User"],
 	endpoints: (build) => ({
 		getUser: build.query<IUser, void>({
-			query: () => "",
+			query: () => "/user",
 			providesTags: ["User"],
 		}),
 		updateUserName: build.mutation<IUser, { name: string }>({
 			query: (body) => ({
-				url: "",
+				url: "/user",
 				method: "PUT",
 				body,
 			}),

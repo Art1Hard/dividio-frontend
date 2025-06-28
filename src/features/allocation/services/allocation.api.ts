@@ -3,9 +3,9 @@ import type {
 	IAllocationData,
 } from "@src/features/allocation/model/allocation.types";
 import type { AllocationSchema } from "@src/features/allocation/model/allocation.schema";
-import authBaseApi from "@features/auth/services/auth.baseapi";
+import BaseApi from "@src/shared/lib/basequery/baseapi";
 
-export const allocationApi = authBaseApi.injectEndpoints({
+export const allocationApi = BaseApi.injectEndpoints({
 	endpoints: (build) => ({
 		getAllocations: build.query<IAllocationData, void>({
 			query: () => "/allocation",

@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { authActions } from "../model/auth.slice";
 import type { AuthSchema } from "@src/features/auth/model/auth.schema";
-import { baseQueryWithReauth } from "@features/auth/services/auth.basequery";
+import baseQueryWithReauth from "@src/shared/lib/basequery/services/basequery";
 
 export const authApi = createApi({
 	reducerPath: "authApi",
@@ -9,7 +9,7 @@ export const authApi = createApi({
 	endpoints: (build) => ({
 		login: build.mutation<{ accessToken: string }, AuthSchema>({
 			query: (credentials) => ({
-				url: "/login",
+				url: "auth/login",
 				method: "POST",
 				body: credentials,
 			}),
@@ -21,7 +21,7 @@ export const authApi = createApi({
 
 		register: build.mutation<{ accessToken: string }, AuthSchema>({
 			query: (credentials) => ({
-				url: "/register",
+				url: "auth/register",
 				method: "POST",
 				body: credentials,
 			}),
@@ -33,7 +33,7 @@ export const authApi = createApi({
 
 		getAccessToken: build.query<{ accessToken: string }, void>({
 			query: () => ({
-				url: "/login/access-token",
+				url: "auth/login/access-token",
 				method: "POST",
 			}),
 			async onQueryStarted(_, { queryFulfilled, dispatch }) {
@@ -44,7 +44,7 @@ export const authApi = createApi({
 
 		logout: build.mutation<void, void>({
 			query: () => ({
-				url: "/logout",
+				url: "auth/logout",
 				method: "POST",
 			}),
 		}),

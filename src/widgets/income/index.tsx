@@ -1,24 +1,25 @@
 import { FiPlusCircle } from "react-icons/fi";
-import IncomeItem from "@features/income/ui/IncomeItem";
-import { useGetIncomesQuery } from "@src/features/income/services/income.api";
+import IncomeItem from "@src/widgets/income/ui/IncomeItem";
+import { useGetIncomesQuery } from "@src/entities/income/services/income.api";
 import { useState } from "react";
 import Modal from "@src/shared/ui/modal/Modal";
-import CreateIncomeForm from "@features/income/ui/forms/CreateIncomeForm";
+import CreateIncome from "@src/features/income/ui/CreateIncome";
 import { AiFillGold } from "react-icons/ai";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import { defaultScale } from "@src/shared/animations";
 import ActionButton from "@src/shared/ui/buttons/ActionButton";
-import DashboardSection from "@src/shared/ui/DashboardSection";
+import DashboardWidgetWrapper from "@src/shared/ui/DashboardWidgetWrapper";
 
-const IncomeSection = () => {
+const IncomeWidget = ({ className }: { className?: string }) => {
 	const { data: incomeData } = useGetIncomesQuery();
 	const [isAddOpen, setIsAddOpen] = useState(false);
 
 	const handleAddIncome = () => setIsAddOpen(true);
 
 	return (
-		<DashboardSection
+		<DashboardWidgetWrapper
+			className={className}
 			title="Источники"
 			icon={
 				<AiFillGold className="text-amber-500 dark:text-yellow-400" size={24} />
@@ -62,12 +63,12 @@ const IncomeSection = () => {
 			<AnimatePresence>
 				{isAddOpen && (
 					<Modal onClose={() => setIsAddOpen(false)}>
-						<CreateIncomeForm onClose={() => setIsAddOpen(false)} />
+						<CreateIncome onClose={() => setIsAddOpen(false)} />
 					</Modal>
 				)}
 			</AnimatePresence>
-		</DashboardSection>
+		</DashboardWidgetWrapper>
 	);
 };
 
-export default IncomeSection;
+export default IncomeWidget;

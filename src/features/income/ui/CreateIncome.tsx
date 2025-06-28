@@ -3,11 +3,11 @@ import Input from "@src/shared/ui/form/Input";
 import type { FC } from "react";
 import ActionButton from "@src/shared/ui/buttons/ActionButton";
 
-interface CreateIncomeFormProps {
+interface CreateIncomeProps {
 	onClose: () => void;
 }
 
-const CreateIncomeForm: FC<CreateIncomeFormProps> = ({ onClose }) => {
+const CreateIncome: FC<CreateIncomeProps> = ({ onClose }) => {
 	const { register, submit, isSubmitting, isDirty, errors } =
 		useCreateIncome(onClose);
 
@@ -50,4 +50,4 @@ const CreateIncomeForm: FC<CreateIncomeFormProps> = ({ onClose }) => {
 	);
 };
 
-export default CreateIncomeForm;
+export default CreateIncome;

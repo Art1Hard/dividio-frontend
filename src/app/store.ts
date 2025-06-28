@@ -2,12 +2,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import { authApi } from "@src/features/auth/services/auth.api";
 import { authReducer } from "@src/features/auth/model/auth.slice";
 import { userApi } from "@src/entities/user/services/user.api";
-import authBaseApi from "@src/features/auth/services/auth.baseapi";
+import BaseApi from "@src/shared/lib/basequery/baseapi";
 import { themeReducer } from "@src/features/theme/model/theme.slice";
 
 export const store = configureStore({
 	reducer: {
-		[authBaseApi.reducerPath]: authBaseApi.reducer,
+		[BaseApi.reducerPath]: BaseApi.reducer,
 		[authApi.reducerPath]: authApi.reducer,
 		[userApi.reducerPath]: userApi.reducer,
 		auth: authReducer,
@@ -15,7 +15,7 @@ export const store = configureStore({
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware()
-			.concat(authBaseApi.middleware)
+			.concat(BaseApi.middleware)
 			.concat(authApi.middleware)
 			.concat(userApi.middleware),
 });

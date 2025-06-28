@@ -1,15 +1,15 @@
 import ActionButton from "@src/shared/ui/buttons/ActionButton";
 import Input from "@src/shared/ui/form/Input";
 import useEditIncome from "@src/features/income/lib/useEditIncome";
-import type { IIncome } from "@src/features/income/model/income.types";
+import type { IIncome } from "@src/entities/income/model/income.types";
 import type { FC } from "react";
 
-interface IEditIncomeFormProps {
+interface IEditIncomeProps {
 	onClose: () => void;
 	income: IIncome;
 }
 
-const EditIncomeForm: FC<IEditIncomeFormProps> = ({ onClose, income }) => {
+const EditIncome: FC<IEditIncomeProps> = ({ onClose, income }) => {
 	const { register, submit, isSubmitting, isDirty, errors } = useEditIncome(
 		onClose,
 		income.id,
@@ -56,4 +56,4 @@ const EditIncomeForm: FC<IEditIncomeFormProps> = ({ onClose, income }) => {
 	);
 };
 
-export default EditIncomeForm;
+export default EditIncome;

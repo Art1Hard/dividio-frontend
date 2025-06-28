@@ -11,14 +11,14 @@ export const ToggleThemeButton = () => {
 			<h3 className="text-sm mb-1">Настройки:</h3>
 
 			<div className="flex items-center justify-between gap-2">
-				<p className="text-lg dark:text-white">Сменить тему:</p>
+				<p className="text-sm dark:text-white @xs:text-lg">Сменить тему:</p>
 				<div className="flex items-center gap-2">
 					<MdOutlineLightMode size={20} />
 					<button
 						onClick={() => toggleTheme()}
-						className="relative inline-flex items-center justify-center w-14 h-7 bg-gray-300 dark:bg-gray-700 rounded-full transition-colors focus:outline-none">
+						className="relative inline-flex items-center justify-center w-10 h-4 @xs:w-14 @xs:h-7 bg-gray-300 dark:bg-gray-700 rounded-full transition-colors focus:outline-none">
 						<span
-							className={`absolute h-5 w-5 rounded-full bg-white shadow-md transform transition-transform
+							className={`absolute w-4 h-4 @xs:w-5 @xs:h-5 rounded-full bg-white shadow-md transform transition-transform
           ${
 						theme === "light" ? "translate-x-[-11px]" : "translate-x-[11px]"
 					}`}></span>

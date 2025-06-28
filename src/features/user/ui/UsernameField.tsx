@@ -16,12 +16,12 @@ const UsernameField = () => {
 				<ChangeUsernameForm username={name} disableEditMode={disableEditMode} />
 			) : (
 				<div className="flex items-center justify-between">
-					<p className="dark:text-white text-lg">
+					<p className="dark:text-white text-sm @xs:text-lg">
 						{!isFetching ? name || "—" : "Загрузка..."}
 					</p>
 					<button
 						onClick={enableEditMode}
-						className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-500 text-sm">
+						className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-500 text-xs @xs:text-sm">
 						Редактировать
 					</button>
 				</div>

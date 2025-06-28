@@ -1,9 +1,9 @@
-import { motion } from "framer-motion";
-import StatisticItem from "./StatisticItem";
 import { stepsFade } from "@src/shared/animations";
-import useGetStatisticData from "@src/features/statistic/lib/useGetStatisticData";
+import useGetStatisticData from "./lib/useGetStatisticData";
+import { motion } from "framer-motion";
+import StatisticItem from "./ui/StatisticItem";
 
-const StatisticSection = () => {
+const StatisticWidget = () => {
 	const { statisticData, isLoading } = useGetStatisticData();
 
 	if (isLoading) return <p>Загрузка статистики...</p>;
@@ -25,4 +25,4 @@ const StatisticSection = () => {
 	);
 };
 
-export default StatisticSection;
+export default StatisticWidget;

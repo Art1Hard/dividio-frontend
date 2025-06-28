@@ -1,20 +1,27 @@
 import type { JSX, ReactNode } from "react";
+import cn from "clsx";
 
-interface DashboardSectionProps {
+interface DashboardWidgetWrapperProps {
 	title: string;
 	icon: JSX.Element;
 	headerButton: JSX.Element;
 	children: ReactNode;
+	className?: string;
 }
 
-const DashboardSection = ({
+const DashboardWidgetWrapper = ({
 	title,
 	icon,
 	headerButton,
 	children,
-}: DashboardSectionProps) => {
+	className,
+}: DashboardWidgetWrapperProps) => {
 	return (
-		<div className="bg-slate-200 dark:bg-slate-800 rounded-2xl p-6 shadow-md">
+		<div
+			className={cn(
+				"bg-slate-200 dark:bg-slate-800 rounded-2xl p-6 shadow-md",
+				className
+			)}>
 			<div className="flex items-center justify-between mb-4">
 				<div className="flex items-center gap-3">
 					{icon}
@@ -29,4 +36,4 @@ const DashboardSection = ({
 	);
 };
 
-export default DashboardSection;
+export default DashboardWidgetWrapper;

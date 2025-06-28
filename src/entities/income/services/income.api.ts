@@ -1,8 +1,8 @@
-import type { IIncomeData } from "@src/features/income/model/income.types";
+import type { IIncomeData } from "@src/entities/income/model/income.types";
 import type { IncomeSchema } from "@src/features/income/model/income.schema";
-import authBaseApi from "@features/auth/services/auth.baseapi";
+import BaseApi from "@src/shared/lib/basequery/baseapi";
 
-export const incomeApi = authBaseApi.injectEndpoints({
+export const incomeApi = BaseApi.injectEndpoints({
 	endpoints: (build) => ({
 		getIncomes: build.query<IIncomeData, void>({
 			query: () => "income",

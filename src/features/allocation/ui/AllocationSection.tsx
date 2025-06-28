@@ -4,7 +4,7 @@ import { useState } from "react";
 import ViewModeToggleButton from "./view/ViewModeToggleButton";
 import ViewModeSection from "./view/ViewModeSection";
 import CreateAllocation from "./CreateAllocation";
-import DashboardSection from "@src/shared/ui/DashboardSection";
+import DashboardWidgetWrapper from "@src/shared/ui/DashboardWidgetWrapper";
 
 const AllocationSection = () => {
 	const [isChartOpen, setIsChartOpen] = useState(false);
@@ -13,7 +13,7 @@ const AllocationSection = () => {
 	if (isLoading) return <p>Загрузка...</p>;
 
 	return (
-		<DashboardSection
+		<DashboardWidgetWrapper
 			title="Распределение"
 			icon={
 				<FaChartPie
@@ -36,7 +36,7 @@ const AllocationSection = () => {
 			)}
 
 			<CreateAllocation />
-		</DashboardSection>
+		</DashboardWidgetWrapper>
 	);
 };
 

@@ -5,7 +5,7 @@ export default {
 	theme: {
 		extend: {},
 	},
-	plugins: [],
+	plugins: [require("@tailwindcss/container-queries")],
 	safelist: [
 		{
 			pattern: /bg-(gray|green|blue|yellow|red|purple|orange|rose)-500/,

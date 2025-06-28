@@ -3,12 +3,15 @@ import cn from "clsx";
 import { match } from "path-to-regexp";
 import { useLocation } from "react-router-dom";
 import NavLink from "@src/widgets/header/ui/NavLink";
+import { FaUserCircle } from "react-icons/fa";
+import { useGetUserQuery } from "@src/entities/user/services/user.api";
 
 interface NavProps {
 	isAuthenticated: boolean;
 }
 
 const Nav = ({ isAuthenticated }: NavProps) => {
+	const { data: user } = useGetUserQuery();
 	const pathName = useLocation().pathname;
 
 	return (
@@ -17,8 +20,13 @@ const Nav = ({ isAuthenticated }: NavProps) => {
 				<li>
 					<NavLink
 						to={isAuthenticated ? ROUTES.PROFILE : ROUTES.LOGIN}
-						className={cn({ underline: match(pathName)(ROUTES.PROFILE) })}>
-						{isAuthenticated ? "Личный кабинет" : "Войти"}
+						className={cn("flex items-center gap-x-2", {
+							underline:
+								match(pathName)(ROUTES.PROFILE) ||
+								match(pathName)(ROUTES.LOGIN),
+						})}>
+						{isAuthenticated ? user && user.name && user.name : "Войти"}
+						<FaUserCircle size={22} />
 					</NavLink>
 				</li>
 			</ul>

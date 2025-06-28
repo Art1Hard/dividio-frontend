@@ -3,6 +3,7 @@ import { useAppSelector } from "@src/shared/lib/hooks/redux";
 import { TiChartBar } from "react-icons/ti";
 import Nav from "./ui/Nav";
 import NavLink from "./ui/NavLink";
+import { ToggleThemeButton } from "@src/features/theme/components/ToggleThemeButton";
 
 const Header = () => {
 	const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
@@ -18,7 +19,10 @@ const Header = () => {
 					</NavLink>
 				</div>
 
-				<Nav isAuthenticated={isAuthenticated} />
+				<div className="flex gap-x-8 items-center">
+					<Nav isAuthenticated={isAuthenticated} />
+					<ToggleThemeButton />
+				</div>
 			</div>
 		</header>
 	);

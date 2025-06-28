@@ -43,7 +43,7 @@ const User = () => {
 
 					<UsernameField />
 
-					<ToggleThemeButton />
+					<ToggleThemeButton extended />
 				</div>
 
 				<hr className="border-black dark:border-slate-600 mb-4" />

@@ -4,14 +4,12 @@ import { match } from "path-to-regexp";
 import { useLocation } from "react-router-dom";
 import NavLink from "@src/widgets/header/ui/NavLink";
 import { FaUserCircle } from "react-icons/fa";
-import { useGetUserQuery } from "@src/entities/user/services/user.api";
 
 interface NavProps {
 	isAuthenticated: boolean;
 }
 
 const Nav = ({ isAuthenticated }: NavProps) => {
-	const { data: user } = useGetUserQuery();
 	const pathName = useLocation().pathname;
 
 	return (
@@ -25,11 +23,7 @@ const Nav = ({ isAuthenticated }: NavProps) => {
 								match(pathName)(ROUTES.PROFILE) ||
 								match(pathName)(ROUTES.LOGIN),
 						})}>
-						{isAuthenticated
-							? user && user.name
-								? user.name
-								: "Личный кабинет"
-							: "Войти"}
+						{isAuthenticated ? "Личный кабинет" : "Войти"}
 						<FaUserCircle size={22} />
 					</NavLink>
 				</li>

@@ -5,6 +5,7 @@ import {
 import { useRegisterMutation } from "@src/features/auth/services/auth.api";
 import useCustomForm from "@src/shared/lib/hooks/useCustomForm";
 import { isServerError } from "@src/shared/lib/utils/serverError";
+import { useState } from "react";
 import { toast } from "sonner";
 
 function useRegister() {
@@ -21,9 +22,19 @@ function useRegister() {
 		isDirty,
 	} = useCustomForm(registerSchema);
 
+	const [token, setToken] = useState<string | null>(null);
+
 	const onSubmit = async ({ email, password }: RegisterSchema) => {
 		try {
-			await registerUser({ email, password }).unwrap();
+			if (!token) {
+				toast.warning("Пожалуйста, подтвердите, что вы человек");
+				return;
+			}
+
+			await registerUser({
+				user: { email, password },
+				captchaToken: token,
+			}).unwrap();
 			toast.success("Вы успешно зарегистрированы!");
 			reset();
 		} catch (e) {
@@ -44,7 +55,17 @@ function useRegister() {
 
 	const submit = handleSubmit(onSubmit);
 
-	return { register, submit, errors, isSubmitting, isDirty };
+	const setCaptchaToken = (token: string) => setToken(token);
+	const clearCaptchaToken = () => setToken(null);
+
+	return {
+		register,
+		submit,
+		errors,
+		isSubmitting,
+		isDirty,
+		captcha: { setCaptchaToken, clearCaptchaToken },
+	};
 }
 
 export default useRegister;

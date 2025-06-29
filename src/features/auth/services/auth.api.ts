@@ -19,7 +19,10 @@ export const authApi = createApi({
 			},
 		}),
 
-		register: build.mutation<{ accessToken: string }, AuthSchema>({
+		register: build.mutation<
+			{ accessToken: string },
+			{ user: AuthSchema; captchaToken: string }
+		>({
 			query: (credentials) => ({
 				url: "auth/register",
 				method: "POST",

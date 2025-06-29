@@ -3,13 +3,23 @@ import Input from "@src/shared/ui/form/Input";
 import SwitchFormButton from "@src/features/auth/ui/SwitchFormButton";
 import useRegister from "@src/features/auth/lib/useRegister";
 import ActionButton from "@src/shared/ui/buttons/ActionButton";
+import Turnstile from "react-turnstile";
+import { useAppSelector } from "@src/shared/lib/hooks/redux";
 
 interface RegisterProps {
 	onClickSwitchForm: () => void;
 }
 
 export const Register: FC<RegisterProps> = ({ onClickSwitchForm }) => {
-	const { register, submit, isSubmitting, isDirty, errors } = useRegister();
+	const {
+		register,
+		submit,
+		isSubmitting,
+		isDirty,
+		errors,
+		captcha: { setCaptchaToken, clearCaptchaToken },
+	} = useRegister();
+	const currentTheme = useAppSelector((state) => state.theme.currentTheme);
 
 	return (
 		<div className="h-full flex items-center justify-center px-4">
@@ -43,6 +53,16 @@ export const Register: FC<RegisterProps> = ({ onClickSwitchForm }) => {
 						error={errors.confirmPassword}
 						placeholder="••••••••"
 					/>
+
+					<div className="flex justify-center">
+						<Turnstile
+							className="w-full max-w-[300px] overflow-hidden"
+							sitekey={import.meta.env.VITE_TURNSTILE_SITEKEY}
+							onSuccess={(token) => setCaptchaToken(token)}
+							onError={clearCaptchaToken}
+							theme={currentTheme}
+						/>
+					</div>
 
 					<ActionButton
 						type="submit"

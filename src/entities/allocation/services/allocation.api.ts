@@ -3,7 +3,7 @@ import type {
 	IAllocationData,
 } from "@src/entities/allocation/model/allocation.types";
 import type { AllocationSchema } from "@src/features/allocation/model/allocation.schema";
-import BaseApi from "@src/shared/lib/basequery/baseapi";
+import BaseApi from "@src/entities/auth/services/baseapi";
 
 export const allocationApi = BaseApi.injectEndpoints({
 	endpoints: (build) => ({

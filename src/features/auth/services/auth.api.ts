@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { authActions } from "../model/auth.slice";
+import { authActions } from "../../../entities/auth/model/auth.slice";
 import type { AuthSchema } from "@src/features/auth/model/auth.schema";
-import baseQueryWithReauth from "@src/shared/lib/basequery/services/basequery";
+import baseQueryWithReauth from "@src/entities/auth/services/basequery";
 
 export const authApi = createApi({
 	reducerPath: "authApi",

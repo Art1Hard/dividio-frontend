@@ -1,5 +1,5 @@
 import { type AppDispatch } from "@app/store";
-import { authActions } from "@src/features/auth/model/auth.slice";
+import { authActions } from "@src/entities/auth/model/auth.slice";
 import { authApi } from "@features/auth/services/auth.api";
 import resetFullApiState from "@src/shared/lib/utils/resetFullApiState";
 import { toast } from "sonner";

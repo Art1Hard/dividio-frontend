@@ -5,7 +5,7 @@ import {
 	type FetchArgs,
 } from "@reduxjs/toolkit/query";
 import type { RootState } from "@src/app/store";
-import { authActions } from "@features/auth/model/auth.slice";
+import { authActions } from "@src/entities/auth/model/auth.slice";
 
 const rawBaseQuery = fetchBaseQuery({
 	baseUrl: "http://localhost:4200/api",

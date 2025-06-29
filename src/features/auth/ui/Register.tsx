@@ -4,11 +4,11 @@ import SwitchFormButton from "@src/features/auth/ui/SwitchFormButton";
 import useRegister from "@src/features/auth/lib/useRegister";
 import ActionButton from "@src/shared/ui/buttons/ActionButton";
 
-interface RegisterFormProps {
+interface RegisterProps {
 	onClickSwitchForm: () => void;
 }
 
-export const RegisterForm: FC<RegisterFormProps> = ({ onClickSwitchForm }) => {
+export const Register: FC<RegisterProps> = ({ onClickSwitchForm }) => {
 	const { register, submit, isSubmitting, isDirty, errors } = useRegister();
 
 	return (

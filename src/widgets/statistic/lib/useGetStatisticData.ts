@@ -1,5 +1,5 @@
 import type { IStatisticItem } from "@src/widgets/statistic/model/types";
-import { useGetAllocationsQuery } from "@src/features/allocation/services/allocation.api";
+import { useGetAllocationsQuery } from "@src/entities/allocation/services/allocation.api";
 import { useGetIncomesQuery } from "@src/entities/income/services/income.api";
 import { useMemo } from "react";
 import { FaBoxes, FaCoins, FaDove } from "react-icons/fa";

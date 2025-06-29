@@ -1,22 +1,21 @@
 import "@app/styles/index.css";
-import ThemeProvider from "@src/features/theme/components/ThemeProvider";
-import { Provider } from "react-redux";
-import { store } from "./store";
-import GuardProvider from "./guard/GuardProvider";
+import { ThemeProvider, AuthProvider } from "@app/providers";
+import { Provider as StoreProvider } from "react-redux";
+import { store } from "@app/store";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 
 const Initial = () => {
 	return (
-		<Provider store={store}>
+		<StoreProvider store={store}>
 			<ThemeProvider>
-				<GuardProvider>
+				<AuthProvider>
 					<BrowserRouter>
 						<App />
 					</BrowserRouter>
-				</GuardProvider>
+				</AuthProvider>
 			</ThemeProvider>
-		</Provider>
+		</StoreProvider>
 	);
 };
 

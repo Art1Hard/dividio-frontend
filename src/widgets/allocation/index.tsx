@@ -1,16 +1,18 @@
 import { FaChartPie } from "react-icons/fa";
-import { useGetAllocationsQuery } from "@src/features/allocation/services/allocation.api";
+import { useGetAllocationsQuery } from "@src/entities/allocation/services/allocation.api";
 import { useState } from "react";
-import ViewModeToggleButton from "./view/ViewModeToggleButton";
-import ViewModeSection from "./view/ViewModeSection";
-import CreateAllocation from "./CreateAllocation";
+import ViewModeToggleButton from "@widgets/allocation/ui/view/ViewModeToggleButton";
+import AllocationViewMode from "@src/widgets/allocation/ui/view/AllocationViewMode";
+import CreateAllocation from "@features/allocation/ui/CreateAllocation";
 import DashboardWidgetWrapper from "@src/shared/ui/DashboardWidgetWrapper";
 
-const AllocationSection = () => {
+const AllocationWidget = () => {
 	const [isChartOpen, setIsChartOpen] = useState(false);
 	const { data, isLoading } = useGetAllocationsQuery();
 
 	if (isLoading) return <p>Загрузка...</p>;
+
+	if (!data) return null;
 
 	return (
 		<DashboardWidgetWrapper
@@ -28,16 +30,14 @@ const AllocationSection = () => {
 					onClick={() => setIsChartOpen((prev) => !prev)}
 				/>
 			}>
-			{data && (
-				<ViewModeSection
-					allocations={data.allocations}
-					isChartOpen={isChartOpen}
-				/>
-			)}
+			<AllocationViewMode
+				allocations={data.allocations}
+				isChartOpen={isChartOpen}
+			/>
 
 			<CreateAllocation />
 		</DashboardWidgetWrapper>
 	);
 };
 
-export default AllocationSection;
+export default AllocationWidget;

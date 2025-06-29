@@ -2,7 +2,7 @@ import { useThunks } from "@src/shared/lib/hooks/redux/thunks";
 import { defaultScale } from "@src/shared/animations";
 import { useGetUserQuery } from "@src/entities/user/services/user.api";
 import { motion } from "framer-motion";
-import { ToggleThemeButton } from "@src/features/theme/components/ToggleThemeButton";
+import { ToggleTheme } from "@src/features/theme/components/ToggleTheme";
 import UsernameField from "@src/features/user/ui/UsernameField";
 import useConfirmDialog from "@src/shared/lib/hooks/useConfirmDialog";
 import ConfirmDialog from "@src/shared/ui/modal/ConfirmDialog";
@@ -43,7 +43,7 @@ const User = () => {
 
 					<UsernameField />
 
-					<ToggleThemeButton extended />
+					<ToggleTheme extended />
 				</div>
 
 				<hr className="border-black dark:border-slate-600 mb-4" />

@@ -1,5 +1,5 @@
 import type { AppDispatch } from "@app/store";
-import { allocationApi } from "@features/allocation/services/allocation.api";
+import { allocationApi } from "@src/entities/allocation/services/allocation.api";
 import { authApi } from "@features/auth/services/auth.api";
 import { incomeApi } from "@src/entities/income/services/income.api";
 import { userApi } from "@src/entities/user/services/user.api";

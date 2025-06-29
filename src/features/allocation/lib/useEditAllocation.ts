@@ -4,7 +4,7 @@ import {
 	allocationSchema,
 	type AllocationSchema,
 } from "@src/features/allocation/model/allocation.schema";
-import { useUpdateAllocationMutation } from "@src/features/allocation/services/allocation.api";
+import { useUpdateAllocationMutation } from "@src/entities/allocation/services/allocation.api";
 import { toast } from "sonner";
 
 const useEditAllocation = (

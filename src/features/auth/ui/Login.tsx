@@ -4,11 +4,11 @@ import SwitchFormButton from "@src/features/auth/ui/SwitchFormButton";
 import useLogin from "@src/features/auth/lib/useLogin";
 import ActionButton from "@src/shared/ui/buttons/ActionButton";
 
-interface LoginFormProps {
+interface LoginProps {
 	onClickSwitchForm: () => void;
 }
 
-export const LoginForm: FC<LoginFormProps> = ({ onClickSwitchForm }) => {
+export const Login: FC<LoginProps> = ({ onClickSwitchForm }) => {
 	const { register, submit, errors, isSubmitting, isDirty } = useLogin();
 
 	return (

@@ -25,7 +25,11 @@ const Nav = ({ isAuthenticated }: NavProps) => {
 								match(pathName)(ROUTES.PROFILE) ||
 								match(pathName)(ROUTES.LOGIN),
 						})}>
-						{isAuthenticated ? user && user.name && user.name : "Войти"}
+						{isAuthenticated
+							? user && user.name
+								? user.name
+								: "Личный кабинет"
+							: "Войти"}
 						<FaUserCircle size={22} />
 					</NavLink>
 				</li>

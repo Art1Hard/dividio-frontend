@@ -1,4 +1,4 @@
-import AllocationSection from "@src/features/allocation/ui/AllocationSection";
+import AllocationWidget from "@src/widgets/allocation";
 import IncomeWidget from "@widgets/income";
 import StatisticWidget from "@widgets/statistic";
 import DashboardWrapper from "./ui/DashboardWrapper";
@@ -8,7 +8,7 @@ const DashboardPage = () => {
 		<DashboardWrapper>
 			<StatisticWidget />
 			<IncomeWidget />
-			<AllocationSection />
+			<AllocationWidget />
 		</DashboardWrapper>
 	);
 };

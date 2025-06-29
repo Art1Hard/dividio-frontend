@@ -1,15 +1,18 @@
-import type { IAllocation } from "@src/features/allocation/model/allocation.types";
+import type { IAllocation } from "@src/entities/allocation/model/allocation.types";
 import ColorPicker from "@src/shared/ui/form/ColorPicker";
 import useEditAllocation from "@src/features/allocation/lib/useEditAllocation";
 import Input from "@src/shared/ui/form/Input";
 import ActionButton from "@src/shared/ui/buttons/ActionButton";
 
-type Props = {
+type EditAllocationFormProps = {
 	defaultValues: IAllocation;
 	onClose: () => void;
 };
 
-const EditAllocationForm = ({ defaultValues, onClose }: Props) => {
+const EditAllocationForm = ({
+	defaultValues,
+	onClose,
+}: EditAllocationFormProps) => {
 	const { register, watch, submit, isSubmitting, isDirty, errors } =
 		useEditAllocation(defaultValues.id, defaultValues, onClose);
 

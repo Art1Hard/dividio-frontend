@@ -1,9 +1,9 @@
 import ActionButton from "@src/shared/ui/buttons/ActionButton";
-import type { IAllocationData } from "../../model/allocation.types";
+import type { IAllocationData } from "../../../../entities/allocation/model/allocation.types";
 import { HiOutlineChartPie } from "react-icons/hi";
 import { HiListBullet } from "react-icons/hi2";
 
-interface ToggleChartButtonProps {
+interface ViewModeToggleButtonProps {
 	data: IAllocationData | undefined;
 	onClick: () => void;
 	isChart: boolean;
@@ -13,7 +13,7 @@ const ViewModeToggleButton = ({
 	data,
 	isChart,
 	onClick,
-}: ToggleChartButtonProps) => {
+}: ViewModeToggleButtonProps) => {
 	return (
 		<ActionButton
 			className="flex items-center gap-2"

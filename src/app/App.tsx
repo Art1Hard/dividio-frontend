@@ -7,7 +7,7 @@ import Header from "@src/widgets/header/Header";
 import HomePage from "@pages/HomePage";
 import { Toaster } from "sonner";
 import { useAppSelector } from "@src/shared/lib/hooks/redux";
-import RouteGuard from "@src/app/guard/RouteGuard";
+import { RouteGuard } from "@src/app/providers";
 
 export default function App() {
 	const theme = useAppSelector((state) => state.theme.currentTheme);

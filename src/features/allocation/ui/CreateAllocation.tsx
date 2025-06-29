@@ -1,5 +1,4 @@
 import Modal from "@src/shared/ui/modal/Modal";
-import { AnimatePresence } from "framer-motion";
 import CreateAllocationForm from "./forms/CreateAllocationForm";
 import { useState } from "react";
 import AllocationCreateButton from "./buttons/AllocationCreateButton";
@@ -11,13 +10,9 @@ const CreateAllocation = () => {
 		<>
 			<AllocationCreateButton onClick={() => setIsModalOpen(true)} />
 
-			<AnimatePresence>
-				{isModalOpen && (
-					<Modal onClose={() => setIsModalOpen(false)}>
-						<CreateAllocationForm onClose={() => setIsModalOpen(false)} />
-					</Modal>
-				)}
-			</AnimatePresence>
+			<Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+				<CreateAllocationForm onClose={() => setIsModalOpen(false)} />
+			</Modal>
 		</>
 	);
 };

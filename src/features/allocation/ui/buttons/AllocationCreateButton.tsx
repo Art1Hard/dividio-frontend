@@ -10,7 +10,7 @@ const AllocationCreateButton = ({ onClick }: AllocationCreateButtonProps) => {
 
 	return (
 		<ActionButton
-			color="secondary"
+			color="primary"
 			onClick={onClick}
 			disabled={!incomeData || incomeData.incomes.length <= 0}
 			className="w-full flex items-center justify-center gap-2 font-semibold">

@@ -3,11 +3,12 @@ import Logout from "@src/features/account/ui/Logout";
 import UsernameField from "@src/features/account/ui/UsernameField";
 import { ToggleTheme } from "@src/features/theme/components/ToggleTheme";
 import AccountField from "./ui/AccountField";
+import AccountSkeleton from "./ui/AccountSkeleton";
 
 const AccountWidget = () => {
 	const { data: user, isLoading, isFetching } = useGetUserQuery();
 
-	if (isLoading) return <p>Загрузка...</p>;
+	if (isLoading) return <AccountSkeleton />;
 
 	if (!user) {
 		return <p>Пользователя не существует</p>;

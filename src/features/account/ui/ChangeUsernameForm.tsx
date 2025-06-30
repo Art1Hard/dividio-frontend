@@ -1,6 +1,6 @@
-import ActionButton from "../../../shared/ui/buttons/ActionButton";
+import ActionButton from "@src/shared/ui/buttons/ActionButton";
 import Input from "../../../shared/ui/form/Input";
-import useChangeUsername from "@src/features/user/lib/useChangeUsername";
+import useChangeUsername from "@src/features/account/lib/useChangeUsername";
 
 interface ChangeUsernameFormProps {
 	username: string | undefined;

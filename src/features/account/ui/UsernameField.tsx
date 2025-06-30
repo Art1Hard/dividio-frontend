@@ -1,13 +1,13 @@
-import useChangeEditMode from "@features/user/lib/useChangeEditMode";
-import { useGetUserQuery } from "@src/entities/user/services/user.api";
-import ChangeUsernameForm from "@features/user/ui/ChangeUsernameForm";
+import useChangeEditMode from "@features/account/lib/useChangeEditMode";
+import ChangeUsernameForm from "@features/account/ui/ChangeUsernameForm";
 
-const UsernameField = () => {
-	const { data, isFetching } = useGetUserQuery();
+interface UsernameFieldProps {
+	username: string | undefined;
+	isFetching: boolean;
+}
+
+const UsernameField = ({ username: name, isFetching }: UsernameFieldProps) => {
 	const { editMode, enableEditMode, disableEditMode } = useChangeEditMode();
-
-	if (!data) return;
-	const { name } = data;
 
 	return (
 		<div>

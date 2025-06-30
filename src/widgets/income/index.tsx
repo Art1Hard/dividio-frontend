@@ -7,13 +7,13 @@ import { AiFillGold } from "react-icons/ai";
 import ActionButton from "@src/shared/ui/buttons/ActionButton";
 import DashboardWidgetWrapper from "@src/shared/ui/DashboardWidgetWrapper";
 import IncomeList from "./ui/IncomeList";
+import IncomeSkeleton from "./ui/IncomeSkeleton";
 
 const IncomeWidget = ({ className }: { className?: string }) => {
 	const { data, isLoading } = useGetIncomesQuery();
 	const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
-	if (isLoading) return <p>Загрузка...</p>;
-	if (!data) return null;
+	if (isLoading) return <IncomeSkeleton />;
 
 	return (
 		<DashboardWidgetWrapper
@@ -30,7 +30,7 @@ const IncomeWidget = ({ className }: { className?: string }) => {
 					Добавить
 				</ActionButton>
 			}>
-			<IncomeList data={data.incomes} />
+			{data && <IncomeList data={data.incomes} />}
 
 			<Modal isOpen={isAddModalOpen} onClose={() => setIsAddModalOpen(false)}>
 				<CreateIncome onClose={() => setIsAddModalOpen(false)} />

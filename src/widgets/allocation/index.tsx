@@ -5,14 +5,13 @@ import ViewModeToggleButton from "@widgets/allocation/ui/view/ViewModeToggleButt
 import AllocationViewMode from "@src/widgets/allocation/ui/view/AllocationViewMode";
 import CreateAllocation from "@features/allocation/ui/CreateAllocation";
 import DashboardWidgetWrapper from "@src/shared/ui/DashboardWidgetWrapper";
+import AllocationSkeleton from "./ui/AllocationSkeleton";
 
 const AllocationWidget = () => {
 	const [isChartOpen, setIsChartOpen] = useState(false);
 	const { data, isLoading } = useGetAllocationsQuery();
 
-	if (isLoading) return <p>Загрузка...</p>;
-
-	if (!data) return null;
+	if (isLoading) return <AllocationSkeleton />;
 
 	return (
 		<DashboardWidgetWrapper
@@ -30,10 +29,12 @@ const AllocationWidget = () => {
 					onClick={() => setIsChartOpen((prev) => !prev)}
 				/>
 			}>
-			<AllocationViewMode
-				allocations={data.allocations}
-				isChartOpen={isChartOpen}
-			/>
+			{data && (
+				<AllocationViewMode
+					allocations={data.allocations}
+					isChartOpen={isChartOpen}
+				/>
+			)}
 
 			<CreateAllocation />
 		</DashboardWidgetWrapper>

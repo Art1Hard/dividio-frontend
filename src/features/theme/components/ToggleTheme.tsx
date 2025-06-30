@@ -13,7 +13,7 @@ export const ToggleTheme = ({ extended }: { extended?: boolean }) => {
 					<h3 className="text-sm mb-1">Настройки:</h3>
 
 					<div className="flex items-center justify-between gap-2">
-						<p className="text-sm dark:text-white @xs:text-lg">Сменить тему:</p>
+						<p className="text-sm dark:text-white @xs:text-lg">Сменить тему</p>
 						<div className="flex items-center gap-2">
 							{<MdOutlineLightMode size={20} />}
 							<button

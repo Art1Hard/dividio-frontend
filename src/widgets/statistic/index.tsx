@@ -2,11 +2,12 @@ import { stepsFade } from "@src/shared/animations";
 import useGetStatisticData from "./lib/useGetStatisticData";
 import { motion } from "framer-motion";
 import StatisticItem from "./ui/StatisticItem";
+import StatisticSkeleton from "./ui/StatisticSkeleton";
 
 const StatisticWidget = () => {
 	const { statisticData, isLoading } = useGetStatisticData();
 
-	if (isLoading) return <p>Загрузка статистики...</p>;
+	if (isLoading) return <StatisticSkeleton />;
 
 	return (
 		<motion.div

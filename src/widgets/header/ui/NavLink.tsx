@@ -6,11 +6,13 @@ interface NavLinkProps {
 	to: string;
 	children: ReactNode;
 	className?: string;
+	title?: string;
 }
 
-const NavLink = ({ to, children, className }: NavLinkProps) => {
+const NavLink = ({ to, children, className, title }: NavLinkProps) => {
 	return (
 		<Link
+			title={title}
 			to={to}
 			className={cn(
 				" hover:text-blue-600 dark:hover:text-blue-400 transition-colors",

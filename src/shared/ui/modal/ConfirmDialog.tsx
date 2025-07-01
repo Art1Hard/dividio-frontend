@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import ActionButton from "../../../shared/ui/buttons/ActionButton";
 import { AnimatePresence, motion } from "framer-motion";
 import { modalFade, modalScale } from "@src/shared/animations";
+import { useTranslation } from "react-i18next";
 
 interface ConfirmDialogProps {
 	isOpen: boolean;
@@ -18,6 +19,8 @@ const ConfirmDialog = ({
 	onClose,
 	onConfirm,
 }: ConfirmDialogProps) => {
+	const { t } = useTranslation();
+
 	return (
 		<AnimatePresence>
 			{isOpen && (
@@ -46,13 +49,13 @@ const ConfirmDialog = ({
 
 						<div className="flex justify-end gap-3">
 							<ActionButton color="secondary" onClick={onClose}>
-								Отмена
+								{t("confirm.cancel")}
 							</ActionButton>
 							<ActionButton
 								color="danger"
 								className="font-semibold"
 								onClick={onConfirm}>
-								Подтвердить
+								{t("confirm.confirm")}
 							</ActionButton>
 						</div>
 					</motion.div>

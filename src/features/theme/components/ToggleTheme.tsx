@@ -2,7 +2,12 @@ import { useAppSelector } from "@src/shared/lib/hooks/redux";
 import { useActions } from "@src/shared/lib/hooks/redux/actions";
 import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 
-export const ToggleTheme = ({ extended }: { extended?: boolean }) => {
+interface ToggleThemeProps {
+	extended?: boolean;
+	sizeIcon?: number;
+}
+
+export const ToggleTheme = ({ extended, sizeIcon }: ToggleThemeProps) => {
 	const theme = useAppSelector((state) => state.theme.currentTheme);
 	const { toggleTheme } = useActions();
 
@@ -30,9 +35,9 @@ export const ToggleTheme = ({ extended }: { extended?: boolean }) => {
 			) : (
 				<button className="flex" onClick={() => toggleTheme()}>
 					{theme === "light" ? (
-						<MdOutlineDarkMode size={24} />
+						<MdOutlineDarkMode size={sizeIcon} />
 					) : (
-						<MdOutlineLightMode size={24} />
+						<MdOutlineLightMode size={sizeIcon} />
 					)}
 				</button>
 			)}

@@ -2,6 +2,7 @@ import ActionButton from "@src/shared/ui/buttons/ActionButton";
 import type { IAllocationData } from "../../../../entities/allocation/model/allocation.types";
 import { HiOutlineChartPie } from "react-icons/hi";
 import { HiListBullet } from "react-icons/hi2";
+import { useTranslation } from "react-i18next";
 
 interface ViewModeToggleButtonProps {
 	data: IAllocationData | undefined;
@@ -14,6 +15,8 @@ const ViewModeToggleButton = ({
 	isChart,
 	onClick,
 }: ViewModeToggleButtonProps) => {
+	const { t } = useTranslation();
+
 	return (
 		<ActionButton
 			className="flex items-center gap-2"
@@ -22,12 +25,12 @@ const ViewModeToggleButton = ({
 			{!isChart ? (
 				<>
 					<HiOutlineChartPie size={18} />
-					Диаграмма
+					{t("allocation.buttons.chart")}
 				</>
 			) : (
 				<>
 					<HiListBullet size={19} />
-					Список
+					{t("allocation.buttons.list")}
 				</>
 			)}
 		</ActionButton>

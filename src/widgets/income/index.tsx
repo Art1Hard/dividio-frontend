@@ -8,8 +8,10 @@ import ActionButton from "@src/shared/ui/buttons/ActionButton";
 import DashboardWidgetWrapper from "@src/shared/ui/DashboardWidgetWrapper";
 import IncomeList from "./ui/IncomeList";
 import IncomeSkeleton from "./ui/IncomeSkeleton";
+import { useTranslation } from "react-i18next";
 
 const IncomeWidget = ({ className }: { className?: string }) => {
+	const { t } = useTranslation();
 	const { data, isLoading } = useGetIncomesQuery();
 	const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
@@ -18,7 +20,7 @@ const IncomeWidget = ({ className }: { className?: string }) => {
 	return (
 		<DashboardWidgetWrapper
 			className={className}
-			title="Источники"
+			title={t("income.title")}
 			icon={
 				<AiFillGold className="text-amber-500 dark:text-yellow-400" size={24} />
 			}
@@ -27,7 +29,7 @@ const IncomeWidget = ({ className }: { className?: string }) => {
 					onClick={() => setIsAddModalOpen(true)}
 					className="flex items-center gap-2">
 					<FiPlusCircle size={18} />
-					Добавить
+					{t("income.buttons.add")}
 				</ActionButton>
 			}>
 			{data && <IncomeList data={data.incomes} />}

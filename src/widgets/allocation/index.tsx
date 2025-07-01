@@ -6,8 +6,10 @@ import AllocationViewMode from "@src/widgets/allocation/ui/view/AllocationViewMo
 import CreateAllocation from "@features/allocation/ui/CreateAllocation";
 import DashboardWidgetWrapper from "@src/shared/ui/DashboardWidgetWrapper";
 import AllocationSkeleton from "./ui/AllocationSkeleton";
+import { useTranslation } from "react-i18next";
 
 const AllocationWidget = () => {
+	const { t } = useTranslation();
 	const [isChartOpen, setIsChartOpen] = useState(false);
 	const { data, isLoading } = useGetAllocationsQuery();
 
@@ -15,7 +17,7 @@ const AllocationWidget = () => {
 
 	return (
 		<DashboardWidgetWrapper
-			title="Распределение"
+			title={t("allocation.title")}
 			icon={
 				<FaChartPie
 					className="text-purple-500 dark:text-purple-400"

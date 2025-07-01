@@ -1,7 +1,9 @@
+import { useTranslation } from "react-i18next";
 import type { IAllocation } from "../../../entities/allocation/model/allocation.types";
 import { useGetAllocationsQuery } from "../../../entities/allocation/services/allocation.api";
 
 const useGetChartData = () => {
+	const { t } = useTranslation();
 	const { data } = useGetAllocationsQuery();
 	if (!data) return;
 
@@ -12,7 +14,7 @@ const useGetChartData = () => {
 	if (freePercentage > 0) {
 		chartData.push({
 			id: "free",
-			title: "Свободно",
+			title: t("allocation.free"),
 			amount: freeAmount,
 			percentage: freePercentage,
 			color: "gray",

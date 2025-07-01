@@ -3,6 +3,7 @@ import useConfirmDialog from "@src/shared/lib/hooks/useConfirmDialog";
 import { isServerError } from "@src/shared/lib/utils/serverError";
 import DeleteButton from "@src/shared/ui/buttons/DeleteButton";
 import ConfirmDialog from "@src/shared/ui/modal/ConfirmDialog";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 
 interface DeleteIncomeProps {
@@ -10,6 +11,7 @@ interface DeleteIncomeProps {
 }
 
 const DeleteIncome = ({ id }: DeleteIncomeProps) => {
+	const { t } = useTranslation();
 	const [deleteIncome] = useDeleteIncomeMutation();
 	const { isDialogOpen, openDialog, closeDialog, confirmAction } =
 		useConfirmDialog(() => {
@@ -27,12 +29,11 @@ const DeleteIncome = ({ id }: DeleteIncomeProps) => {
 		<>
 			<DeleteButton onClick={openDialog} />
 			<ConfirmDialog
-				title="Подтвердите действие"
+				title={t("income.features.delete.title")}
 				isOpen={isDialogOpen}
 				onClose={closeDialog}
 				onConfirm={confirmAction}>
-				Вы уверены, что хотите удалить этот источник дохода? <br /> Это действие
-				нельзя будет отменить.
+				{t("income.features.delete.content")}
 			</ConfirmDialog>
 		</>
 	);

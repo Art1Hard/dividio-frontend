@@ -1,8 +1,10 @@
 import { useGetUserQuery } from "@src/entities/user/services/user.api";
 import type { ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 
 const DashboardWrapper = ({ children }: { children: ReactNode }) => {
 	const { data: user, isLoading: isUserLoading } = useGetUserQuery();
+	const { t } = useTranslation();
 
 	return (
 		<div className="min-h-full flex items-center  py-12 px-6">
@@ -11,10 +13,12 @@ const DashboardWrapper = ({ children }: { children: ReactNode }) => {
 					<h1 className="text-3xl font-bold mb-2">
 						{isUserLoading
 							? "Загрузка..."
-							: `Добро пожаловать${user && user.name && ` ${user.name}`}!`}
+							: `${t("dashboard.title")}${
+									user && user.name && ` ${user.name}`
+							  }!`}
 					</h1>
 					<p className="text-black/70 dark:text-slate-400">
-						Ваш финансовый обзор на сегодня
+						{t("dashboard.subtitle")}
 					</p>
 				</div>
 

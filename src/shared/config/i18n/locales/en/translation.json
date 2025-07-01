@@ -1,0 +1,85 @@
+{
+	"header": {
+		"account": {
+			"user": "Account",
+			"signIn": "Sign in"
+		}
+	},
+	"dashboard": {
+		"title": "Welcome",
+		"subtitle": "Your financial overview for today"
+	},
+	"statistic": {
+		"allIncomes": {
+			"title": "Total income"
+		},
+		"incomesCount": {
+			"title": "Income sources",
+			"postfix": "items"
+		},
+		"freeAllocation": {
+			"title": "Unallocated"
+		}
+	},
+
+  "income": {
+    "title": "Incomes",
+    "buttons": {
+      "add": "Add Income"
+    },
+    "features": {
+      "add": {
+        "title": "Add Income",
+        "name": {
+					"value": "Name",
+					"placeholder": "e.g. Web Designer"
+				},
+				"amount": {
+					"value": "Amount",
+					"placeholder": "e.g. 5000"
+				},
+        "cancel": "Cancel",
+        "create": "Create",
+				"creating": "Creating..."
+      },
+      "edit": {
+        "title": "Edit Income",
+        "name": {
+					"value": "Name",
+					"placeholder": "e.g. Web Designer"
+				},
+				"amount": {
+					"value": "Amount",
+					"placeholder": "e.g. 5000"
+				},
+        "cancel": "Cancel",
+        "save": "Save",
+				"saving": "Saving..."
+      },
+      "delete": {
+        "title": "Confirm Action",
+        "content": "Are you sure you want to delete this income? This action cannot be undone."
+      }
+    }
+  },
+
+  "confirm": {
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  },
+
+	"buttons": {
+		"edit": "Edit",
+		"delete": "Delete"
+	},
+
+	"allocation": {
+		"title": "Allocation",
+  "buttons": {
+    "chart": "Chart",
+    "list": "List",
+    "add": "Add Allocation"
+  },
+	"free": "Free"
+	}
+}

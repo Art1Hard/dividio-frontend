@@ -2,6 +2,7 @@ import { progressColors } from "@src/shared/config/colors";
 import { forwardRef } from "react";
 import type { FieldError } from "react-hook-form";
 import cn from "clsx";
+import { useTranslation } from "react-i18next";
 
 interface ColorPickerProps {
 	selectedColor: string;
@@ -10,15 +11,18 @@ interface ColorPickerProps {
 
 const ColorPicker = forwardRef<HTMLInputElement, ColorPickerProps>(
 	({ selectedColor, error, ...rest }, ref) => {
+		const { t } = useTranslation();
 		return (
 			<div>
-				<label className="block mb-2 text-sm font-medium">Выберите цвет</label>
+				<label className="block mb-2 text-sm font-medium">
+					{t("colorPicker.title")}
+				</label>
 				<div className="relative flex gap-3 flex-wrap">
-					{progressColors.map(({ name, value }) => (
-						<label key={value} className="cursor-pointer">
+					{progressColors.map((color) => (
+						<label key={color} className="cursor-pointer">
 							<input
 								type="radio"
-								value={value}
+								value={color}
 								ref={ref}
 								{...rest}
 								className="sr-only"
@@ -26,12 +30,12 @@ const ColorPicker = forwardRef<HTMLInputElement, ColorPickerProps>(
 							<div
 								className={cn(
 									"w-8 h-8 rounded-full border-2 transition",
-									selectedColor === value
+									selectedColor === color
 										? "border-gray-700 dark:border-white"
 										: "border-transparent",
-									`bg-${value}-500`
+									`bg-${color}-500`
 								)}
-								title={name}></div>
+								title={t(`colorPicker.colors.${color}`)}></div>
 						</label>
 					))}
 

@@ -2,9 +2,11 @@ import { useDeleteAllocationMutation } from "@src/entities/allocation/services/a
 import useConfirmDialog from "@src/shared/lib/hooks/useConfirmDialog";
 import DeleteButton from "@src/shared/ui/buttons/DeleteButton";
 import ConfirmDialog from "@src/shared/ui/modal/ConfirmDialog";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 
 const DeleteAllocation = ({ id }: { id: string }) => {
+	const { t } = useTranslation();
 	const [deleteAllocation] = useDeleteAllocationMutation();
 	const { isDialogOpen, openDialog, closeDialog, confirmAction } =
 		useConfirmDialog(() => {
@@ -19,12 +21,11 @@ const DeleteAllocation = ({ id }: { id: string }) => {
 		<>
 			<DeleteButton onClick={openDialog} />
 			<ConfirmDialog
-				title="Подтвердите действие"
+				title={t("allocation.features.delete.title")}
 				isOpen={isDialogOpen}
 				onClose={closeDialog}
 				onConfirm={confirmAction}>
-				Вы уверены, что хотите удалить это распределение? <br /> Это действие
-				нельзя будет отменить.
+				{t("allocation.features.delete.content")}
 			</ConfirmDialog>
 		</>
 	);

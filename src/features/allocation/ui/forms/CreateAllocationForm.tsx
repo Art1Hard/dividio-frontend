@@ -2,6 +2,7 @@ import useCreateAllocation from "@src/features/allocation/lib/useCreateAllocatio
 import Input from "@src/shared/ui/form/Input";
 import ColorPicker from "@src/shared/ui/form/ColorPicker";
 import ActionButton from "@src/shared/ui/buttons/ActionButton";
+import { useTranslation } from "react-i18next";
 
 interface CreateAllocationFormProps {
 	onClose: () => void;
@@ -10,6 +11,7 @@ interface CreateAllocationFormProps {
 const CreateAllocationForm: React.FC<CreateAllocationFormProps> = ({
 	onClose,
 }) => {
+	const { t } = useTranslation();
 	const { register, submit, isSubmitting, errors, watch, isDirty } =
 		useCreateAllocation(onClose);
 
@@ -18,22 +20,22 @@ const CreateAllocationForm: React.FC<CreateAllocationFormProps> = ({
 	return (
 		<div className="w-full">
 			<h2 className="text-xl font-semibold mb-4 text-center">
-				Создание категории
+				{t("allocation.features.add.title")}
 			</h2>
 
 			<form onSubmit={submit} className="space-y-8">
 				<Input
 					label="title"
-					labelText="Название"
-					placeholder="Например: Сбережения"
+					labelText={t("allocation.features.add.name.value")}
+					placeholder={t("allocation.features.add.name.placeholder")}
 					{...register("title")}
 					error={errors.title}
 				/>
 
 				<Input
 					label="percentage"
-					labelText="Процент"
-					placeholder="Например: 20"
+					labelText={t("allocation.features.add.percentage.value")}
+					placeholder={t("allocation.features.add.percentage.placeholder")}
 					{...register("percentage", { valueAsNumber: true })}
 					error={errors.percentage}
 				/>
@@ -50,14 +52,16 @@ const CreateAllocationForm: React.FC<CreateAllocationFormProps> = ({
 						disabled={isSubmitting}
 						onClick={onClose}
 						className="w-1/2">
-						Отмена
+						{t("allocation.features.add.cancel")}
 					</ActionButton>
 
 					<ActionButton
 						disabled={!isDirty || isSubmitting}
 						type="submit"
 						className="w-1/2">
-						{isSubmitting ? "Создание..." : "Создать"}
+						{isSubmitting
+							? t("allocation.features.add.creating")
+							: t("allocation.features.add.create")}
 					</ActionButton>
 				</div>
 			</form>

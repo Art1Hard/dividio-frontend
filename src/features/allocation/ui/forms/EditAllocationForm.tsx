@@ -3,6 +3,7 @@ import ColorPicker from "@src/shared/ui/form/ColorPicker";
 import useEditAllocation from "@src/features/allocation/lib/useEditAllocation";
 import Input from "@src/shared/ui/form/Input";
 import ActionButton from "@src/shared/ui/buttons/ActionButton";
+import { useTranslation } from "react-i18next";
 
 type EditAllocationFormProps = {
 	defaultValues: IAllocation;
@@ -13,6 +14,7 @@ const EditAllocationForm = ({
 	defaultValues,
 	onClose,
 }: EditAllocationFormProps) => {
+	const { t } = useTranslation();
 	const { register, watch, submit, isSubmitting, isDirty, errors } =
 		useEditAllocation(defaultValues.id, defaultValues, onClose);
 
@@ -20,15 +22,15 @@ const EditAllocationForm = ({
 
 	return (
 		<div className="w-full">
-			<h2 className="text-xl font-semibold mb-4 text-center">
-				Редактирование категории <br />"{defaultValues.title}"
+			<h2 className="text-xl font-semibold mb-4 text-center text-balance">
+				{t("allocation.features.edit.title")} "{defaultValues.title}"
 			</h2>
 			<form onSubmit={submit} className="space-y-8">
 				<Input
 					type="text"
 					label="title"
-					labelText="Название"
-					placeholder="Например: Сбережения"
+					labelText={t("allocation.features.edit.name.value")}
+					placeholder={t("allocation.features.edit.name.placeholder")}
 					error={errors.title}
 					{...register("title")}
 				/>
@@ -36,8 +38,8 @@ const EditAllocationForm = ({
 				<Input
 					type="text"
 					label="percent"
-					labelText="Процент"
-					placeholder="Например: 20"
+					labelText={t("allocation.features.edit.percentage.value")}
+					placeholder={t("allocation.features.edit.percentage.placeholder")}
 					error={errors.percentage}
 					{...register("percentage", { valueAsNumber: true })}
 				/>
@@ -50,13 +52,15 @@ const EditAllocationForm = ({
 
 				<div className="flex justify-between gap-3">
 					<ActionButton color="secondary" onClick={onClose} className="w-1/2">
-						Отмена
+						{t("allocation.features.edit.cancel")}
 					</ActionButton>
 					<ActionButton
 						type="submit"
 						disabled={!isDirty || isSubmitting}
 						className="w-1/2">
-						{isSubmitting ? "Сохранение..." : "Сохранить"}
+						{isSubmitting
+							? t("allocation.features.edit.saving")
+							: t("allocation.features.edit.save")}
 					</ActionButton>
 				</div>
 			</form>

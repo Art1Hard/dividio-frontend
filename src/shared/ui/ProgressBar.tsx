@@ -18,9 +18,7 @@ const ProgressBar: FC<ProgressBarProps> = ({
 	color = "gray",
 }) => {
 	const delayedPercent = useDelayValue(percent);
-	const allowedColor = progressColors.find((c) => c.value === color)
-		? color
-		: "gray";
+	const allowedColor = progressColors.find((c) => c === color) ? color : "gray";
 
 	return (
 		<div className="mb-4">

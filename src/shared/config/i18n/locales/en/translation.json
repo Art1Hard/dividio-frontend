@@ -63,6 +63,50 @@
     }
   },
 
+	"allocation": {
+		"title": "Allocation",
+			"buttons": {
+				"chart": "Chart",
+				"list": "List",
+				"add": "Add Allocation"
+			},
+			"features": {
+				"add": {
+					"title": "Add Allocation",
+					"name": {
+						"value": "Name",
+						"placeholder": "e.g. Savings"
+					},
+					"percentage": {
+						"value": "Percentage",
+						"placeholder": "e.g. 20"
+					},
+					"cancel": "Cancel",
+					"create": "Create",
+					"creating": "Creating..."
+				},
+				"edit": {
+					"title": "Edit Allocation",
+					"name": {
+						"value": "Name",
+						"placeholder": "e.g. Savings"
+					},
+					"percentage": {
+						"value": "Percentage",
+						"placeholder": "e.g. 20"
+					},
+					"cancel": "Cancel",
+					"save": "Save",
+					"saving": "Saving..."
+				},
+				"delete": {
+					"title": "Confirm Action",
+					"content": "Are you sure you want to delete this allocation? This action cannot be undone."
+				}
+		},
+		"free": "Free"
+	},
+
   "confirm": {
     "cancel": "Cancel",
     "confirm": "Confirm"
@@ -73,13 +117,17 @@
 		"delete": "Delete"
 	},
 
-	"allocation": {
-		"title": "Allocation",
-  "buttons": {
-    "chart": "Chart",
-    "list": "List",
-    "add": "Add Allocation"
-  },
-	"free": "Free"
+	"colorPicker": {
+		"title": "Select a color",
+		"colors": {
+			"gray": "Gray",
+			"green": "Green",
+			"blue": "Blue",
+			"yellow": "Yellow",
+			"red": "Red",
+			"purple": "Purple",
+			"orange": "Orange",
+			"rose": "Pink"
+		}
 	}
 }

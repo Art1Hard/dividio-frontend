@@ -1,6 +1,6 @@
 import { useDeleteAllocationMutation } from "@src/entities/allocation/services/allocation.api";
 import useConfirmDialog from "@src/shared/lib/hooks/useConfirmDialog";
-import DeleteButton from "@src/shared/ui/buttons/DeleteButton";
+import DeleteButton from "@src/shared/ui/buttons/logical/DeleteButton";
 import ConfirmDialog from "@src/shared/ui/modal/ConfirmDialog";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";

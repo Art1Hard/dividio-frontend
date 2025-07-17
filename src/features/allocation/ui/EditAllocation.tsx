@@ -1,4 +1,4 @@
-import EditButton from "@src/shared/ui/buttons/EditButton";
+import EditButton from "@src/shared/ui/buttons/logical/EditButton";
 import Modal from "@src/shared/ui/modal/Modal";
 import EditAllocationForm from "./forms/EditAllocationForm";
 import type { IAllocation } from "@src/entities/allocation/model/allocation.types";

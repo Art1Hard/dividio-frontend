@@ -47,7 +47,6 @@
 					"value": "Amount",
 					"placeholder": "e.g. 5000"
 				},
-        "cancel": "Cancel",
         "create": "Create",
 				"creating": "Creating..."
       },
@@ -61,7 +60,6 @@
 					"value": "Amount",
 					"placeholder": "e.g. 5000"
 				},
-        "cancel": "Cancel",
         "save": "Save",
 				"saving": "Saving..."
       },
@@ -90,7 +88,6 @@
 						"value": "Percentage",
 						"placeholder": "e.g. 20"
 					},
-					"cancel": "Cancel",
 					"create": "Create",
 					"creating": "Creating..."
 				},
@@ -104,7 +101,6 @@
 						"value": "Percentage",
 						"placeholder": "e.g. 20"
 					},
-					"cancel": "Cancel",
 					"save": "Save",
 					"saving": "Saving..."
 				},
@@ -117,7 +113,6 @@
 	},
 
   "confirm": {
-    "cancel": "Cancel",
     "confirm": "Confirm"
   },
 
@@ -147,11 +142,12 @@
 			"placeholder": "John",
 			"edit": "Edit",
 			"save": "Save",
-			"saving": "Saving...",
-			"cancel": "Cancel"
+			"saving": "Saving..."
 		},
 		"settings": "Settings",
 		"logout": "Logout",
 		"logoutConfirm": "Are you sure you want to logout?"
-	}
+	},
+
+	"cancel": "Cancel"
 }

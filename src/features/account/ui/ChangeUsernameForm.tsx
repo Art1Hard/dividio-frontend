@@ -1,6 +1,6 @@
-import ActionButton from "@src/shared/ui/buttons/ActionButton";
 import Input from "../../../shared/ui/form/Input";
 import useChangeUsername from "@src/features/account/lib/useChangeUsername";
+import { BaseButton, CancelButton } from "@src/shared/ui/buttons";
 import { useTranslation } from "react-i18next";
 
 interface ChangeUsernameFormProps {
@@ -32,12 +32,11 @@ const ChangeUsernameForm = ({
 				</p>
 			)}
 
-			<ActionButton type="submit" disabled={isSubmitting}>
+			<BaseButton type="submit" disabled={isSubmitting}>
 				{isSubmitting ? t("account.name.saving") : t("account.name.save")}
-			</ActionButton>
-			<ActionButton color="secondary" onClick={disableEditMode}>
-				{t("account.name.cancel")}
-			</ActionButton>
+			</BaseButton>
+
+			<CancelButton onClick={disableEditMode} />
 		</form>
 	);
 };

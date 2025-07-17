@@ -1,8 +1,8 @@
 import useCreateAllocation from "@src/features/allocation/lib/useCreateAllocation";
 import Input from "@src/shared/ui/form/Input";
 import ColorPicker from "@src/shared/ui/form/ColorPicker";
-import ActionButton from "@src/shared/ui/buttons/ActionButton";
 import { useTranslation } from "react-i18next";
+import { BaseButton, CancelButton } from "@src/shared/ui/buttons";
 
 interface CreateAllocationFormProps {
 	onClose: () => void;
@@ -47,22 +47,16 @@ const CreateAllocationForm: React.FC<CreateAllocationFormProps> = ({
 				/>
 
 				<div className="flex justify-between gap-3">
-					<ActionButton
-						color="secondary"
-						disabled={isSubmitting}
-						onClick={onClose}
-						className="w-1/2">
-						{t("allocation.features.add.cancel")}
-					</ActionButton>
+					<CancelButton onClick={onClose} className="w-1/2" />
 
-					<ActionButton
+					<BaseButton
 						disabled={!isDirty || isSubmitting}
 						type="submit"
 						className="w-1/2">
 						{isSubmitting
 							? t("allocation.features.add.creating")
 							: t("allocation.features.add.create")}
-					</ActionButton>
+					</BaseButton>
 				</div>
 			</form>
 		</div>

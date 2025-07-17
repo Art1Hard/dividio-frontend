@@ -1,6 +1,7 @@
 import type { FC, ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { modalFade, modalScale } from "@src/shared/animations";
+import { IoClose } from "react-icons/io5";
 
 interface ModalProps {
 	isOpen: boolean;
@@ -27,9 +28,12 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
 						exit="exit"
 						transition={{ duration: 0.1 }}
 						onClick={(e) => e.stopPropagation()}
-						className="bg-slate-200 dark:bg-slate-800 p-6 rounded-xl w-full max-w-md relative cursor-default">
+						className="bg-slate-200 dark:bg-slate-800 p-6 pt-12 rounded-xl w-full max-w-md relative cursor-default">
 						<button className="absolute top-3 right-4" onClick={onClose}>
-							✕
+							<IoClose
+								size={24}
+								className="text-slate-600 dark:text-slate-300"
+							/>
 						</button>
 						{children}
 					</motion.div>

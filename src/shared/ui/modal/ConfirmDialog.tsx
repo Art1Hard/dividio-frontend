@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
-import ActionButton from "../../../shared/ui/buttons/ActionButton";
+import BaseButton from "../../../shared/ui/buttons/BaseButton";
 import { AnimatePresence, motion } from "framer-motion";
 import { modalFade, modalScale } from "@src/shared/animations";
 import { useTranslation } from "react-i18next";
+import { CancelButton } from "../buttons";
 
 interface ConfirmDialogProps {
 	isOpen: boolean;
@@ -48,15 +49,13 @@ const ConfirmDialog = ({
 						)}
 
 						<div className="flex justify-end gap-3">
-							<ActionButton color="secondary" onClick={onClose}>
-								{t("confirm.cancel")}
-							</ActionButton>
-							<ActionButton
+							<CancelButton onClick={onClose} />
+							<BaseButton
 								color="danger"
 								className="font-semibold"
 								onClick={onConfirm}>
 								{t("confirm.confirm")}
-							</ActionButton>
+							</BaseButton>
 						</div>
 					</motion.div>
 				</motion.div>

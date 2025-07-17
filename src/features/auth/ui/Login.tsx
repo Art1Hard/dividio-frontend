@@ -2,7 +2,7 @@ import type { FC } from "react";
 import Input from "@src/shared/ui/form/Input";
 import SwitchFormButton from "@src/features/auth/ui/SwitchFormButton";
 import useLogin from "@src/features/auth/lib/useLogin";
-import ActionButton from "@src/shared/ui/buttons/ActionButton";
+import { BaseButton } from "@src/shared/ui/buttons";
 
 interface LoginProps {
 	onClickSwitchForm: () => void;
@@ -49,12 +49,12 @@ export const Login: FC<LoginProps> = ({ onClickSwitchForm }) => {
 						</a>
 					</div>
 
-					<ActionButton
+					<BaseButton
 						type="submit"
 						disabled={!isDirty || isSubmitting}
 						className="w-full font-semibold">
 						{isSubmitting ? "Входим..." : "Войти"}
-					</ActionButton>
+					</BaseButton>
 				</form>
 
 				<SwitchFormButton

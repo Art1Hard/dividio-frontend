@@ -1,4 +1,4 @@
-import ActionButton from "@src/shared/ui/buttons/ActionButton";
+import { BaseButton } from "@src/shared/ui/buttons";
 import type { IAllocationData } from "../../../../entities/allocation/model/allocation.types";
 import { HiOutlineChartPie } from "react-icons/hi";
 import { HiListBullet } from "react-icons/hi2";
@@ -18,7 +18,7 @@ const ViewModeToggleButton = ({
 	const { t } = useTranslation();
 
 	return (
-		<ActionButton
+		<BaseButton
 			className="flex items-center gap-2"
 			disabled={!data || data.allocations.length <= 1}
 			onClick={onClick}>
@@ -33,7 +33,7 @@ const ViewModeToggleButton = ({
 					{t("allocation.buttons.list")}
 				</>
 			)}
-		</ActionButton>
+		</BaseButton>
 	);
 };
 

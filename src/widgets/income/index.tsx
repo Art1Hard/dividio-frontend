@@ -4,7 +4,7 @@ import { useState } from "react";
 import Modal from "@src/shared/ui/modal/Modal";
 import CreateIncome from "@src/features/income/ui/CreateIncome";
 import { AiFillGold } from "react-icons/ai";
-import ActionButton from "@src/shared/ui/buttons/ActionButton";
+import { BaseButton } from "@src/shared/ui/buttons";
 import DashboardWidgetWrapper from "@src/shared/ui/DashboardWidgetWrapper";
 import IncomeList from "./ui/IncomeList";
 import IncomeSkeleton from "./ui/IncomeSkeleton";
@@ -25,12 +25,12 @@ const IncomeWidget = ({ className }: { className?: string }) => {
 				<AiFillGold className="text-amber-500 dark:text-yellow-400" size={24} />
 			}
 			headerButton={
-				<ActionButton
+				<BaseButton
 					onClick={() => setIsAddModalOpen(true)}
 					className="flex items-center gap-2">
 					<FiPlusCircle size={18} />
 					{t("income.buttons.add")}
-				</ActionButton>
+				</BaseButton>
 			}>
 			{data && <IncomeList data={data.incomes} />}
 

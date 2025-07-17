@@ -1,7 +1,7 @@
 import useCreateIncome from "@src/features/income/lib/useCreateIncome";
 import Input from "@src/shared/ui/form/Input";
 import type { FC } from "react";
-import ActionButton from "@src/shared/ui/buttons/ActionButton";
+import { BaseButton, CancelButton } from "@src/shared/ui/buttons";
 import { useTranslation } from "react-i18next";
 
 interface CreateIncomeProps {
@@ -38,17 +38,15 @@ const CreateIncome: FC<CreateIncomeProps> = ({ onClose }) => {
 			/>
 
 			<div className="flex justify-between gap-3">
-				<ActionButton color="secondary" onClick={onClose} className="w-1/2">
-					{t("income.features.add.cancel")}
-				</ActionButton>
-				<ActionButton
+				<CancelButton onClick={onClose} className="w-1/2" />
+				<BaseButton
 					type="submit"
 					disabled={!isDirty || isSubmitting}
 					className="w-1/2">
 					{isSubmitting
 						? t("income.features.add.creating")
 						: t("income.features.add.create")}
-				</ActionButton>
+				</BaseButton>
 			</div>
 		</form>
 	);

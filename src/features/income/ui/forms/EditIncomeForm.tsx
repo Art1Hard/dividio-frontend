@@ -1,4 +1,4 @@
-import ActionButton from "@src/shared/ui/buttons/ActionButton";
+import { BaseButton, CancelButton } from "@src/shared/ui/buttons";
 import Input from "@src/shared/ui/form/Input";
 import useEditIncome from "@src/features/income/lib/useEditIncome";
 import type { IIncome } from "@src/entities/income/model/income.types";
@@ -43,17 +43,15 @@ const EditIncomeForm: FC<IEditIncomeFormProps> = ({ onClose, income }) => {
 				/>
 
 				<div className="flex justify-between gap-3">
-					<ActionButton color="secondary" onClick={onClose} className="w-1/2">
-						{t("income.features.edit.cancel")}
-					</ActionButton>
-					<ActionButton
+					<CancelButton onClick={onClose} className="w-1/2" />
+					<BaseButton
 						type="submit"
 						disabled={!isDirty || isSubmitting}
 						className="w-1/2">
 						{isSubmitting
 							? t("income.features.edit.saving")
 							: t("income.features.edit.save")}
-					</ActionButton>
+					</BaseButton>
 				</div>
 			</form>
 		</div>

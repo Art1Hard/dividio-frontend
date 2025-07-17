@@ -2,7 +2,7 @@ import { type FC } from "react";
 import Input from "@src/shared/ui/form/Input";
 import SwitchFormButton from "@src/features/auth/ui/SwitchFormButton";
 import useRegister from "@src/features/auth/lib/useRegister";
-import ActionButton from "@src/shared/ui/buttons/ActionButton";
+import { BaseButton } from "@src/shared/ui/buttons";
 import Turnstile from "react-turnstile";
 import { useAppSelector } from "@src/shared/lib/hooks/redux";
 
@@ -64,12 +64,12 @@ export const Register: FC<RegisterProps> = ({ onClickSwitchForm }) => {
 						/>
 					</div>
 
-					<ActionButton
+					<BaseButton
 						type="submit"
 						disabled={!isDirty || isSubmitting}
 						className="w-full font-semibold">
 						{!isSubmitting ? "Зарегистрироваться" : "Идет регистрация..."}
-					</ActionButton>
+					</BaseButton>
 				</form>
 
 				<SwitchFormButton

@@ -1,5 +1,5 @@
 import type { IIncome } from "@src/entities/income/model/income.types";
-import EditButton from "@src/shared/ui/buttons/EditButton";
+import EditButton from "@src/shared/ui/buttons/logical/EditButton";
 import Modal from "@src/shared/ui/modal/Modal";
 import EditIncomeForm from "./forms/EditIncomeForm";
 import { useState } from "react";

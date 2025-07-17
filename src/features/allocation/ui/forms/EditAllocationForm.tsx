@@ -2,8 +2,8 @@ import type { IAllocation } from "@src/entities/allocation/model/allocation.type
 import ColorPicker from "@src/shared/ui/form/ColorPicker";
 import useEditAllocation from "@src/features/allocation/lib/useEditAllocation";
 import Input from "@src/shared/ui/form/Input";
-import ActionButton from "@src/shared/ui/buttons/ActionButton";
 import { useTranslation } from "react-i18next";
+import { BaseButton, CancelButton } from "@src/shared/ui/buttons";
 
 type EditAllocationFormProps = {
 	defaultValues: IAllocation;
@@ -51,17 +51,15 @@ const EditAllocationForm = ({
 				/>
 
 				<div className="flex justify-between gap-3">
-					<ActionButton color="secondary" onClick={onClose} className="w-1/2">
-						{t("allocation.features.edit.cancel")}
-					</ActionButton>
-					<ActionButton
+					<CancelButton onClick={onClose} className="w-1/2" />
+					<BaseButton
 						type="submit"
 						disabled={!isDirty || isSubmitting}
 						className="w-1/2">
 						{isSubmitting
 							? t("allocation.features.edit.saving")
 							: t("allocation.features.edit.save")}
-					</ActionButton>
+					</BaseButton>
 				</div>
 			</form>
 		</div>

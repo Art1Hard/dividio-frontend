@@ -1,7 +1,7 @@
 import { useDeleteIncomeMutation } from "@src/entities/income/services/income.api";
 import useConfirmDialog from "@src/shared/lib/hooks/useConfirmDialog";
 import { isServerError } from "@src/shared/lib/utils/serverError";
-import DeleteButton from "@src/shared/ui/buttons/DeleteButton";
+import DeleteButton from "@src/shared/ui/buttons/logical/DeleteButton";
 import ConfirmDialog from "@src/shared/ui/modal/ConfirmDialog";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";

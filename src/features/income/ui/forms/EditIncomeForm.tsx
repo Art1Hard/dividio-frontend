@@ -1,9 +1,14 @@
 import { BaseButton, CancelButton } from "@src/shared/ui/buttons";
-import Input from "@src/shared/ui/form/Input";
 import useEditIncome from "@src/features/income/lib/useEditIncome";
 import type { IIncome } from "@src/entities/income/model/income.types";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
+import {
+	Input,
+	InputError,
+	InputGroup,
+	InputLabel,
+} from "@src/shared/ui/form/input";
 
 interface IEditIncomeFormProps {
 	onClose: () => void;
@@ -23,24 +28,24 @@ const EditIncomeForm: FC<IEditIncomeFormProps> = ({ onClose, income }) => {
 			<h2 className="text-xl font-semibold mb-4 text-center text-balance">
 				{t("income.features.edit.title")} "{income.title}"
 			</h2>
-			<form onSubmit={submit} className="space-y-8">
-				<Input
-					type="text"
-					label="title"
-					labelText={t("income.features.edit.name.value")}
-					placeholder={t("income.features.edit.name.placeholder")}
-					error={errors.title}
-					{...register("title")}
-				/>
+			<form onSubmit={submit} className="space-y-6">
+				<InputGroup error={errors.title}>
+					<InputLabel>{t("income.features.edit.name.value")}</InputLabel>
+					<Input
+						placeholder={t("income.features.edit.name.placeholder")}
+						{...register("title")}
+					/>
+					<InputError />
+				</InputGroup>
 
-				<Input
-					type="text"
-					label="amount"
-					labelText={t("income.features.edit.amount.value")}
-					placeholder={t("income.features.edit.amount.placeholder")}
-					error={errors.amount}
-					{...register("amount", { valueAsNumber: true })}
-				/>
+				<InputGroup error={errors.amount}>
+					<InputLabel>{t("income.features.edit.amount.value")}</InputLabel>
+					<Input
+						placeholder={t("income.features.edit.amount.placeholder")}
+						{...register("amount", { valueAsNumber: true })}
+					/>
+					<InputError />
+				</InputGroup>
 
 				<div className="flex justify-between gap-3">
 					<CancelButton onClick={onClose} className="w-1/2" />

@@ -1,10 +1,15 @@
 import { type FC } from "react";
-import Input from "@src/shared/ui/form/Input";
 import SwitchFormButton from "@src/features/auth/ui/SwitchFormButton";
 import useRegister from "@src/features/auth/lib/useRegister";
 import { BaseButton } from "@src/shared/ui/buttons";
 import Turnstile from "react-turnstile";
 import { useAppSelector } from "@src/shared/lib/hooks/redux";
+import {
+	Input,
+	InputError,
+	InputGroup,
+	InputLabel,
+} from "@src/shared/ui/form/input";
 
 interface RegisterProps {
 	onClickSwitchForm: () => void;
@@ -26,33 +31,34 @@ export const Register: FC<RegisterProps> = ({ onClickSwitchForm }) => {
 			<div className="w-full max-w-md bg-slate-200 dark:bg-slate-800 rounded-2xl p-8 shadow-lg">
 				<h2 className="text-2xl font-bold mb-6 text-center">Регистрация</h2>
 
-				<form className="space-y-8" onSubmit={submit}>
-					<Input
-						type="text"
-						label="email"
-						labelText="Email"
-						{...register("email")}
-						error={errors.email}
-						placeholder="you@example.com"
-					/>
+				<form className="space-y-4" onSubmit={submit}>
+					<InputGroup error={errors.email}>
+						<InputLabel>Email:</InputLabel>
+						<Input placeholder="you@example.com" {...register("email")} />
+						<InputError />
+					</InputGroup>
 
-					<Input
-						type="password"
-						label="password"
-						labelText="Пароль"
-						{...register("password")}
-						error={errors.password}
-						placeholder="••••••••"
-					/>
+					<InputGroup error={errors.password}>
+						<InputLabel>Пароль:</InputLabel>
+						<Input
+							placeholder="••••••••"
+							className="pr-10"
+							type="password"
+							{...register("password")}
+						/>
+						<InputError />
+					</InputGroup>
 
-					<Input
-						type="password"
-						label="confirm-password"
-						labelText="Подтвердите пароль"
-						{...register("confirmPassword")}
-						error={errors.confirmPassword}
-						placeholder="••••••••"
-					/>
+					<InputGroup error={errors.confirmPassword}>
+						<InputLabel>Подтвердите пароль:</InputLabel>
+						<Input
+							placeholder="••••••••"
+							className="pr-10"
+							type="password"
+							{...register("confirmPassword")}
+						/>
+						<InputError />
+					</InputGroup>
 
 					<div className="flex justify-center">
 						<Turnstile

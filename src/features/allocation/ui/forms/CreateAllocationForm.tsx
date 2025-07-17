@@ -1,8 +1,9 @@
 import useCreateAllocation from "@src/features/allocation/lib/useCreateAllocation";
-import Input from "@src/shared/ui/form/Input";
+import Input from "@src/shared/ui/form/input/Input";
 import ColorPicker from "@src/shared/ui/form/ColorPicker";
 import { useTranslation } from "react-i18next";
 import { BaseButton, CancelButton } from "@src/shared/ui/buttons";
+import { InputError, InputGroup, InputLabel } from "@src/shared/ui/form/input";
 
 interface CreateAllocationFormProps {
 	onClose: () => void;
@@ -23,22 +24,26 @@ const CreateAllocationForm: React.FC<CreateAllocationFormProps> = ({
 				{t("allocation.features.add.title")}
 			</h2>
 
-			<form onSubmit={submit} className="space-y-8">
-				<Input
-					label="title"
-					labelText={t("allocation.features.add.name.value")}
-					placeholder={t("allocation.features.add.name.placeholder")}
-					{...register("title")}
-					error={errors.title}
-				/>
+			<form onSubmit={submit} className="space-y-6">
+				<InputGroup error={errors.title}>
+					<InputLabel>{t("allocation.features.add.name.value")}</InputLabel>
+					<Input
+						placeholder={t("allocation.features.add.name.placeholder")}
+						{...register("title")}
+					/>
+					<InputError />
+				</InputGroup>
 
-				<Input
-					label="percentage"
-					labelText={t("allocation.features.add.percentage.value")}
-					placeholder={t("allocation.features.add.percentage.placeholder")}
-					{...register("percentage", { valueAsNumber: true })}
-					error={errors.percentage}
-				/>
+				<InputGroup error={errors.percentage}>
+					<InputLabel>
+						{t("allocation.features.add.percentage.value")}
+					</InputLabel>
+					<Input
+						placeholder={t("allocation.features.add.percentage.placeholder")}
+						{...register("percentage", { valueAsNumber: true })}
+					/>
+					<InputError />
+				</InputGroup>
 
 				<ColorPicker
 					selectedColor={selectedColor}

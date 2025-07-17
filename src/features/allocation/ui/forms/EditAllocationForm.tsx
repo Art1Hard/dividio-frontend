@@ -1,9 +1,14 @@
 import type { IAllocation } from "@src/entities/allocation/model/allocation.types";
 import ColorPicker from "@src/shared/ui/form/ColorPicker";
 import useEditAllocation from "@src/features/allocation/lib/useEditAllocation";
-import Input from "@src/shared/ui/form/Input";
 import { useTranslation } from "react-i18next";
 import { BaseButton, CancelButton } from "@src/shared/ui/buttons";
+import {
+	Input,
+	InputError,
+	InputGroup,
+	InputLabel,
+} from "@src/shared/ui/form/input";
 
 type EditAllocationFormProps = {
 	defaultValues: IAllocation;
@@ -25,24 +30,26 @@ const EditAllocationForm = ({
 			<h2 className="text-xl font-semibold mb-4 text-center text-balance">
 				{t("allocation.features.edit.title")} "{defaultValues.title}"
 			</h2>
-			<form onSubmit={submit} className="space-y-8">
-				<Input
-					type="text"
-					label="title"
-					labelText={t("allocation.features.edit.name.value")}
-					placeholder={t("allocation.features.edit.name.placeholder")}
-					error={errors.title}
-					{...register("title")}
-				/>
+			<form onSubmit={submit} className="space-y-6">
+				<InputGroup error={errors.title}>
+					<InputLabel>{t("allocation.features.edit.name.value")}</InputLabel>
+					<Input
+						placeholder={t("allocation.features.edit.name.placeholder")}
+						{...register("title")}
+					/>
+					<InputError />
+				</InputGroup>
 
-				<Input
-					type="text"
-					label="percent"
-					labelText={t("allocation.features.edit.percentage.value")}
-					placeholder={t("allocation.features.edit.percentage.placeholder")}
-					error={errors.percentage}
-					{...register("percentage", { valueAsNumber: true })}
-				/>
+				<InputGroup error={errors.percentage}>
+					<InputLabel>
+						{t("allocation.features.edit.percentage.value")}
+					</InputLabel>
+					<Input
+						placeholder={t("allocation.features.edit.percentage.placeholder")}
+						{...register("percentage", { valueAsNumber: true })}
+					/>
+					<InputError />
+				</InputGroup>
 
 				<ColorPicker
 					selectedColor={selectedColor}

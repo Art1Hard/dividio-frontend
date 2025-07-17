@@ -1,5 +1,6 @@
 import { useAppSelector } from "@src/shared/lib/hooks/redux";
 import { useActions } from "@src/shared/lib/hooks/redux/actions";
+import { useTranslation } from "react-i18next";
 import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 
 interface ToggleThemeProps {
@@ -8,6 +9,7 @@ interface ToggleThemeProps {
 }
 
 export const ToggleTheme = ({ extended, sizeIcon }: ToggleThemeProps) => {
+	const { t } = useTranslation();
 	const theme = useAppSelector((state) => state.theme.currentTheme);
 	const { toggleTheme } = useActions();
 
@@ -15,10 +17,12 @@ export const ToggleTheme = ({ extended, sizeIcon }: ToggleThemeProps) => {
 		<div>
 			{extended ? (
 				<>
-					<h3 className="text-sm mb-1">Настройки:</h3>
+					<h3 className="text-sm mb-1">{t("account.settings")}:</h3>
 
 					<div className="flex items-center justify-between gap-2">
-						<p className="text-sm dark:text-white @xs:text-lg">Сменить тему</p>
+						<p className="text-sm dark:text-white @xs:text-lg">
+							{t("theme.title")}
+						</p>
 						<div className="flex items-center gap-2">
 							{<MdOutlineLightMode size={20} />}
 							<button
@@ -33,7 +37,10 @@ export const ToggleTheme = ({ extended, sizeIcon }: ToggleThemeProps) => {
 					</div>
 				</>
 			) : (
-				<button className="flex" onClick={() => toggleTheme()}>
+				<button
+					title={t("theme.title")}
+					className="flex"
+					onClick={() => toggleTheme()}>
 					{theme === "light" ? (
 						<MdOutlineDarkMode size={sizeIcon} />
 					) : (

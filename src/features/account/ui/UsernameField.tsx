@@ -1,17 +1,24 @@
 import useChangeEditMode from "@features/account/lib/useChangeEditMode";
 import ChangeUsernameForm from "@features/account/ui/ChangeUsernameForm";
+import { useTranslation } from "react-i18next";
 
 interface UsernameFieldProps {
+	title: string;
 	username: string | undefined;
 	isFetching: boolean;
 }
 
-const UsernameField = ({ username: name, isFetching }: UsernameFieldProps) => {
+const UsernameField = ({
+	title,
+	username: name,
+	isFetching,
+}: UsernameFieldProps) => {
+	const { t } = useTranslation();
 	const { editMode, enableEditMode, disableEditMode } = useChangeEditMode();
 
 	return (
 		<div>
-			<h3 className="text-sm mb-1">Имя:</h3>
+			<h3 className="text-sm mb-1">{title}</h3>
 			{editMode ? (
 				<ChangeUsernameForm username={name} disableEditMode={disableEditMode} />
 			) : (
@@ -22,7 +29,7 @@ const UsernameField = ({ username: name, isFetching }: UsernameFieldProps) => {
 					<button
 						onClick={enableEditMode}
 						className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-500 text-xs @xs:text-sm">
-						Редактировать
+						{t("account.name.edit")}
 					</button>
 				</div>
 			)}

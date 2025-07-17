@@ -5,6 +5,15 @@
 			"signIn": "Sign in"
 		}
 	},
+
+	"theme": {
+		"title": "Toggle Theme"
+	},
+
+	"language": {
+		"title": "Switch Language"
+	},
+
 	"dashboard": {
 		"title": "Welcome",
 		"subtitle": "Your financial overview for today"
@@ -129,5 +138,20 @@
 			"orange": "Orange",
 			"rose": "Pink"
 		}
+	},
+
+	"account": {
+		"title": "Account",
+		"name": {
+			"title": "Name:",
+			"placeholder": "John",
+			"edit": "Edit",
+			"save": "Save",
+			"saving": "Saving...",
+			"cancel": "Cancel"
+		},
+		"settings": "Settings",
+		"logout": "Logout",
+		"logoutConfirm": "Are you sure you want to logout?"
 	}
 }

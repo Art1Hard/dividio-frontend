@@ -4,8 +4,10 @@ import UsernameField from "@src/features/account/ui/UsernameField";
 import { ToggleTheme } from "@src/features/theme/components/ToggleTheme";
 import AccountField from "./ui/AccountField";
 import AccountSkeleton from "./ui/AccountSkeleton";
+import { useTranslation } from "react-i18next";
 
 const AccountWidget = () => {
+	const { t } = useTranslation();
 	const { data: user, isLoading, isFetching } = useGetUserQuery();
 
 	if (isLoading) return <AccountSkeleton />;
@@ -17,12 +19,16 @@ const AccountWidget = () => {
 	return (
 		<div className="bg-slate-200 dark:bg-slate-800 p-6 rounded-xl w-full max-w-md mx-auto shadow-md @container">
 			<h2 className="text-center  font-bold mb-4 @xs:text-2xl">
-				Личный кабинет
+				{t("account.title")}
 			</h2>
 			<div className="dark:text-slate-400 space-y-4 mb-4">
 				<AccountField title="ID:" content={user.id} />
 				<AccountField title="Email:" content={user.email} />
-				<UsernameField username={user.name} isFetching={isFetching} />
+				<UsernameField
+					title={t("account.name.title")}
+					username={user.name}
+					isFetching={isFetching}
+				/>
 				<ToggleTheme extended />
 			</div>
 

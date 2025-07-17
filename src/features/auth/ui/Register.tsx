@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import type { FC } from "react";
 import SwitchFormButton from "@src/features/auth/ui/SwitchFormButton";
 import useRegister from "@src/features/auth/lib/useRegister";
 import { BaseButton } from "@src/shared/ui/buttons";
@@ -10,6 +10,7 @@ import {
 	InputGroup,
 	InputLabel,
 } from "@src/shared/ui/form/input";
+import { useTranslation } from "react-i18next";
 
 interface RegisterProps {
 	onClickSwitchForm: () => void;
@@ -24,6 +25,9 @@ export const Register: FC<RegisterProps> = ({ onClickSwitchForm }) => {
 		errors,
 		captcha: { setCaptchaToken, clearCaptchaToken },
 	} = useRegister();
+	const {
+		i18n: { language },
+	} = useTranslation();
 	const currentTheme = useAppSelector((state) => state.theme.currentTheme);
 
 	return (
@@ -63,6 +67,7 @@ export const Register: FC<RegisterProps> = ({ onClickSwitchForm }) => {
 					<div className="flex justify-center">
 						<Turnstile
 							className="w-full max-w-[300px] overflow-hidden"
+							language={language}
 							sitekey={import.meta.env.VITE_TURNSTILE_SITEKEY}
 							onSuccess={(token) => setCaptchaToken(token)}
 							onError={clearCaptchaToken}

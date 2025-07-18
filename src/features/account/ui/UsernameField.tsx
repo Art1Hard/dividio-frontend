@@ -24,7 +24,11 @@ const UsernameField = ({
 			) : (
 				<div className="flex items-center justify-between">
 					<p className="dark:text-white text-sm @xs:text-lg">
-						{!isFetching ? name || "—" : "Загрузка..."}
+						{!isFetching ? (
+							name || "—"
+						) : (
+							<span className="animate-pulse">{t("account.name.loading")}</span>
+						)}
 					</p>
 					<button
 						onClick={enableEditMode}

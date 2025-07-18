@@ -16,7 +16,9 @@
 
 	"dashboard": {
 		"title": "Welcome",
-		"subtitle": "Your financial overview for today"
+		"subtitle": "Your financial overview for today",
+		"loadingTitle": "Loading username...",
+		"loadingSubtitle": "Please wait, data is being loaded."
 	},
 	"statistic": {
 		"allIncomes": {
@@ -142,7 +144,8 @@
 			"placeholder": "John",
 			"edit": "Edit",
 			"save": "Save",
-			"saving": "Saving..."
+			"saving": "Saving...",
+			"loading": "Loading..."
 		},
 		"settings": "Settings",
 		"logout": "Logout",

@@ -11,14 +11,24 @@ const DashboardWrapper = ({ children }: { children: ReactNode }) => {
 			<div className="max-w-6xl w-full mx-auto space-y-10">
 				<div className="text-center">
 					<h1 className="text-3xl font-bold mb-2">
-						{isUserLoading
-							? "Загрузка..."
-							: `${t("dashboard.title")}${
-									user && user.name && ` ${user.name}`
-							  }!`}
+						{isUserLoading ? (
+							<span className="animate-pulse">
+								{t("dashboard.loadingTitle")}
+							</span>
+						) : (
+							`${t("dashboard.title")}${
+								user && user.name ? `, ${user.name}` : ""
+							}!`
+						)}
 					</h1>
 					<p className="text-black/70 dark:text-slate-400">
-						{t("dashboard.subtitle")}
+						{isUserLoading ? (
+							<span className="animate-pulse">
+								{t("dashboard.loadingSubtitle")}
+							</span>
+						) : (
+							t("dashboard.subtitle")
+						)}
 					</p>
 				</div>
 

@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* для Chrome, Edge */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: #2563eb transparent;
+}
+
+/* для FireFox */
+@-moz-document url-prefix() {
+	* {
+		scrollbar-width: auto;
+	}
+}
+
+/* для Safari */
+::-webkit-scrollbar {
+	width: 12px; /* ширина вертикального скролла */
+	height: 12px; /* для горизонтального */
+}
+
+::-webkit-scrollbar-track {
+	background: transparent; /* фон полосы */
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #2563eb; /* цвет ползунка */
+	border-radius: 7px;
+	border: 4px solid transparent; /* для отступов внутри */
+	background-clip: content-box;
+}

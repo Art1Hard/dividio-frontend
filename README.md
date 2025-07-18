@@ -1,54 +1,47 @@
-# React + TypeScript + Vite
+# 🧮 Dividio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Dividio** — это приложение для финансового планирования, помогающее визуализировать и распределять доходы по различным категориям: необходимость, сбережения, инвестиции, хотелки и другие.
 
-Currently, two official plugins are available:
+## 🚀 Возможности
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Регистрация и вход через JWT (access + refresh токены)
+- Интерфейс с авторизацией через cookie
+- Разделение бюджета по категориям
+- Просмотр в виде списка и диаграммы
+- Темная и светлая тема
+- Смена языка (мультиязычность)
+- Отзывчивый дизайн
+- Модульная архитектура (FSD)
 
-## Expanding the ESLint configuration
+## 🛠️ Технологии
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Frontend
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- [React](https://reactjs.org/) + [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/) (сборщик)
+- [Tailwind CSS](https://tailwindcss.com/) (стилизация)
+- [React Icons](https://react-icons.github.io/react-icons) (иконки)
+- [Framer Motion](https://www.framer.com/motion/) (анимации)
+- [Recharts](https://recharts.org) (графики)
+- [Sonner](https://sonner.emilkowal.ski) (уведомления)
+- [i18n](https://www.i18next.com) (мультиязычность)
+- [Redux Toolkit](https://redux-toolkit.js.org) (глобальное состояние)
+- [RTK Query](https://redux-toolkit.js.org) (запросы к API)
+- [Zod](https://zod.dev/) + [React Hook Form](https://react-hook-form.com/) (валидация + работа с формами)
+
+### Backend
+
+- [NestJS](https://nestjs.com/) + [Prisma ORM](https://www.prisma.io/)
+- [MySQL](https://www.mysql.com/) (база данных)
+- Авторизация через JWT (access + refresh)
+- Cookie httpOnly + защита от XSS/CSRF
+
+## 📦 Установка
+```bash
+yarn install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+#### 🚀 Запуск
+```bash
+yarn dev
 ```

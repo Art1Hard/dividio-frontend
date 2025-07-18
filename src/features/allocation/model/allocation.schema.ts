@@ -1,15 +1,24 @@
+import { useTranslation } from "react-i18next";
 import { z } from "zod";
 
-export const allocationSchema = z.object({
-	title: z.string().min(2, { message: "Название должно быть не меньше 2" }),
-	percentage: z
-		.number({ message: "Введите число" })
-		.int({ message: "Число должно быть целым" })
-		.min(5, { message: "Процент не может быть меньше 5" })
-		.max(100, { message: "Процент не может быть больше 100" }),
-	color: z
-		.string({ message: "Цвет должен быть выбран" })
-		.min(2, { message: "Цвет должен быть выбран" }),
-});
+export const useGetAllocationSchema = () => {
+	const { t } = useTranslation();
 
-export type AllocationSchema = z.infer<typeof allocationSchema>;
+	const allocationSchema = z.object({
+		title: z.string().min(2, { message: t("allocation.schema.title") }),
+		percentage: z
+			.number({ message: t("allocation.schema.percentage.number") })
+			.int({ message: t("allocation.schema.percentage.int") })
+			.min(5, { message: t("allocation.schema.percentage.min") })
+			.max(100, { message: t("allocation.schema.percentage.max") }),
+		color: z
+			.string({ message: t("allocation.schema.color") })
+			.min(2, { message: t("allocation.schema.color") }),
+	});
+
+	return allocationSchema;
+};
+
+export type AllocationSchema = z.infer<
+	ReturnType<typeof useGetAllocationSchema>
+>;

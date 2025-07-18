@@ -1,9 +1,12 @@
+import { useTranslation } from "react-i18next";
 import { z } from "zod";
 
-export const userSchema = z.object({
-	name: z
-		.string()
-		.min(2, { message: "Имя должно содержать не менее 2 символов" }),
-});
+export const useGetUserSchema = () => {
+	const { t } = useTranslation();
 
-export type UserSchema = z.infer<typeof userSchema>;
+	return z.object({
+		name: z.string().min(2, { message: t("account.schema.name.min") }),
+	});
+};
+
+export type UserSchema = z.infer<ReturnType<typeof useGetUserSchema>>;

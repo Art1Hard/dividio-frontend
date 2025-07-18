@@ -1,5 +1,5 @@
 import {
-	incomeSchema,
+	useGetIncomeSchema,
 	type IncomeSchema,
 } from "@src/features/income/model/income.schema";
 import useCustomForm from "../../../shared/lib/hooks/useCustomForm";
@@ -11,6 +11,7 @@ const useEditIncome = (
 	id: string,
 	defaultValues: IncomeSchema
 ) => {
+	const incomeSchema = useGetIncomeSchema();
 	const [updateIncome] = useUpdateIncomeMutation();
 	const { register, handleSubmit, isSubmitting, isDirty, errors } =
 		useCustomForm(incomeSchema, defaultValues);

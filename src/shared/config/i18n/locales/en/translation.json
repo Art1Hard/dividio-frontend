@@ -69,7 +69,14 @@
         "title": "Confirm Action",
         "content": "Are you sure you want to delete this income? This action cannot be undone."
       }
-    }
+    },
+		"schema": {
+			"title": "Title must be at least 2 characters",
+			"amount": {
+				"number": "Enter a number",
+				"min": "Enter a number more than 999"
+			}
+		}
   },
 
 	"allocation": {
@@ -111,6 +118,17 @@
 					"content": "Are you sure you want to delete this allocation? This action cannot be undone."
 				}
 		},
+		"schema": {
+			"title": "Title must be at least 2 characters",
+			"percentage": {
+				"number": "Enter a number",
+				"min": "Enter a number more than 4",
+				"max": "Enter a number less than 101"
+			},
+			"color": {
+				"min": "Color must be at least 2 characters"
+			}
+		},
 		"free": "Free"
 	},
 
@@ -146,6 +164,11 @@
 			"save": "Save",
 			"saving": "Saving...",
 			"loading": "Loading..."
+		},
+		"schema": {
+			"name": {
+				"min": "Name must be at least 2 characters"
+			}
 		},
 		"settings": "Settings",
 		"logout": "Logout",

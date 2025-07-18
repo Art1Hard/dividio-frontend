@@ -1,13 +1,15 @@
 import useCustomForm from "@src/shared/lib/hooks/useCustomForm";
 import { isServerError } from "@src/shared/lib/utils/serverError";
 import {
-	incomeSchema,
+	useGetIncomeSchema,
 	type IncomeSchema,
 } from "@src/features/income/model/income.schema";
 import { useCreateIncomeMutation } from "@src/entities/income/services/income.api";
 import { toast } from "sonner";
 
 const useCreateIncome = (afterSubmit: () => void) => {
+	const incomeSchema = useGetIncomeSchema();
+
 	const { handleSubmit, isSubmitting, errors, setError, register, isDirty } =
 		useCustomForm(incomeSchema);
 

@@ -1,13 +1,15 @@
 import useCustomForm from "@src/shared/lib/hooks/useCustomForm";
 import { isServerError } from "@src/shared/lib/utils/serverError";
 import {
-	allocationSchema,
+	useGetAllocationSchema,
 	type AllocationSchema,
 } from "@src/features/allocation/model/allocation.schema";
 import { useCreateAllocationMutation } from "@src/entities/allocation/services/allocation.api";
 import { toast } from "sonner";
 
 const useCreateAllocation = (afterSubmit: () => void) => {
+	const allocationSchema = useGetAllocationSchema();
+
 	const {
 		handleSubmit,
 		isSubmitting,

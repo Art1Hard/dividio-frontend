@@ -1,17 +1,20 @@
 import {
 	type UserSchema,
-	userSchema,
+	useGetUserSchema,
 } from "@src/entities/user/model/user.schema";
 import { useUpdateUserNameMutation } from "@src/entities/user/services/user.api";
 import { useEffect } from "react";
 import useCustomForm from "@src/shared/lib/hooks/useCustomForm";
+import { useTranslation } from "react-i18next";
 
 const useChangeUsername = (
 	name: string | undefined,
 	disableEditMode: () => void
 ) => {
 	const [updateUser] = useUpdateUserNameMutation();
+	const { i18n } = useTranslation();
 
+	const userSchema = useGetUserSchema();
 	const { register, handleSubmit, reset, errors, isSubmitting, isDirty } =
 		useCustomForm(userSchema);
 
@@ -19,7 +22,7 @@ const useChangeUsername = (
 		if (name) {
 			reset({ name });
 		}
-	}, [name, reset]);
+	}, [name, reset, i18n.language]);
 
 	const onSubmit = async (data: UserSchema) => {
 		try {

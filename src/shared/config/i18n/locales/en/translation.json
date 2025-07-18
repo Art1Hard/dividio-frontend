@@ -26,7 +26,7 @@
 		},
 		"incomesCount": {
 			"title": "Income sources",
-			"postfix": "items"
+			"postfix": "item"
 		},
 		"freeAllocation": {
 			"title": "Unallocated"

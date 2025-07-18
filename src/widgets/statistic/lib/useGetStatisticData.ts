@@ -4,6 +4,7 @@ import { useGetIncomesQuery } from "@src/entities/income/services/income.api";
 import { useMemo } from "react";
 import { FaBoxes, FaCoins, FaDove } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import i18n from "@src/shared/config/i18n";
 
 const useGetStatisticData = () => {
 	const { t } = useTranslation();
@@ -27,7 +28,13 @@ const useGetStatisticData = () => {
 			},
 			{
 				title: t("statistic.incomesCount.title"),
-				postfix: ` ${t("statistic.incomesCount.postfix")}`,
+				postfix: ` ${t("statistic.incomesCount.postfix")}${
+					i18n.language === "en"
+						? incomeData?.incomes.length === 1
+							? ""
+							: "s"
+						: ""
+				}`,
 				value: incomeData?.incomes.length ?? 0,
 				icon: {
 					IconComponent: FaBoxes,

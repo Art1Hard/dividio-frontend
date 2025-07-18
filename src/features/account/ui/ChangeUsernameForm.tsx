@@ -13,7 +13,7 @@ const ChangeUsernameForm = ({
 	disableEditMode,
 }: ChangeUsernameFormProps) => {
 	const { t } = useTranslation();
-	const { register, submit, errors, isSubmitting } = useChangeUsername(
+	const { register, submit, errors, isSubmitting, isDirty } = useChangeUsername(
 		username,
 		disableEditMode
 	);
@@ -33,7 +33,7 @@ const ChangeUsernameForm = ({
 				</p>
 			)}
 
-			<BaseButton type="submit" disabled={isSubmitting}>
+			<BaseButton type="submit" disabled={isSubmitting || !isDirty}>
 				{isSubmitting ? t("account.name.saving") : t("account.name.save")}
 			</BaseButton>
 

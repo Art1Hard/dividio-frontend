@@ -12,7 +12,7 @@ const useChangeUsername = (
 ) => {
 	const [updateUser] = useUpdateUserNameMutation();
 
-	const { register, handleSubmit, reset, errors, isSubmitting } =
+	const { register, handleSubmit, reset, errors, isSubmitting, isDirty } =
 		useCustomForm(userSchema);
 
 	useEffect(() => {
@@ -37,6 +37,7 @@ const useChangeUsername = (
 		submit,
 		errors,
 		isSubmitting,
+		isDirty,
 	};
 };
 
